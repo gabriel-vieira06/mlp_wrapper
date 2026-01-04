@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="dense_wrapper_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="dense_wrapper_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="31,274.584 ns"></ZoomStartTime>
+      <ZoomEndTime time="31,937.085 ns"></ZoomEndTime>
+      <Cursor1Time time="31,398.084 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="159"></NameColumnWidth>
+      <ValueColumnWidth column_width="187"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="21" />
+   <wvobject fp_name="/dense_wrapper_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/start" type="logic">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/data_in" type="array">
+      <obj_property name="ElementShortName">data_in[0:783][31:0]</obj_property>
+      <obj_property name="ObjectShortName">data_in[0:783][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/data_out" type="array">
+      <obj_property name="ElementShortName">data_out[0:9][31:0]</obj_property>
+      <obj_property name="ObjectShortName">data_out[0:9][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/valid" type="logic">
+      <obj_property name="ElementShortName">valid</obj_property>
+      <obj_property name="ObjectShortName">valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/WIDTH" type="array">
+      <obj_property name="ElementShortName">WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">WIDTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/P_INT" type="array">
+      <obj_property name="ElementShortName">P_INT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">P_INT[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/NUM_TESTS" type="array">
+      <obj_property name="ElementShortName">NUM_TESTS[31:0]</obj_property>
+      <obj_property name="ObjectShortName">NUM_TESTS[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/UUT/H1_addr_w" type="array">
+      <obj_property name="ElementShortName">H1_addr_w[15:0]</obj_property>
+      <obj_property name="ObjectShortName">H1_addr_w[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/UUT/H1_addr_b" type="array">
+      <obj_property name="ElementShortName">H1_addr_b[5:0]</obj_property>
+      <obj_property name="ObjectShortName">H1_addr_b[5:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/UUT/H1_W" type="array">
+      <obj_property name="ElementShortName">H1_W[0:15][31:0]</obj_property>
+      <obj_property name="ObjectShortName">H1_W[0:15][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/UUT/H1_B" type="array">
+      <obj_property name="ElementShortName">H1_B[0:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">H1_B[0:0][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/UUT/H2_addr_w" type="array">
+      <obj_property name="ElementShortName">H2_addr_w[10:0]</obj_property>
+      <obj_property name="ObjectShortName">H2_addr_w[10:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/UUT/H2_addr_b" type="array">
+      <obj_property name="ElementShortName">H2_addr_b[4:0]</obj_property>
+      <obj_property name="ObjectShortName">H2_addr_b[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/UUT/H2_W" type="array">
+      <obj_property name="ElementShortName">H2_W[0:15][31:0]</obj_property>
+      <obj_property name="ObjectShortName">H2_W[0:15][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/UUT/H2_B" type="array">
+      <obj_property name="ElementShortName">H2_B[0:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">H2_B[0:0][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/UUT/H3_addr_w" type="array">
+      <obj_property name="ElementShortName">H3_addr_w[8:0]</obj_property>
+      <obj_property name="ObjectShortName">H3_addr_w[8:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/UUT/H3_addr_b" type="array">
+      <obj_property name="ElementShortName">H3_addr_b[3:0]</obj_property>
+      <obj_property name="ObjectShortName">H3_addr_b[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/UUT/H3_W" type="array">
+      <obj_property name="ElementShortName">H3_W[0:15][31:0]</obj_property>
+      <obj_property name="ObjectShortName">H3_W[0:15][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dense_wrapper_tb/UUT/H3_B" type="array">
+      <obj_property name="ElementShortName">H3_B[0:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">H3_B[0:0][31:0]</obj_property>
+   </wvobject>
+</wave_config>
