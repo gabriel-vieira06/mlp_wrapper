@@ -21,7 +21,7 @@
 module dense_wrapper_tb # (
     parameter int WIDTH = 32,  
                   P_INT = 10,
-                  NUM_TESTS = 10
+                  NUM_TESTS = 1000
 )();
 
     logic             clk;
@@ -32,12 +32,16 @@ module dense_wrapper_tb # (
     logic             valid;
 
     logic [WIDTH-1:0] all_pixels_mem [0 : (NUM_TESTS*784)-1];
+    logic [3:0]       all_labels_mem [0 : (NUM_TESTS)-1];
     
     int predicted_class;
     logic [WIDTH-1:0] max_score_bits;
     real max_score_real;
+    int               correct_count = 0; // Contador de acertos
+    real              accuracy;          // Variável para cálculo final
 
     initial $readmemh ("test_samples.mem", all_pixels_mem);
+    initial $readmemh ("test_labels.mem", all_labels_mem);
 
     dense_wrapper # ()
     UUT(
@@ -103,12 +107,33 @@ module dense_wrapper_tb # (
 
             max_score_real = $signed(max_score_bits) / (2.0**(WIDTH-P_INT));
 
-            $display("Imagem %0d: Classe Predita = %0d (Score: %.2f)", i+1, predicted_class, max_score_real);
+            if (predicted_class == all_labels_mem[i]) begin
+                correct_count++;
+                $display("Imagem %0d: Pred=%0d | Real=%0d [OK] (Score: %.2f)", 
+                         i+1, predicted_class, all_labels_mem[i], max_score_real);
+            end else begin
+                $display("Imagem %0d: Pred=%0d | Real=%0d [ERRO] (Score: %.2f)", 
+                         i+1, predicted_class, all_labels_mem[i], max_score_real);
+            end
+            
+            //$display("Imagem %0d: Classe Predita = %0d (Score: %.2f)", i+1, predicted_class, max_score_real);
+            //$display("Classe real = %0d", all_labels_mem[i]);
             
             #100;
         end
 
-
+        $display("");
+        
+        accuracy = (correct_count * 100.0) / NUM_TESTS;
+        
+        $display("--------------------------------------------------");
+        $display("RESULTADO FINAL DA SIMULACAO");
+        $display("--------------------------------------------------");
+        $display("Total de Testes: %0d", NUM_TESTS);
+        $display("Acertos        : %0d", correct_count);
+        $display("Erros          : %0d", NUM_TESTS - correct_count);
+        $display("Acuracia       : %.2f%%", accuracy);
+        $display("--------------------------------------------------");
         $display("");
 
         #10;
