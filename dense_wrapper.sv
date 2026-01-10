@@ -19,8 +19,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module dense_wrapper #(
-    parameter int WIDTH = 32,  
-                  P_INT = 10
+    parameter int WIDTH       = 32,  
+                  P_INT       = 10,
+                  N_MULT      = 16,
+                  H1_IN_SIZE  = 784,
+                  H1_OUT_SIZE = 64,
+                  H2_IN_SIZE  = 64,
+                  H2_OUT_SIZE = 32,
+                  H3_IN_SIZE  = 32,
+                  H3_OUT_SIZE = 10
 )(
     clk,
     rst,
@@ -30,46 +37,46 @@ module dense_wrapper #(
     valid
 );
 
-    localparam int h1_t2s = ((16/784) == 0) ? 1 : 16/784;
-    localparam int h2_t2s = ((16/64)  == 0) ? 1 : 16/64;
-    localparam int h3_t2s = ((16/32)  == 0) ? 1 : 16/32;
+    localparam int h1_t2s = ((N_MULT/H1_IN_SIZE)  == 0) ? 1 : N_MULT/H1_IN_SIZE;
+    localparam int h2_t2s = ((N_MULT/H2_IN_SIZE)  == 0) ? 1 : N_MULT/H2_IN_SIZE;
+    localparam int h3_t2s = ((N_MULT/H3_IN_SIZE)  == 0) ? 1 : N_MULT/H3_IN_SIZE;
 
     input logic                                 clk;
     input logic                                 rst;
     input logic                                 start;
-    input logic  [                   WIDTH-1:0] data_in [784];
-    output logic [                   WIDTH-1:0] data_out [10];
+    input logic  [                   WIDTH-1:0] data_in  [ H1_IN_SIZE];
+    output logic [                   WIDTH-1:0] data_out [H3_OUT_SIZE];
     output logic                                valid;
     
     typedef enum logic [2:0] {linear, sigmoid, relu, tanh, leaky, step} acfunc;
     
-    logic [WIDTH-1:0] H1_out [64];
-    logic             H1_finish;
+    logic [                         WIDTH-1:0] H1_out [H1_OUT_SIZE];
+    logic                                      H1_finish;
     
-    logic [WIDTH-1:0] H2_out [32];
-    logic             H2_finish;
+    logic [                         WIDTH-1:0] H2_out [H2_OUT_SIZE];
+    logic                                      H2_finish;
     
-    logic [         WIDTH-1:0] H1_W [16];
-    logic [         WIDTH-1:0] H1_B [h1_t2s];
-    logic [$clog2(784*64)-1:0] H1_addr_w;
-    logic [    $clog2(64)-1:0] H1_addr_b;
+    logic [                         WIDTH-1:0] H1_W [N_MULT];
+    logic [                         WIDTH-1:0] H1_B [h1_t2s];
+    logic [$clog2(H1_IN_SIZE*H1_OUT_SIZE)-1:0] H1_addr_w;
+    logic [           $clog2(H1_OUT_SIZE)-1:0] H1_addr_b;
     
-    logic [         WIDTH-1:0] H2_W [16];
-    logic [         WIDTH-1:0] H2_B [h2_t2s];
-    logic [ $clog2(64*32)-1:0] H2_addr_w;
-    logic [    $clog2(32)-1:0] H2_addr_b; 
+    logic [                          WIDTH-1:0] H2_W [N_MULT];
+    logic [                          WIDTH-1:0] H2_B [h2_t2s];
+    logic [ $clog2(H2_IN_SIZE*H2_OUT_SIZE)-1:0] H2_addr_w;
+    logic [            $clog2(H2_OUT_SIZE)-1:0] H2_addr_b; 
     
-    logic [         WIDTH-1:0] H3_W [16];
-    logic [         WIDTH-1:0] H3_B [h3_t2s];
-    logic [ $clog2(32*10)-1:0] H3_addr_w;
-    logic [    $clog2(10)-1:0] H3_addr_b; 
+    logic [                          WIDTH-1:0] H3_W [N_MULT];
+    logic [                          WIDTH-1:0] H3_B [h3_t2s];
+    logic [ $clog2(H3_IN_SIZE*H3_OUT_SIZE)-1:0] H3_addr_w;
+    logic [            $clog2(H3_OUT_SIZE)-1:0] H3_addr_b; 
     
     dense #(
-        .n_in(784), 
-        .n_mult(16), 
-        .layer_size(64), 
-        .WIDTH(32), 
-        .p_int(10),
+        .n_in(H1_IN_SIZE), 
+        .n_mult(N_MULT), 
+        .layer_size(H1_OUT_SIZE), 
+        .WIDTH(WIDTH), 
+        .p_int(P_INT),
         .activation_function(relu)
     )
     hidden1
@@ -87,11 +94,11 @@ module dense_wrapper #(
     );
     
     dense #(
-        .n_in(64), 
-        .n_mult(16), 
-        .layer_size(32), 
-        .WIDTH(32), 
-        .p_int(10),
+        .n_in(H2_IN_SIZE), 
+        .n_mult(N_MULT), 
+        .layer_size(H2_OUT_SIZE), 
+        .WIDTH(WIDTH), 
+        .p_int(P_INT),
         .activation_function(relu)
     )
     hidden2
@@ -109,11 +116,11 @@ module dense_wrapper #(
     );
     
     dense #(
-        .n_in(32), 
-        .n_mult(16), 
-        .layer_size(10), 
-        .WIDTH(32), 
-        .p_int(10),
+        .n_in(H3_IN_SIZE), 
+        .n_mult(N_MULT), 
+        .layer_size(H3_OUT_SIZE), 
+        .WIDTH(WIDTH), 
+        .p_int(P_INT),
         .activation_function(linear)
     )
     hidden3
@@ -131,8 +138,8 @@ module dense_wrapper #(
     );
     
     mem_behavioral_W #(
-        .ADDR_WIDTH($clog2(784*64)),
-        .DEPTH(784*64),
+        .ADDR_WIDTH($clog2(H1_IN_SIZE*H1_OUT_SIZE)),
+        .DEPTH(H1_IN_SIZE*H1_OUT_SIZE),
         .FILENAME("H1W.mem")
     ) H1_W_mem (
         //.clk(clk),
@@ -141,8 +148,8 @@ module dense_wrapper #(
     );
     
     mem_behavioral_W #(
-        .ADDR_WIDTH($clog2(64*32)),
-        .DEPTH(64*32),
+        .ADDR_WIDTH($clog2(H2_IN_SIZE*H2_OUT_SIZE)),
+        .DEPTH(H2_IN_SIZE*H2_OUT_SIZE),
         .FILENAME("H2W.mem")
     ) H2_W_mem (
         //.clk(clk),
@@ -151,8 +158,8 @@ module dense_wrapper #(
     );
     
     mem_behavioral_W #(
-        .ADDR_WIDTH($clog2(32*10)),
-        .DEPTH(32*10),
+        .ADDR_WIDTH($clog2(H3_IN_SIZE*H3_OUT_SIZE)),
+        .DEPTH(H3_IN_SIZE*H3_OUT_SIZE),
         .FILENAME("H3W.mem")
     ) H3_W_mem (
         //.clk(clk),
@@ -161,9 +168,9 @@ module dense_wrapper #(
     );
 
     mem_behavioral_B #(
-        .ADDR_WIDTH($clog2(64)),
+        .ADDR_WIDTH($clog2(H1_OUT_SIZE)),
         .t2s(h1_t2s),
-        .DEPTH(64),
+        .DEPTH(H1_OUT_SIZE),
         .FILENAME("H1B.mem")
     ) H1_B_mem (
         //.clk(clk),
@@ -172,9 +179,9 @@ module dense_wrapper #(
     );
     
     mem_behavioral_B #(
-        .ADDR_WIDTH($clog2(32)),
+        .ADDR_WIDTH($clog2(H2_OUT_SIZE)),
         .t2s(h2_t2s),
-        .DEPTH(32),
+        .DEPTH(H2_OUT_SIZE),
         .FILENAME("H2B.mem")
     ) H2_B_mem (
         //.clk(clk),
@@ -183,9 +190,9 @@ module dense_wrapper #(
     );
     
     mem_behavioral_B #(
-        .ADDR_WIDTH($clog2(10)),
+        .ADDR_WIDTH($clog2(H3_OUT_SIZE)),
         .t2s(h3_t2s),
-        .DEPTH(10),
+        .DEPTH(H3_OUT_SIZE),
         .FILENAME("H3B.mem")
     ) H3_B_mem (
         //.clk(clk),
