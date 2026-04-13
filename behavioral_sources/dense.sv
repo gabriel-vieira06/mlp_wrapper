@@ -206,8 +206,8 @@ module dense #(
 
     always_comb begin
         for (int i = 0; i < t2s; i++)
-            //adj_bias[i] = bias[i] << (WIDTH-p_int);
-            adj_bias[i] = bias[i] << p_int;
+        //  adj_bias[i] = bias[i] << (WIDTH-p_int);
+            adj_bias[i] = bias[i] << (p_int);
     end
 
     always_ff @(posedge clk or posedge rst) begin

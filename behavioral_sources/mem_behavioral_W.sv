@@ -1,23 +1,3 @@
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 01/01/2026 02:54:17 PM
-// Design Name: 
-// Module Name: mem_behavioral_W
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 module mem_behavioral_W #(
     parameter int   ADDR_WIDTH = 4,
                     DATA_WIDTH = 32,

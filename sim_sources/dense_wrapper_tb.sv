@@ -1,8 +1,9 @@
+`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
 // 
-// Create Date: 01/01/2026 03:57:55 PM
+// Create Date: 03/10/2026 01:13:38 PM
 // Design Name: 
 // Module Name: dense_wrapper_tb
 // Project Name: 
@@ -26,14 +27,20 @@ module dense_wrapper_tb # (
 
     logic             clk;
     logic             rst;
-    logic             start;
-    logic [WIDTH-1:0] data_in [784];
-    logic [WIDTH-1:0] data_out [10];
-    logic             valid;
+    
+    logic [WIDTH-1:0] data_in;
+    logic             data_valid;
+    
+    logic [WIDTH-1:0] data_out;
+    logic             data_out_valid;
+    logic             data_out_last;
+    integer fd;
 
     logic [WIDTH-1:0] all_pixels_mem [0 : (NUM_TESTS*784)-1];
     logic [3:0]       all_labels_mem [0 : (NUM_TESTS)-1];
     
+    logic [WIDTH-1:0] output_buffer [10];
+    int out_idx;
     int predicted_class;
     logic [WIDTH-1:0] max_score_bits;
     real max_score_real;
@@ -43,14 +50,15 @@ module dense_wrapper_tb # (
     initial $readmemh ("test_samples.mem", all_pixels_mem);
     initial $readmemh ("test_labels.mem", all_labels_mem);
 
-    dense_wrapper # ()
-    UUT(
+
+    dense_wrapper UUT(
         .clk(clk),
         .rst(rst),
-        .start(start),
         .data_in(data_in),
+        .data_valid(data_valid),
         .data_out(data_out),
-        .valid(valid)
+        .data_out_valid(data_out_valid),
+        .data_out_last(data_out_last)
     );
 
     initial begin
@@ -59,60 +67,59 @@ module dense_wrapper_tb # (
     end
     
     initial begin
+        fd = $fopen("mnist_log.txt", "w");
+    end
+    
+    initial begin
         rst = 1;
-        start = 0;
+        out_idx = 0;
+        data_valid = 0;
 
-        $display("");
+        $fwrite("");
         
         #10;
         rst = 0;
 
         for (int i = 0; i < NUM_TESTS; i++) begin
-        
+            // STREAMING DA IMAGEM
             for (int p = 0; p < 784; p++) begin
-                // O arquivo .mem já contém o valor inteiro escalado corretamente pelo Python
-                data_in[p] = all_pixels_mem[i*784 + p];
+                data_in    = all_pixels_mem[i*784 + p];
+                data_valid = 1;
+                #10;
+            end
+            
+            data_valid = 0;          
+            out_idx = 0;
+            
+            while (1) begin
+                if (data_out_valid) begin
+                    output_buffer[out_idx] = data_out;
+                    out_idx++;
+            
+                    if (data_out_last)
+                        break;
+                end
+                #10;
             end
         
-            #10;
-            start = 1;
-          
-            #10;
-            start = 0;
-            wait(valid);
-            
-            /*
-            $display("Imagem %0d", i+1);
-            $display("Class out[0]: %.2f", $signed(data_out[0])/(2.0**(WIDTH-P_INT)));
-            $display("Class out[1]: %.2f", $signed(data_out[1])/(2.0**(WIDTH-P_INT)));
-            $display("Class out[2]: %.2f", $signed(data_out[2])/(2.0**(WIDTH-P_INT)));
-            $display("Class out[3]: %.2f", $signed(data_out[3])/(2.0**(WIDTH-P_INT)));
-            $display("Class out[4]: %.2f", $signed(data_out[4])/(2.0**(WIDTH-P_INT)));
-            $display("Class out[5]: %.2f", $signed(data_out[5])/(2.0**(WIDTH-P_INT)));
-            $display("Class out[6]: %.2f", $signed(data_out[6])/(2.0**(WIDTH-P_INT)));
-            $display("Class out[7]: %.2f", $signed(data_out[7])/(2.0**(WIDTH-P_INT)));
-            $display("Class out[8]: %.2f", $signed(data_out[8])/(2.0**(WIDTH-P_INT)));
-            $display("Class out[9]: %.2f", $signed(data_out[9])/(2.0**(WIDTH-P_INT)));
-            */
-            
             predicted_class = 0;
-            max_score_bits = data_out[0];
-
+            max_score_bits = output_buffer[0];
+            
             for (int k = 1; k < 10; k++) begin
-                if ($signed(data_out[k]) > $signed(max_score_bits)) begin
-                    max_score_bits = data_out[k];
+                if ($signed(output_buffer[k]) > $signed(max_score_bits)) begin
+                    max_score_bits = output_buffer[k];
                     predicted_class = k;
                 end
             end
-
+    
             max_score_real = $signed(max_score_bits) / (2.0**(WIDTH-P_INT));
-
+    
             if (predicted_class == all_labels_mem[i]) begin
                 correct_count++;
-                $display("Imagem %0d: Pred=%0d | Real=%0d [OK] (Score: %.2f)", 
+                $fwrite(fd,"Imagem %0d: Pred=%0d | Real=%0d [OK] (Score: %.2f)\n", 
                          i+1, predicted_class, all_labels_mem[i], max_score_real);
             end else begin
-                $display("Imagem %0d: Pred=%0d | Real=%0d [ERRO] (Score: %.2f)", 
+                $fwrite(fd,"Imagem %0d: Pred=%0d | Real=%0d [ERRO] (Score: %.2f)\n", 
                          i+1, predicted_class, all_labels_mem[i], max_score_real);
             end
             
