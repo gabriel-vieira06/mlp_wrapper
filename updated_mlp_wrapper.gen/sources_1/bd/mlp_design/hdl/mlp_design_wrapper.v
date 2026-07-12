@@ -1,7 +1,7 @@
 //Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
-//Date        : Sat May  9 15:37:15 2026
+//Date        : Sun Jul 12 20:18:19 2026
 //Host        : bazzite running 64-bit unknown
 //Command     : generate_target mlp_design_wrapper.bd
 //Design      : mlp_design_wrapper
@@ -30,7 +30,9 @@ module mlp_design_wrapper
     FIXED_IO_mio,
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
-    FIXED_IO_ps_srstb);
+    FIXED_IO_ps_srstb,
+    dbg_valid_in,
+    dbg_valid_out);
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
   inout DDR_cas_n;
@@ -52,6 +54,8 @@ module mlp_design_wrapper
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
+  output dbg_valid_in;
+  output dbg_valid_out;
 
   wire [14:0]DDR_addr;
   wire [2:0]DDR_ba;
@@ -74,6 +78,8 @@ module mlp_design_wrapper
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
+  wire dbg_valid_in;
+  wire dbg_valid_out;
 
   mlp_design mlp_design_i
        (.DDR_addr(DDR_addr),
@@ -96,5 +102,7 @@ module mlp_design_wrapper
         .FIXED_IO_mio(FIXED_IO_mio),
         .FIXED_IO_ps_clk(FIXED_IO_ps_clk),
         .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
-        .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb));
+        .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb),
+        .dbg_valid_in(dbg_valid_in),
+        .dbg_valid_out(dbg_valid_out));
 endmodule

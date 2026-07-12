@@ -3,354 +3,236 @@ module dense #(
     parameter int slope = 0,
     parameter logic [2:0] activation_function = 0
 )(
-    clk,
-    rst,
-    start,
-    X,
-    W,
-    bias,
-    Y,
-    addr_w,
-    addr_b,
-    finish
+    input  logic                                 clk,
+    input  logic                                 rst,
+    input  logic                                 start,
+    input  logic  [                  WIDTH-1:0]  X       [n_in],
+    input  logic  [                  WIDTH-1:0]  W       [n_mult],
+    input  logic  [                  WIDTH-1:0]  bias    [((n_mult/n_in) == 0) ? 1 : n_mult/n_in],
+    output logic  [                  WIDTH-1:0]  Y       [layer_size],
+    output logic  [$clog2(n_in*layer_size)-1:0]  addr_w,
+    output logic  [     $clog2(layer_size)-1:0]  addr_b,
+    output logic                                 finish
 );
 
     localparam int t2s = ((n_mult/n_in) == 0) ? 1 : n_mult/n_in;
 
-    
-    input logic                                 clk;
-    input logic                                 rst;
-    input logic                                 start;
-    input logic  [                  WIDTH-1:0]  X       [n_in];
-    input logic  [                  WIDTH-1:0]  W       [n_mult];
-    input logic  [                  WIDTH-1:0]  bias    [t2s];
-    output logic [                  WIDTH-1:0]  Y       [layer_size];
-    output logic [$clog2(n_in*layer_size)-1:0]  addr_w;
-    output logic [     $clog2(layer_size)-1:0]  addr_b;
-    output logic                                finish;
-
     typedef enum logic [2:0] {linear, sigmoid, relu, tanh, leaky, step} acfunc;
-    typedef enum logic [1:0] { INIT, CALC, FINISH } states;
-
+    typedef enum logic [2:0] { INIT, FETCH, MULT, ACCUM, ACT_WRITE, FINISH } states;
     states current, next;
-
-    logic [WIDTH*2-1:0] Mres   [n_mult];
-    logic   [WIDTH-1:0] X_temp [n_mult];
-    logic   [WIDTH-1:0] W_temp [n_mult];
 
     logic [WIDTH*2-1:0] Y_temp_in  [layer_size];
     logic [WIDTH*2-1:0] Y_temp_out [layer_size];
-    logic   [WIDTH-1:0] Y_cmb      [layer_size];
+    logic [WIDTH*2-1:0] adj_bias   [t2s];
 
-    logic [WIDTH*2-1:0] temp, temp_ff;
+    // Registradores de Pipeline
+    logic [WIDTH-1:0]   X_reg      [n_mult];
+    logic [WIDTH-1:0]   W_reg      [n_mult];
+    logic [WIDTH*2-1:0] Mres       [n_mult];     
+    logic [WIDTH*2-1:0] Mres_reg   [n_mult];     
+    
+    logic [WIDTH*2-1:0] temp_acc;                
+    logic [WIDTH*2-1:0] acc_reg    [layer_size]; 
 
-    logic [WIDTH*2-1:0] adj_bias [t2s];
+    logic [$clog2(n_in+n_mult):0] counter_in;
+    logic [$clog2(layer_size):0]  counter_n;
 
-    logic [WIDTH*2-1:0] temp2    [t2s];
-    logic [WIDTH*2-1:0] temp2_ff [t2s];
+    // Ajuste de bias e conexão contínua da Ativação (CORREÇÃO AQUI)
+    always_comb begin
+        for (int i = 0; i < t2s; i++) begin
+            adj_bias[i] = bias[i] << (p_int);
+        end
+        // O acumulador final alimenta continuamente os módulos de ativação
+        // Isso resolve a latência/race condition da FSM sequencial
+        for (int k = 0; k < layer_size; k++) begin
+            Y_temp_in[k] = acc_reg[k];
+        end
+    end
 
-    logic [$clog2(n_in+n_mult):0] counter_in, counter_in_ff;
-    logic [$clog2(layer_size):0] counter_n, counter_n_ff;
-
+    // Geração dos Multiplicadores
     genvar i;
     generate
         for (i = 0; i < n_mult; i++) begin : multPF
-            mult2c #(
-                    .WIDTH(WIDTH)
-                )
-                mpf
-                (
-                    X_temp[i],
-                    W_temp[i],
-                    Mres[i]
-                );
+            mult2c #(.WIDTH(WIDTH)) mpf (X_reg[i], W_reg[i], Mres[i]);
         end
+
+        // Geração das Funções de Ativação
         if (activation_function == sigmoid) begin
             if (t2s < 2) begin
-                hard_sigmoid #(
-                        .WIDTH(WIDTH*2),
-                        .p_int(p_int*2),
-                        .slope(slope)
-                    )
-                    hard_sig
-                    (
-                        Y_temp_in[0],
-                        Y_temp_out[0]
-                    );
-            end
-            else begin
+                hard_sigmoid #(.WIDTH(WIDTH*2), .p_int(p_int*2), .slope(slope)) hard_sig (Y_temp_in[0], Y_temp_out[0]);
+            end else begin
                 for (i = 0; i < t2s; i++) begin : hard_sigmoid
-                    hard_sigmoid #(
-                            .WIDTH(WIDTH*2),
-                            .p_int(p_int*2),
-                            .slope(slope)
-                        )
-                        hard_sig
-                        (
-                            Y_temp_in[i],
-                            Y_temp_out[i]
-                        );
+                    hard_sigmoid #(.WIDTH(WIDTH*2), .p_int(p_int*2), .slope(slope)) hard_sig (Y_temp_in[i], Y_temp_out[i]);
                 end
             end
         end
         if (activation_function == relu) begin
             if (t2s < 2) begin
-                ReLU #(
-                        .WIDTH(WIDTH*2)
-                    )
-                    relu
-                    (
-                        Y_temp_in[0],
-                        Y_temp_out[0]
-                    );
-            end
-            else begin
+                ReLU #(.WIDTH(WIDTH*2)) relu (Y_temp_in[0], Y_temp_out[0]);
+            end else begin
                 for (i = 0; i < t2s; i++) begin : ReLU
-                    ReLU #(
-                            .WIDTH(WIDTH*2)
-                        )
-                        relu
-                        (
-                            Y_temp_in[i],
-                            Y_temp_out[i]
-                        );
+                    ReLU #(.WIDTH(WIDTH*2)) relu (Y_temp_in[i], Y_temp_out[i]);
                 end
             end
         end
         if (activation_function == tanh) begin
             if (t2s < 2) begin
-                hard_tanh #(
-                        .WIDTH(WIDTH*2),
-                        .p_int(p_int*2),
-                        .slope(slope)
-                    )
-                    hard_th
-                    (
-                        Y_temp_in[0],
-                        Y_temp_out[0]
-                    );
-            end
-            else begin
+                hard_tanh #(.WIDTH(WIDTH*2), .p_int(p_int*2), .slope(slope)) hard_th (Y_temp_in[0], Y_temp_out[0]);
+            end else begin
                 for (i = 0; i < t2s; i++) begin : hard_tanh
-                    hard_tanh #(
-                            .WIDTH(WIDTH*2),
-                            .p_int(p_int*2),
-                            .slope(slope)
-                        )
-                        hard_th
-                        (
-                            Y_temp_in[i],
-                            Y_temp_out[i]
-                        );
+                    hard_tanh #(.WIDTH(WIDTH*2), .p_int(p_int*2), .slope(slope)) hard_th (Y_temp_in[i], Y_temp_out[i]);
                 end
             end
         end
         if (activation_function == leaky) begin
             if (t2s < 2) begin
-                leakyReLU #(
-                        .WIDTH(WIDTH*2),
-                        .p_int(p_int*2)
-                    )
-                    leaky
-                    (
-                        Y_temp_in[0],
-                        slope,
-                        Y_temp_out[0]
-                    );
-            end
-            else begin
+                leakyReLU #(.WIDTH(WIDTH*2), .p_int(p_int*2)) leaky (Y_temp_in[0], slope, Y_temp_out[0]);
+            end else begin
                 for (i = 0; i < t2s; i++) begin : leaky_ReLU
-                    leakyReLU #(
-                            .WIDTH(WIDTH*2),
-                            .p_int(p_int*2)
-                        )
-                        leaky
-                        (
-                            Y_temp_in[i],
-                            slope,
-                            Y_temp_out[i]
-                        );
+                    leakyReLU #(.WIDTH(WIDTH*2), .p_int(p_int*2)) leaky (Y_temp_in[i], slope, Y_temp_out[i]);
                 end
             end
         end
         if (activation_function == step) begin
             if (t2s < 2) begin
-                step #(
-                        .WIDTH(WIDTH*2),
-                        .p_int(p_int*2)
-                    )
-                    stp
-                    (
-                        Y_temp_in[0],
-                        Y_temp_out[0]
-                    );
-            end
-            else begin
+                step #(.WIDTH(WIDTH*2), .p_int(p_int*2)) stp (Y_temp_in[0], Y_temp_out[0]);
+            end else begin
                 for (i = 0; i < t2s; i++) begin : step
-                    step #(
-                            .WIDTH(WIDTH*2),
-                            .p_int(p_int*2)
-                        )
-                        stp
-                        (
-                            Y_temp_in[i],
-                            Y_temp_out[i]
-                        );
+                    step #(.WIDTH(WIDTH*2), .p_int(p_int*2)) stp (Y_temp_in[i], Y_temp_out[i]);
                 end
             end
         end
     endgenerate
 
-    assign addr_w = (t2s < 2) ? counter_n_ff*n_in+counter_in_ff : counter_n_ff*n_in;
-    assign addr_b = counter_n_ff;
+    assign addr_w = (t2s < 2) ? (counter_n * n_in) + counter_in : (counter_n * n_in);
+    assign addr_b = counter_n;
 
-    always_comb begin
-        for (int i = 0; i < t2s; i++)
-        //  adj_bias[i] = bias[i] << (WIDTH-p_int);
-            adj_bias[i] = bias[i] << (p_int);
-    end
-
+    // --- FSM Pipelinizada Corrigida ---
     always_ff @(posedge clk or posedge rst) begin
         if (rst) begin
-            current       <= INIT;
-            counter_in_ff <= 'd0;
-            counter_n_ff  <= 'd0;
-            temp_ff       <= 'd0;
-
-            for (int i = 0; i < t2s; i++)
-                temp2_ff[i] <= 'd0;
-
-            for (int i = 0;i < layer_size; i++)
-                Y[i] = 'd0;
-        end
-        else begin
-            current       <= next;
-            counter_in_ff <= counter_in;
-            counter_n_ff  <= counter_n;
-
-            if (current == CALC || current == FINISH)
-                temp_ff <= temp;
-            else
-                temp_ff <= 'd0;
-
-            if (current == CALC || current == FINISH)
-                for (int i = 0; i < t2s; i++)
-                    temp2_ff[i] <= 'd0;
-            else
-                for (int i = 0; i < t2s; i++)
-                    temp2_ff[i] <= 'd0;
-            Y <= Y_cmb;
-        end
-    end
-
-    always_comb begin
-        temp       = 'd0;
-        finish     = 'd0;
-        counter_in = 'd0;
-        counter_n  = 'd0;
-        next       = current;
-
-        for (int i = 0; i < t2s; i++)
-            temp2[i] = 'd0;
-
-        for (int i = 0; i < n_mult; i++) begin
-            X_temp[i] = 'd0;
-            W_temp[i] = 'd0;
-        end
-        for (int i = 0; i < layer_size; i++)
-            Y_temp_in[i]  = 'd0;
-
-
-        Y_cmb = Y;
-        
-        case (current)
-            INIT: begin
-                if (start) begin
-                    next = CALC;
-                end
+            current <= INIT;
+            counter_in <= 'd0;
+            counter_n <= 'd0;
+            temp_acc <= 'd0;
+            finish <= 1'b0;
+            
+            for (int k = 0; k < layer_size; k++) begin
+                Y[k] <= 'd0;
+                acc_reg[k] <= 'd0;
             end
-            CALC: begin
-                if (t2s < 2) begin
-                    counter_n  = counter_n_ff;
-                    counter_in = counter_in_ff + n_mult;
-                    temp       = temp_ff;
+            for (int k = 0; k < n_mult; k++) begin
+                X_reg[k] <= 'd0;
+                W_reg[k] <= 'd0;
+                Mres_reg[k] <= 'd0;
+            end
+        end else begin
+            case (current)
+                INIT: begin
+                    finish <= 1'b0;
+                    counter_in <= 'd0;
+                    counter_n <= 'd0;
+                    temp_acc <= 'd0;
+                    if (start) current <= FETCH;
+                end
 
-                    for (int i = 0; i < n_mult; i++) begin
-                        if (i+counter_in_ff >= n_in) begin
-                            X_temp[i] = 'd0;
-                            W_temp[i] = 'd0;
+                FETCH: begin
+                    if (t2s < 2) begin
+                        for (int j = 0; j < n_mult; j++) begin
+                            if (j + counter_in >= n_in) begin
+                                X_reg[j] <= 'd0;
+                                W_reg[j] <= 'd0;
+                            end else begin
+                                X_reg[j] <= X[j + counter_in];
+                                W_reg[j] <= W[j];
+                            end
                         end
-                        else begin
-                            X_temp[i] = X[i+counter_in_ff];
-                            //W_temp[i] = W[counter_n_ff][i+counter_in_ff];
-                            W_temp[i] = W[i];
+                    end else begin
+                        for (int j = 0; j < t2s; j++) begin
+                            for (int k = 0; k < n_in; k++) begin
+                                X_reg[n_in*j+k] <= X[k];
+                                W_reg[n_in*j+k] <= W[j*n_in + k];
+                            end
                         end
-                        temp += Mres[i];
                     end
+                    current <= MULT;
+                end
 
-                    if (counter_in >= n_in) begin
-                        Y_temp_in[0] = temp + adj_bias[0];
-                        if (activation_function == linear)
-                            Y_cmb[counter_n_ff] = Y_temp_in[0][(WIDTH*2-1)-p_int-:WIDTH];
-                        if (
-                            activation_function == sigmoid ||
-                            activation_function == relu    ||
-                            activation_function == tanh    ||
-                            activation_function == leaky   ||
-                            activation_function == step
-                            )
-                            Y_cmb[counter_n_ff] = Y_temp_out[0][(WIDTH*2-1)-p_int-:WIDTH];
+                MULT: begin
+                    for (int j = 0; j < n_mult; j++) begin
+                        Mres_reg[j] <= Mres[j];
+                    end
+                    current <= ACCUM;
+                end
 
-                        counter_n  = counter_n_ff + 'd1;
-                        counter_in = 'd0;
-                        temp = 'd0;
-                        if (counter_n == layer_size) begin
-                            counter_n = 'd0;
-                            next = FINISH;
+                ACCUM: begin
+                    if (t2s < 2) begin
+                        logic [WIDTH*2-1:0] step_sum;
+                        step_sum = temp_acc;
+                        for (int j = 0; j < n_mult; j++) begin
+                            step_sum += Mres_reg[j];
                         end
+                        temp_acc <= step_sum;
+                        counter_in <= counter_in + n_mult;
+
+                        if (counter_in + n_mult >= n_in) begin 
+                            acc_reg[0] <= step_sum + adj_bias[0];
+                            current <= ACT_WRITE;
+                        end else begin
+                            current <= FETCH;
+                        end
+                    end else begin
+                        for (int j = 0; j < t2s; j++) begin
+                            logic [WIDTH*2-1:0] step_sum_t2s;
+                            // Correção 2: Sempre começa de zero (evita estouro da variavel antiga)
+                            step_sum_t2s = 'd0; 
+                            for (int k = 0; k < n_in; k++) begin
+                                step_sum_t2s += Mres_reg[n_in*j+k];
+                            end
+                            acc_reg[j] <= step_sum_t2s + adj_bias[j];
+                        end
+                        current <= ACT_WRITE;
                     end
                 end
-                else begin
-                    counter_n  = counter_n_ff + t2s;
 
-                    for (int i = 0; i < t2s; i++)
-                        temp2[i] = temp2_ff[i];
-
-                    for (int i = 0; i < t2s; i++) begin
-                        for (int j = 0; j < n_in; j++) begin
-                            X_temp[n_in*i+j] = X[j];
-                            //W_temp[n_in*i+j] = W[i+counter_n_ff][j];
-                            W_temp[n_in*i+j] = W[i*n_in + j];
-                            temp2[i]        += Mres[n_in*i+j];
+                ACT_WRITE: begin
+                    if (t2s < 2) begin
+                        if (activation_function == linear) begin
+                            // Puxa direto de acc_reg para linear
+                            Y[counter_n] <= acc_reg[0][(WIDTH*2-1)-p_int-:WIDTH];
+                        end else begin
+                            // Y_temp_out agora tem o valor estável graças ao assign combinacional!
+                            Y[counter_n] <= Y_temp_out[0][(WIDTH*2-1)-p_int-:WIDTH];
                         end
-                        Y_temp_in[i] = temp2[i] + adj_bias[i];
-                        if (activation_function == linear)
-                            Y_cmb[i+counter_n_ff] = Y_temp_in[i][(WIDTH*2-1)-p_int-:WIDTH];
-                        if (
-                            activation_function == sigmoid ||
-                            activation_function == relu    ||
-                            activation_function == tanh    ||
-                            activation_function == leaky   ||
-                            activation_function == step
-                            )
-                            Y_cmb[i+counter_n_ff] = Y_temp_out[i][(WIDTH*2-1)-p_int-:WIDTH];
-                    end
+                        
+                        counter_n <= counter_n + 1'b1;
+                        counter_in <= 'd0;
+                        temp_acc <= 'd0;
 
-                    if (counter_n >= layer_size) begin
-                        counter_n = 0;
-                        next = FINISH;
+                        if (counter_n + 1'b1 >= layer_size) current <= FINISH;
+                        else current <= FETCH;
+                        
+                    end else begin
+                        for (int j = 0; j < t2s; j++) begin
+                            if (activation_function == linear) begin
+                                Y[j+counter_n] <= acc_reg[j][(WIDTH*2-1)-p_int-:WIDTH];
+                            end else begin
+                                Y[j+counter_n] <= Y_temp_out[j][(WIDTH*2-1)-p_int-:WIDTH];
+                            end
+                        end
+                        
+                        counter_n <= counter_n + t2s;
+                        if (counter_n + t2s >= layer_size) current <= FINISH;
+                        else current <= FETCH;
                     end
                 end
-            end
-            FINISH: begin
-                finish = 'd1;
-                next   = INIT;
-            end
-        endcase
-        
-        if (rst) begin
-            for (int i = 0; i< layer_size; i++)
-                Y_cmb[i] = 'd0;
+
+                FINISH: begin
+                    finish <= 1'b1;
+                    current <= INIT;
+                end
+                
+                default: current <= INIT;
+            endcase
         end
     end
 

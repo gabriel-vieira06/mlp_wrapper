@@ -1,7 +1,7 @@
 set_property SRC_FILE_INFO {cfile:/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ip/mlp_design_processing_system7_0_0/mlp_design_processing_system7_0_0.xdc rfile:../../../updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ip/mlp_design_processing_system7_0_0/mlp_design_processing_system7_0_0.xdc id:1 order:EARLY scoped_inst:inst} [current_design]
 current_instance inst
 set_property src_info {type:SCOPED_XDC file:1 line:21 export:INPUT save:INPUT read:READ} [current_design]
-set_input_jitter clk_fpga_0 1.2
+set_input_jitter clk_fpga_0 0.6
 set_property src_info {type:SCOPED_XDC file:1 line:31 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN "C11" [get_ports "MIO[53]"]
 set_property src_info {type:SCOPED_XDC file:1 line:38 export:INPUT save:INPUT read:READ} [current_design]

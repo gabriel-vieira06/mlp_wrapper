@@ -1,7 +1,7 @@
 //Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
-//Date        : Sat May  9 15:37:15 2026
+//Date        : Sun Jul 12 20:18:19 2026
 //Host        : bazzite running 64-bit unknown
 //Command     : generate_target mlp_design.bd
 //Design      : mlp_design
@@ -436,7 +436,9 @@ module mlp_design
     FIXED_IO_mio,
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
-    FIXED_IO_ps_srstb);
+    FIXED_IO_ps_srstb,
+    dbg_valid_in,
+    dbg_valid_out);
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR ADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DDR, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250" *) inout [14:0]DDR_addr;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR BA" *) inout [2:0]DDR_ba;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR CAS_N" *) inout DDR_cas_n;
@@ -458,6 +460,8 @@ module mlp_design
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_CLK" *) inout FIXED_IO_ps_clk;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB" *) inout FIXED_IO_ps_porb;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB" *) inout FIXED_IO_ps_srstb;
+  output dbg_valid_in;
+  output dbg_valid_out;
 
   wire [31:0]axi_dma_0_M_AXIS_MM2S_TDATA;
   wire axi_dma_0_M_AXIS_MM2S_TLAST;
@@ -530,6 +534,8 @@ module mlp_design
   wire axi_mem_intercon_M00_AXI_WREADY;
   wire [7:0]axi_mem_intercon_M00_AXI_WSTRB;
   wire axi_mem_intercon_M00_AXI_WVALID;
+  wire mlp_0_dbg_m_axis_tready;
+  wire mlp_0_dbg_s_axis_tvalid;
   wire [31:0]mlp_0_m_axis_TDATA;
   wire mlp_0_m_axis_TLAST;
   wire mlp_0_m_axis_TREADY;
@@ -613,6 +619,8 @@ module mlp_design
   wire ps7_0_axi_periph_M00_AXI_WVALID;
   wire [0:0]rst_ps7_0_100M_peripheral_aresetn;
 
+  assign dbg_valid_in = mlp_0_dbg_m_axis_tready;
+  assign dbg_valid_out = mlp_0_dbg_s_axis_tvalid;
   mlp_design_axi_dma_0_0 axi_dma_0
        (.axi_resetn(rst_ps7_0_100M_peripheral_aresetn),
         .m_axi_mm2s_aclk(processing_system7_0_FCLK_CLK0),
@@ -750,6 +758,8 @@ module mlp_design
         .S01_AXI_wvalid(axi_dma_0_M_AXI_S2MM_WVALID));
   mlp_design_mlp_0_0 mlp_0
        (.clk(processing_system7_0_FCLK_CLK0),
+        .dbg_valid_in(mlp_0_dbg_m_axis_tready),
+        .dbg_valid_out(mlp_0_dbg_s_axis_tvalid),
         .m_axis_tdata(mlp_0_m_axis_TDATA),
         .m_axis_tlast(mlp_0_m_axis_TLAST),
         .m_axis_tready(mlp_0_m_axis_TREADY),

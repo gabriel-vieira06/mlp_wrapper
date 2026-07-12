@@ -9,9 +9,6 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==mlp_design 
 # IP: bd/mlp_design/ip/mlp_design_processing_system7_0_0/mlp_design_processing_system7_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==mlp_design_processing_system7_0_0 || ORIG_REF_NAME==mlp_design_processing_system7_0_0} -quiet] -quiet
 
-# IP: bd/mlp_design/ip/mlp_design_mlp_0_0/mlp_design_mlp_0_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==mlp_design_mlp_0_0 || ORIG_REF_NAME==mlp_design_mlp_0_0} -quiet] -quiet
-
 # IP: bd/mlp_design/ip/mlp_design_axi_dma_0_0/mlp_design_axi_dma_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==mlp_design_axi_dma_0_0 || ORIG_REF_NAME==mlp_design_axi_dma_0_0} -quiet] -quiet
 
@@ -26,6 +23,9 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==mlp_design_
 
 # IP: bd/mlp_design/ip/mlp_design_axi_mem_intercon_0/mlp_design_axi_mem_intercon_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==mlp_design_axi_mem_intercon_0 || ORIG_REF_NAME==mlp_design_axi_mem_intercon_0} -quiet] -quiet
+
+# IP: bd/mlp_design/ip/mlp_design_mlp_0_0/mlp_design_mlp_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==mlp_design_mlp_0_0 || ORIG_REF_NAME==mlp_design_mlp_0_0} -quiet] -quiet
 
 # IP: bd/mlp_design/ip/mlp_design_auto_pc_0/mlp_design_auto_pc_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==mlp_design_auto_pc_0 || ORIG_REF_NAME==mlp_design_auto_pc_0} -quiet] -quiet

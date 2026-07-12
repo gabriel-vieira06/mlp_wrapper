@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
-| Date         : Sat May  9 15:48:19 2026
+| Date         : Sun Jul 12 20:32:13 2026
 | Host         : bazzite running 64-bit unknown
 | Command      : report_methodology -file mlp_design_wrapper_methodology_drc_routed.rpt -pb mlp_design_wrapper_methodology_drc_routed.pb -rpx mlp_design_wrapper_methodology_drc_routed.rpx
 | Design       : mlp_design_wrapper
@@ -23,14 +23,15 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 22
-+----------+----------+---------------------------------------------+------------+
-| Rule     | Severity | Description                                 | Violations |
-+----------+----------+---------------------------------------------+------------+
-| DPIR-1   | Warning  | Asynchronous driver check                   | 18         |
-| LUTAR-1  | Warning  | LUT drives async reset alert                | 3          |
-| ULMTCS-1 | Warning  | Control Sets use limits recommend reduction | 1          |
-+----------+----------+---------------------------------------------+------------+
+             Violations found: 36
++-----------+----------+---------------------------------------------+------------+
+| Rule      | Severity | Description                                 | Violations |
++-----------+----------+---------------------------------------------+------------+
+| DPIR-1    | Warning  | Asynchronous driver check                   | 30         |
+| LUTAR-1   | Warning  | LUT drives async reset alert                | 3          |
+| TIMING-18 | Warning  | Missing input or output delay               | 2          |
+| ULMTCS-1  | Warning  | Control Sets use limits recommend reduction | 1          |
++-----------+----------+---------------------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
@@ -124,6 +125,66 @@ Asynchronous driver check
 DSP mlp_design_i/mlp_0/inst/UUT/hidden1/addr_w__0 input pin mlp_design_i/mlp_0/inst/UUT/hidden1/addr_w__0/C[9] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
 Related violations: <none>
 
+DPIR-1#19 Warning
+Asynchronous driver check  
+DSP mlp_design_i/mlp_0/inst/UUT/hidden1/multPF[0].mpf/OUT1 input pin mlp_design_i/mlp_0/inst/UUT/hidden1/multPF[0].mpf/OUT1/A[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#20 Warning
+Asynchronous driver check  
+DSP mlp_design_i/mlp_0/inst/UUT/hidden1/multPF[0].mpf/OUT1__1 input pin mlp_design_i/mlp_0/inst/UUT/hidden1/multPF[0].mpf/OUT1__1/A[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#21 Warning
+Asynchronous driver check  
+DSP mlp_design_i/mlp_0/inst/UUT/hidden1/multPF[0].mpf/OUT1__1 input pin mlp_design_i/mlp_0/inst/UUT/hidden1/multPF[0].mpf/OUT1__1/B[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#22 Warning
+Asynchronous driver check  
+DSP mlp_design_i/mlp_0/inst/UUT/hidden1/multPF[0].mpf/OUT1__2 input pin mlp_design_i/mlp_0/inst/UUT/hidden1/multPF[0].mpf/OUT1__2/A[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#23 Warning
+Asynchronous driver check  
+DSP mlp_design_i/mlp_0/inst/UUT/hidden2/multPF[0].mpf/OUT1 input pin mlp_design_i/mlp_0/inst/UUT/hidden2/multPF[0].mpf/OUT1/A[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#24 Warning
+Asynchronous driver check  
+DSP mlp_design_i/mlp_0/inst/UUT/hidden2/multPF[0].mpf/OUT1__1 input pin mlp_design_i/mlp_0/inst/UUT/hidden2/multPF[0].mpf/OUT1__1/A[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#25 Warning
+Asynchronous driver check  
+DSP mlp_design_i/mlp_0/inst/UUT/hidden2/multPF[0].mpf/OUT1__1 input pin mlp_design_i/mlp_0/inst/UUT/hidden2/multPF[0].mpf/OUT1__1/B[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#26 Warning
+Asynchronous driver check  
+DSP mlp_design_i/mlp_0/inst/UUT/hidden2/multPF[0].mpf/OUT1__2 input pin mlp_design_i/mlp_0/inst/UUT/hidden2/multPF[0].mpf/OUT1__2/A[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#27 Warning
+Asynchronous driver check  
+DSP mlp_design_i/mlp_0/inst/UUT/hidden3/multPF[0].mpf/OUT1 input pin mlp_design_i/mlp_0/inst/UUT/hidden3/multPF[0].mpf/OUT1/A[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#28 Warning
+Asynchronous driver check  
+DSP mlp_design_i/mlp_0/inst/UUT/hidden3/multPF[0].mpf/OUT1__1 input pin mlp_design_i/mlp_0/inst/UUT/hidden3/multPF[0].mpf/OUT1__1/A[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#29 Warning
+Asynchronous driver check  
+DSP mlp_design_i/mlp_0/inst/UUT/hidden3/multPF[0].mpf/OUT1__1 input pin mlp_design_i/mlp_0/inst/UUT/hidden3/multPF[0].mpf/OUT1__1/B[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#30 Warning
+Asynchronous driver check  
+DSP mlp_design_i/mlp_0/inst/UUT/hidden3/multPF[0].mpf/OUT1__2 input pin mlp_design_i/mlp_0/inst/UUT/hidden3/multPF[0].mpf/OUT1__2/A[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
 LUTAR-1#1 Warning
 LUT drives async reset alert  
 LUT cell mlp_design_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/gpregsm1.curr_fwft_state[1]_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) mlp_design_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_reg[2]/CLR,
@@ -184,9 +245,19 @@ mlp_design_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_
  (the first 15 of 32 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
+TIMING-18#1 Warning
+Missing input or output delay  
+An output delay is missing on dbg_valid_in relative to clock(s) clk_fpga_0
+Related violations: <none>
+
+TIMING-18#2 Warning
+Missing input or output delay  
+An output delay is missing on dbg_valid_out relative to clock(s) clk_fpga_0
+Related violations: <none>
+
 ULMTCS-1#1 Warning
 Control Sets use limits recommend reduction  
-This design uses 1091 control sets (vs. available limit of 13300, determined by 1 control set per CLB). This exceeds the control set use guideline of 7.5 percent. This is at a level where reduction is RECOMMENDED (see UG949). Use report_control_sets to get more details.
+This design uses 1103 control sets (vs. available limit of 13300, determined by 1 control set per CLB). This exceeds the control set use guideline of 7.5 percent. This is at a level where reduction is RECOMMENDED (see UG949). Use report_control_sets to get more details.
 Related violations: <none>
 
 

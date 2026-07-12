@@ -2,13 +2,13 @@
 # Vivado v2022.2 (64-bit)
 # SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
 # IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
-# Start of session at: Sat May  9 14:59:39 2026
-# Process ID: 121770
+# Start of session at: Sun Jul 12 20:18:27 2026
+# Process ID: 77051
 # Current directory: /var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/mlp_design_mlp_0_0_synth_1
 # Command line: vivado -log mlp_design_mlp_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source mlp_design_mlp_0_0.tcl
 # Log file: /var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/mlp_design_mlp_0_0_synth_1/mlp_design_mlp_0_0.vds
 # Journal file: /var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/mlp_design_mlp_0_0_synth_1/vivado.jou
-# Running On: bazzite, OS: Linux, CPU Frequency: 4316.987 MHz, CPU Physical cores: 16, Host memory: 33495 MB
+# Running On: bazzite, OS: Linux, CPU Frequency: 3761.030 MHz, CPU Physical cores: 16, Host memory: 33494 MB
 #-----------------------------------------------------------
 source mlp_design_mlp_0_0.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
@@ -22,12 +22,12 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020
 INFO: [Device 21-403] Loading part xc7z020clg400-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 121885
+INFO: [Synth 8-7075] Helper process launched with PID 77186
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/home/Vieira/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1958.867 ; gain = 370.801 ; free physical = 724 ; free virtual = 31685
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1181.540; parent = 1049.572; children = 131.968
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 2936.250; parent = 1964.809; children = 971.441
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1958.930 ; gain = 370.801 ; free physical = 2258 ; free virtual = 37584
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1390.032; parent = 1183.971; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 2939.145; parent = 1964.871; children = 974.273
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'mlp_design_mlp_0_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ip/mlp_design_mlp_0_0/synth/mlp_design_mlp_0_0.v:53]
 INFO: [Synth 8-6157] synthesizing module 'mlp' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/mlp.v:23]
@@ -37,13 +37,10 @@ INFO: [Synth 8-6157] synthesizing module 'mult2c' [/var/home/Vieira/Documents/vi
 INFO: [Synth 8-6155] done synthesizing module 'mult2c' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/mult2c.sv:1]
 INFO: [Synth 8-6157] synthesizing module 'ReLU' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/ReLU.sv:23]
 INFO: [Synth 8-6155] done synthesizing module 'ReLU' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/ReLU.sv:23]
-INFO: [Synth 8-155] case statement is not full and has no default [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:266]
 INFO: [Synth 8-6155] done synthesizing module 'dense' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:1]
 INFO: [Synth 8-6157] synthesizing module 'dense__parameterized0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:1]
-INFO: [Synth 8-155] case statement is not full and has no default [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:266]
 INFO: [Synth 8-6155] done synthesizing module 'dense__parameterized0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:1]
 INFO: [Synth 8-6157] synthesizing module 'dense__parameterized1' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:1]
-INFO: [Synth 8-155] case statement is not full and has no default [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:266]
 INFO: [Synth 8-6155] done synthesizing module 'dense__parameterized1' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:1]
 INFO: [Synth 8-6157] synthesizing module 'mem_behavioral_W' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/mem_behavioral_W.sv:1]
 INFO: [Synth 8-3876] $readmem data file 'H1W.mem' is read successfully [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/mem_behavioral_W.sv:20]
@@ -66,165 +63,262 @@ INFO: [Synth 8-6155] done synthesizing module 'mem_behavioral_B__parameterized1'
 INFO: [Synth 8-6155] done synthesizing module 'dense_wrapper' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:1]
 INFO: [Synth 8-6155] done synthesizing module 'mlp' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/mlp.v:23]
 INFO: [Synth 8-6155] done synthesizing module 'mlp_design_mlp_0_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ip/mlp_design_mlp_0_0/synth/mlp_design_mlp_0_0.v:53]
-WARNING: [Synth 8-6014] Unused sequential element temp2_ff_reg[0] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:221]
-WARNING: [Synth 8-7137] Register Y_reg[0] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[1] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[2] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[3] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[4] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[5] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[6] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[7] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[8] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[9] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[10] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[11] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[12] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[13] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[14] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[15] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[16] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[17] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[18] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[19] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[20] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[21] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[22] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[23] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[24] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[25] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[26] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[27] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[28] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[29] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[30] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[31] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[32] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[33] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[34] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[35] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[36] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[37] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[38] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[39] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[40] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[41] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[42] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[43] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[44] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[45] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[46] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[47] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[48] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[49] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[50] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[51] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[52] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[53] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[54] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[55] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[56] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[57] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[58] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[59] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[60] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[61] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[62] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[63] in module dense has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-6014] Unused sequential element temp2_ff_reg[0] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:221]
-WARNING: [Synth 8-7137] Register Y_reg[0] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[1] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[2] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[3] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[4] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[5] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[6] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[7] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[8] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[9] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[10] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[11] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[12] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[13] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[14] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[15] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[16] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[17] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[18] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[19] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[20] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[21] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[22] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[23] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[24] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[25] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[26] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[27] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[28] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[29] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[30] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[31] in module dense__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-6014] Unused sequential element temp2_ff_reg[0] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:221]
-WARNING: [Synth 8-3936] Found unconnected internal register 'adj_bias_reg[0]' and it is trimmed from '64' to '54' bits. [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:210]
-WARNING: [Synth 8-7137] Register Y_reg[0] in module dense__parameterized1 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[1] in module dense__parameterized1 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[2] in module dense__parameterized1 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
-WARNING: [Synth 8-7137] Register Y_reg[3] in module dense__parameterized1 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:224]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[1] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[2] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[3] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[4] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[5] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[6] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[7] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[8] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[9] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[10] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[11] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[12] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[13] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[14] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[15] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[16] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[17] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[18] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[19] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[20] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[21] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[22] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[23] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[24] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[25] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[26] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[27] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[28] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[29] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[30] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[31] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[32] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[33] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[34] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[35] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[36] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[37] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[38] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[39] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[40] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[41] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[42] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[43] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[44] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[45] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[46] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[47] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[48] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[49] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[50] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[51] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[52] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[53] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[54] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[55] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[56] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[57] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[58] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[59] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[60] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[61] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[62] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[63] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element step_sum_reg was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:170]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[1] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[2] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[3] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[4] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[5] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[6] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[7] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[8] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[9] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[10] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[11] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[12] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[13] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[14] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[15] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[16] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[17] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[18] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[19] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[20] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[21] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[22] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[23] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[24] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[25] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[26] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[27] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[28] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[29] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[30] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[31] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element step_sum_reg was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:170]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[1] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[2] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[3] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+WARNING: [Synth 8-6014] Unused sequential element acc_reg_reg[4] was removed.  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:121]
+INFO: [Common 17-14] Message 'Synth 8-6014' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Synth 8-7137] Register input_buffer_reg[0] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[1] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[2] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[3] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[4] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[5] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[6] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[7] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[8] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[9] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[10] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[11] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[12] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[13] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[14] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[15] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[16] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[17] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[18] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[19] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[20] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[21] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[22] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[23] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[24] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[25] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[26] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[27] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[28] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[29] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[30] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[31] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[32] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[33] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[34] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[35] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[36] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[37] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[38] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[39] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[40] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[41] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[42] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[43] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[44] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[45] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[46] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[47] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[48] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[49] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[50] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[51] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[52] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[53] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[54] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[55] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[56] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[57] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[58] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[59] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[60] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[61] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[62] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[63] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[64] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[65] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[66] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[67] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[68] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[69] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[70] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[71] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[72] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[73] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[74] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[75] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[76] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[77] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[78] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[79] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[80] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[81] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[82] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[83] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[84] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[85] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[86] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[87] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[88] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[89] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[90] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[91] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[92] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[93] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[94] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[95] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[96] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[97] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[98] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
+WARNING: [Synth 8-7137] Register input_buffer_reg[99] in module dense_wrapper has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense_wrapper.sv:82]
 INFO: [Common 17-14] Message 'Synth 8-7137' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 WARNING: [Synth 8-7129] Port s_axis_tlast in module mlp is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2164.898 ; gain = 576.832 ; free physical = 1064 ; free virtual = 31257
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1209.476; parent = 1077.512; children = 131.968
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3136.344; parent = 2164.902; children = 971.441
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2149.922 ; gain = 561.793 ; free physical = 2133 ; free virtual = 37465
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1404.914; parent = 1198.860; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3124.199; parent = 2149.926; children = 974.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2179.742 ; gain = 591.676 ; free physical = 967 ; free virtual = 31161
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1209.476; parent = 1077.512; children = 131.968
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3151.188; parent = 2179.746; children = 971.441
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2158.828 ; gain = 570.699 ; free physical = 2133 ; free virtual = 37465
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1406.172; parent = 1200.118; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3133.105; parent = 2158.832; children = 974.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2179.742 ; gain = 591.676 ; free physical = 964 ; free virtual = 31158
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1209.476; parent = 1077.512; children = 131.968
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3151.188; parent = 2179.746; children = 971.441
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2158.828 ; gain = 570.699 ; free physical = 2133 ; free virtual = 37465
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1406.172; parent = 1200.118; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3133.105; parent = 2158.832; children = 974.273
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.37 ; elapsed = 00:00:00.37 . Memory (MB): peak = 2179.742 ; gain = 0.000 ; free physical = 1179 ; free virtual = 31374
+Netlist sorting complete. Time (s): cpu = 00:00:00.28 ; elapsed = 00:00:00.28 . Memory (MB): peak = 2158.828 ; gain = 0.000 ; free physical = 2129 ; free virtual = 37461
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2339.492 ; gain = 0.000 ; free physical = 1601 ; free virtual = 31801
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2321.547 ; gain = 0.000 ; free physical = 2054 ; free virtual = 37397
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.73 ; elapsed = 00:00:00.26 . Memory (MB): peak = 2339.492 ; gain = 0.000 ; free physical = 1467 ; free virtual = 31672
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.59 ; elapsed = 00:00:00.21 . Memory (MB): peak = 2321.547 ; gain = 0.000 ; free physical = 2057 ; free virtual = 37400
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/home/Vieira/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2339.492 ; gain = 751.426 ; free physical = 1549 ; free virtual = 31770
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1237.221; parent = 1105.258; children = 131.968
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3278.922; parent = 2307.480; children = 971.441
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 2321.547 ; gain = 733.418 ; free physical = 2184 ; free virtual = 37527
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1423.695; parent = 1217.729; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3263.809; parent = 2289.535; children = 974.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2339.492 ; gain = 751.426 ; free physical = 1542 ; free virtual = 31763
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1237.221; parent = 1105.258; children = 131.968
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3278.922; parent = 2307.480; children = 971.441
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 2321.547 ; gain = 733.418 ; free physical = 2184 ; free virtual = 37527
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1423.848; parent = 1217.913; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3263.809; parent = 2289.535; children = 974.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2339.492 ; gain = 751.426 ; free physical = 1527 ; free virtual = 31747
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1237.221; parent = 1105.258; children = 131.968
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3278.922; parent = 2307.480; children = 971.441
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 2321.547 ; gain = 733.418 ; free physical = 2184 ; free virtual = 37527
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1423.941; parent = 1218.007; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3263.809; parent = 2289.535; children = 974.273
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'current_reg' in module 'dense'
 INFO: [Synth 8-802] inferred FSM for state register 'current_reg' in module 'dense__parameterized0'
@@ -232,77 +326,84 @@ INFO: [Synth 8-802] inferred FSM for state register 'current_reg' in module 'den
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                    INIT |                              001 |                               00
-                    CALC |                              010 |                               01
-                  FINISH |                              100 |                               10
+                    INIT |                              000 |                              000
+                   FETCH |                              001 |                              001
+                    MULT |                              010 |                              010
+                   ACCUM |                              011 |                              011
+               ACT_WRITE |                              100 |                              100
+                  FINISH |                              101 |                              101
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'current_reg' using encoding 'one-hot' in module 'dense'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-                    INIT |                              001 |                               00
-                    CALC |                              010 |                               01
-                  FINISH |                              100 |                               10
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'current_reg' using encoding 'one-hot' in module 'dense__parameterized0'
+INFO: [Synth 8-3354] encoded FSM with state register 'current_reg' using encoding 'sequential' in module 'dense'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                    INIT |                              001 |                               00
-                    CALC |                              010 |                               01
-                  FINISH |                              100 |                               10
+                    INIT |                              000 |                              000
+                   FETCH |                              001 |                              001
+                    MULT |                              010 |                              010
+                   ACCUM |                              011 |                              011
+               ACT_WRITE |                              100 |                              100
+                  FINISH |                              101 |                              101
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'current_reg' using encoding 'one-hot' in module 'dense__parameterized1'
+INFO: [Synth 8-3354] encoded FSM with state register 'current_reg' using encoding 'sequential' in module 'dense__parameterized0'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    INIT |                              000 |                              000
+                   FETCH |                              001 |                              001
+                    MULT |                              010 |                              010
+                   ACCUM |                              011 |                              011
+               ACT_WRITE |                              100 |                              100
+                  FINISH |                              101 |                              101
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'current_reg' using encoding 'sequential' in module 'dense__parameterized1'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:26 ; elapsed = 00:00:32 . Memory (MB): peak = 2339.492 ; gain = 751.426 ; free physical = 3330 ; free virtual = 33549
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1315.509; parent = 1174.055; children = 144.565
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3278.922; parent = 2307.480; children = 971.441
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:20 ; elapsed = 00:00:26 . Memory (MB): peak = 2321.547 ; gain = 733.418 ; free physical = 2225 ; free virtual = 37572
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1504.232; parent = 1298.299; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3263.809; parent = 2289.535; children = 974.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input   64 Bit       Adders := 11    
-	   2 Input   54 Bit       Adders := 1     
+	   2 Input   64 Bit       Adders := 12    
 	   2 Input   32 Bit       Adders := 6     
+	   2 Input   12 Bit       Adders := 1     
 	   2 Input   11 Bit       Adders := 2     
-	   2 Input    8 Bit       Adders := 1     
-	   2 Input    7 Bit       Adders := 2     
-	   2 Input    6 Bit       Adders := 1     
+	   2 Input    9 Bit       Adders := 1     
+	   2 Input    8 Bit       Adders := 3     
+	   2 Input    7 Bit       Adders := 3     
+	   2 Input    6 Bit       Adders := 2     
 	   2 Input    5 Bit       Adders := 1     
 	   2 Input    4 Bit       Adders := 1     
 +---XORs : 
 	   2 Input      1 Bit         XORs := 3     
 +---Registers : 
-	               64 Bit    Registers := 3     
-	               32 Bit    Registers := 891   
+	               64 Bit    Registers := 9     
+	               32 Bit    Registers := 897   
 	               11 Bit    Registers := 1     
 	                8 Bit    Registers := 1     
 	                7 Bit    Registers := 2     
 	                6 Bit    Registers := 1     
 	                5 Bit    Registers := 1     
 	                4 Bit    Registers := 1     
-	                1 Bit    Registers := 4     
+	                1 Bit    Registers := 7     
 +---Muxes : 
-	   2 Input   64 Bit        Muxes := 13    
-	   3 Input   64 Bit        Muxes := 5     
+	   2 Input   64 Bit        Muxes := 5     
+	   6 Input   64 Bit        Muxes := 3     
 	   2 Input   32 Bit        Muxes := 24    
-	   3 Input   32 Bit        Muxes := 6     
 	  11 Input   32 Bit        Muxes := 1     
-	   2 Input   11 Bit        Muxes := 2     
-	   3 Input   11 Bit        Muxes := 1     
-	   2 Input    8 Bit        Muxes := 1     
-	   3 Input    8 Bit        Muxes := 1     
-	   2 Input    7 Bit        Muxes := 2     
-	   3 Input    7 Bit        Muxes := 2     
-	   2 Input    6 Bit        Muxes := 1     
-	   3 Input    6 Bit        Muxes := 1     
-	   2 Input    5 Bit        Muxes := 1     
-	   3 Input    5 Bit        Muxes := 1     
+	   6 Input   11 Bit        Muxes := 1     
+	   2 Input   11 Bit        Muxes := 1     
+	   6 Input    8 Bit        Muxes := 1     
+	   6 Input    7 Bit        Muxes := 2     
+	   6 Input    6 Bit        Muxes := 1     
+	   6 Input    5 Bit        Muxes := 1     
 	   2 Input    4 Bit        Muxes := 2     
-	   2 Input    1 Bit        Muxes := 228   
-	   3 Input    1 Bit        Muxes := 112   
+	   6 Input    3 Bit        Muxes := 3     
+	   2 Input    3 Bit        Muxes := 6     
+	   2 Input    1 Bit        Muxes := 119   
+	   6 Input    1 Bit        Muxes := 130   
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -318,7 +419,7 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-7129] Port s_axis_tlast in module mlp_design_mlp_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 DSP Report: Generating DSP OUT1, operation Mode is: A*B.
 DSP Report: operator OUT1 is absorbed into DSP OUT1.
 DSP Report: operator OUT1 is absorbed into DSP OUT1.
@@ -346,41 +447,42 @@ DSP Report: operator OUT1 is absorbed into DSP OUT1.
 DSP Report: Generating DSP OUT1, operation Mode is: (PCIN>>17)+A*B.
 DSP Report: operator OUT1 is absorbed into DSP OUT1.
 DSP Report: operator OUT1 is absorbed into DSP OUT1.
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\hidden2/counter_in_ff_reg[6] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\hidden2/counter_in_ff_reg[7] )
-DSP Report: Generating DSP OUT1, operation Mode is: A*B.
-DSP Report: operator OUT1 is absorbed into DSP OUT1.
-DSP Report: operator OUT1 is absorbed into DSP OUT1.
-DSP Report: Generating DSP OUT1, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator OUT1 is absorbed into DSP OUT1.
-DSP Report: operator OUT1 is absorbed into DSP OUT1.
-DSP Report: Generating DSP OUT1, operation Mode is: A*B.
-DSP Report: operator OUT1 is absorbed into DSP OUT1.
-DSP Report: operator OUT1 is absorbed into DSP OUT1.
-DSP Report: Generating DSP OUT1, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator OUT1 is absorbed into DSP OUT1.
-DSP Report: operator OUT1 is absorbed into DSP OUT1.
-INFO: [Synth 8-3886] merging instance 'hidden3/counter_in_ff_reg[5]' (FDC) to 'hidden3/counter_in_ff_reg[6]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\hidden3/counter_in_ff_reg[6] )
+DSP Report: Generating DSP multPF[0].mpf/OUT1, operation Mode is: A*B.
+DSP Report: operator multPF[0].mpf/OUT1 is absorbed into DSP multPF[0].mpf/OUT1.
+DSP Report: operator multPF[0].mpf/OUT1 is absorbed into DSP multPF[0].mpf/OUT1.
+DSP Report: Generating DSP multPF[0].mpf/OUT1, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator multPF[0].mpf/OUT1 is absorbed into DSP multPF[0].mpf/OUT1.
+DSP Report: operator multPF[0].mpf/OUT1 is absorbed into DSP multPF[0].mpf/OUT1.
+DSP Report: Generating DSP multPF[0].mpf/OUT1, operation Mode is: A*B.
+DSP Report: operator multPF[0].mpf/OUT1 is absorbed into DSP multPF[0].mpf/OUT1.
+DSP Report: operator multPF[0].mpf/OUT1 is absorbed into DSP multPF[0].mpf/OUT1.
+DSP Report: Generating DSP multPF[0].mpf/OUT1, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator multPF[0].mpf/OUT1 is absorbed into DSP multPF[0].mpf/OUT1.
+DSP Report: operator multPF[0].mpf/OUT1 is absorbed into DSP multPF[0].mpf/OUT1.
+WARNING: [Synth 8-7129] Port s_axis_tlast in module mlp_design_mlp_0_0 is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:46 ; elapsed = 00:01:15 . Memory (MB): peak = 2339.492 ; gain = 751.426 ; free physical = 3900 ; free virtual = 34166
-Synthesis current peak Physical Memory [PSS] (MB): peak = 5887.352; parent = 1189.103; children = 4725.817
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 11799.543; parent = 2311.398; children = 9492.062
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:03 ; elapsed = 00:01:16 . Memory (MB): peak = 2357.562 ; gain = 769.434 ; free physical = 2102 ; free virtual = 37489
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1684.511; parent = 1478.577; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3331.840; parent = 2357.566; children = 974.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 
 ROM: Preliminary Mapping Report
-+-----------------+------------+---------------+----------------+
-|Module Name      | RTL Object | Depth x Width | Implemented As | 
-+-----------------+------------+---------------+----------------+
-|mem_behavioral_W | mem        | 65536x26      | LUT            | 
-|mem_behavioral_W | mem        | 2048x25       | LUT            | 
-|mem_behavioral_W | mem        | 512x25        | LUT            | 
-|mem_behavioral_B | mem        | 64x25         | LUT            | 
-|mem_behavioral_B | mem        | 32x25         | LUT            | 
-+-----------------+------------+---------------+----------------+
++-------------------+------------+---------------+----------------+
+|Module Name        | RTL Object | Depth x Width | Implemented As | 
++-------------------+------------+---------------+----------------+
+|mem_behavioral_W   | mem        | 65536x26      | LUT            | 
+|mem_behavioral_W   | mem        | 2048x25       | LUT            | 
+|mem_behavioral_W   | mem        | 512x25        | LUT            | 
+|mem_behavioral_B   | mem        | 64x25         | LUT            | 
+|mem_behavioral_B   | mem        | 32x25         | LUT            | 
+|mlp_design_mlp_0_0 | p_0_out    | 64x25         | LUT            | 
+|mlp_design_mlp_0_0 | p_0_out    | 32x25         | LUT            | 
+|mlp_design_mlp_0_0 | p_0_out    | 2048x25       | LUT            | 
+|mem_behavioral_W   | p_0_out    | 512x25        | LUT            | 
++-------------------+------------+---------------+----------------+
 
 
 DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
@@ -410,27 +512,25 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:51 ; elapsed = 00:01:20 . Memory (MB): peak = 2339.492 ; gain = 751.426 ; free physical = 3758 ; free virtual = 34057
-Synthesis current peak Physical Memory [PSS] (MB): peak = 5960.211; parent = 1354.681; children = 4725.817
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 11799.543; parent = 2311.398; children = 9492.062
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:07 ; elapsed = 00:01:21 . Memory (MB): peak = 2357.562 ; gain = 769.434 ; free physical = 1949 ; free virtual = 37344
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1699.766; parent = 1493.834; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3331.840; parent = 2357.566; children = 974.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:51 ; elapsed = 00:01:20 . Memory (MB): peak = 2339.492 ; gain = 751.426 ; free physical = 3748 ; free virtual = 34047
-Synthesis current peak Physical Memory [PSS] (MB): peak = 5965.945; parent = 1360.446; children = 4725.817
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 11799.543; parent = 2311.398; children = 9492.062
+Finished Timing Optimization : Time (s): cpu = 00:01:08 ; elapsed = 00:01:21 . Memory (MB): peak = 2357.562 ; gain = 769.434 ; free physical = 1950 ; free virtual = 37344
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1701.395; parent = 1495.463; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3331.840; parent = 2357.566; children = 974.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:204]
-INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.srcs/sources_1/new/dense.sv:204]
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:54 ; elapsed = 00:01:29 . Memory (MB): peak = 2339.492 ; gain = 751.426 ; free physical = 2949 ; free virtual = 33254
-Synthesis current peak Physical Memory [PSS] (MB): peak = 6657.136; parent = 1364.462; children = 5296.938
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 12225.047; parent = 2315.484; children = 9909.562
+Finished Technology Mapping : Time (s): cpu = 00:01:15 ; elapsed = 00:01:29 . Memory (MB): peak = 2380.305 ; gain = 792.176 ; free physical = 1986 ; free virtual = 37380
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1701.395; parent = 1495.463; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3354.582; parent = 2380.309; children = 974.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -448,49 +548,49 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:01 ; elapsed = 00:01:35 . Memory (MB): peak = 2339.492 ; gain = 751.426 ; free physical = 2870 ; free virtual = 33208
-Synthesis current peak Physical Memory [PSS] (MB): peak = 6668.288; parent = 1371.351; children = 5296.938
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 12247.469; parent = 2337.906; children = 9909.562
+Finished IO Insertion : Time (s): cpu = 00:01:20 ; elapsed = 00:01:34 . Memory (MB): peak = 2380.305 ; gain = 792.176 ; free physical = 2020 ; free virtual = 37415
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1713.199; parent = 1507.268; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3354.582; parent = 2380.309; children = 974.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:01 ; elapsed = 00:01:36 . Memory (MB): peak = 2339.492 ; gain = 751.426 ; free physical = 2901 ; free virtual = 33239
-Synthesis current peak Physical Memory [PSS] (MB): peak = 6668.288; parent = 1371.351; children = 5296.938
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 12247.469; parent = 2337.906; children = 9909.562
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:21 ; elapsed = 00:01:35 . Memory (MB): peak = 2380.305 ; gain = 792.176 ; free physical = 2020 ; free virtual = 37415
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1713.199; parent = 1507.268; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3354.582; parent = 2380.309; children = 974.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:08 ; elapsed = 00:01:43 . Memory (MB): peak = 2339.492 ; gain = 751.426 ; free physical = 3028 ; free virtual = 33366
-Synthesis current peak Physical Memory [PSS] (MB): peak = 6682.603; parent = 1385.668; children = 5296.938
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 12247.469; parent = 2337.906; children = 9909.562
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:27 ; elapsed = 00:01:41 . Memory (MB): peak = 2380.305 ; gain = 792.176 ; free physical = 2000 ; free virtual = 37394
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1713.199; parent = 1507.268; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3354.582; parent = 2380.309; children = 974.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:39 ; elapsed = 00:02:14 . Memory (MB): peak = 2339.492 ; gain = 751.426 ; free physical = 3004 ; free virtual = 33342
-Synthesis current peak Physical Memory [PSS] (MB): peak = 6682.603; parent = 1385.668; children = 5296.942
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 12247.469; parent = 2337.906; children = 9909.562
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:08 ; elapsed = 00:02:23 . Memory (MB): peak = 2380.305 ; gain = 792.176 ; free physical = 1939 ; free virtual = 37334
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1713.199; parent = 1507.268; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3354.582; parent = 2380.309; children = 974.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:39 ; elapsed = 00:02:15 . Memory (MB): peak = 2339.492 ; gain = 751.426 ; free physical = 3004 ; free virtual = 33342
-Synthesis current peak Physical Memory [PSS] (MB): peak = 6682.603; parent = 1385.668; children = 5296.942
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 12247.469; parent = 2337.906; children = 9909.562
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:09 ; elapsed = 00:02:23 . Memory (MB): peak = 2380.305 ; gain = 792.176 ; free physical = 1953 ; free virtual = 37347
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1713.199; parent = 1507.268; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3354.582; parent = 2380.309; children = 974.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:40 ; elapsed = 00:02:15 . Memory (MB): peak = 2339.492 ; gain = 751.426 ; free physical = 3004 ; free virtual = 33342
-Synthesis current peak Physical Memory [PSS] (MB): peak = 6682.603; parent = 1385.668; children = 5296.942
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 12247.469; parent = 2337.906; children = 9909.562
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:09 ; elapsed = 00:02:24 . Memory (MB): peak = 2380.305 ; gain = 792.176 ; free physical = 1949 ; free virtual = 37344
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1713.199; parent = 1507.268; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3354.582; parent = 2380.309; children = 974.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -500,19 +600,19 @@ DSP Final Report (the ' indicates corresponding REG is set)
 +------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 |Module Name | DSP Mapping  | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
 +------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|mult2c      | A*B          | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mult2c      | PCIN>>17+A*B | 15     | 15     | -      | -      | 30     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mult2c      | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mult2c      | PCIN>>17+A*B | 17     | 15     | -      | -      | 47     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |dense       | C+A*B        | 7      | 10     | 11     | -      | 16     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
 |mult2c      | A*B          | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |mult2c      | PCIN>>17+A*B | 15     | 15     | -      | -      | 30     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |mult2c      | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|mult2c      | PCIN>>17+A*B | 0      | 15     | -      | -      | 47     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mult2c      | PCIN>>17+A*B | 17     | 15     | -      | -      | 47     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |mult2c      | A*B          | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |mult2c      | PCIN>>17+A*B | 15     | 15     | -      | -      | 30     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |mult2c      | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|mult2c      | PCIN>>17+A*B | 0      | 15     | -      | -      | 47     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|mult2c      | A*B          | 17     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|mult2c      | PCIN>>17+A*B | 15     | 15     | -      | -      | 30     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|mult2c      | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|mult2c      | PCIN>>17+A*B | 0      | 15     | -      | -      | 47     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mult2c      | PCIN>>17+A*B | 17     | 15     | -      | -      | 47     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 +------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 
 
@@ -528,46 +628,45 @@ Report Cell Usage:
 +------+--------+------+
 |1     |CARRY4  |   216|
 |2     |DSP48E1 |    13|
-|5     |LUT1    |   292|
-|6     |LUT2    |   411|
-|7     |LUT3    |   270|
-|8     |LUT4    |   211|
-|9     |LUT5    |   373|
-|10    |LUT6    | 32803|
-|11    |MUXF7   | 15640|
-|12    |MUXF8   |  2662|
-|13    |FDCE    |  3758|
-|14    |FDPE    |     3|
-|15    |FDRE    | 25088|
+|4     |LUT1    |   375|
+|5     |LUT2    |   519|
+|6     |LUT3    |   581|
+|7     |LUT4    |   299|
+|8     |LUT5    |   370|
+|9     |LUT6    | 32542|
+|10    |MUXF7   | 15638|
+|11    |MUXF8   |  2621|
+|12    |FDCE    |  4242|
+|13    |FDRE    | 25088|
 +------+--------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:40 ; elapsed = 00:02:16 . Memory (MB): peak = 2339.492 ; gain = 751.426 ; free physical = 3004 ; free virtual = 33342
-Synthesis current peak Physical Memory [PSS] (MB): peak = 6682.603; parent = 1385.668; children = 5296.942
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 12247.469; parent = 2337.906; children = 9909.562
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:09 ; elapsed = 00:02:24 . Memory (MB): peak = 2380.305 ; gain = 792.176 ; free physical = 1966 ; free virtual = 37361
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1713.199; parent = 1507.268; children = 206.062
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3354.582; parent = 2380.309; children = 974.273
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:38 ; elapsed = 00:02:15 . Memory (MB): peak = 2341.812 ; gain = 593.996 ; free physical = 7997 ; free virtual = 38330
-Synthesis Optimization Complete : Time (s): cpu = 00:01:43 ; elapsed = 00:02:19 . Memory (MB): peak = 2341.812 ; gain = 753.746 ; free physical = 8014 ; free virtual = 38338
+Synthesis finished with 0 errors, 0 critical warnings and 2 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:02:05 ; elapsed = 00:02:21 . Memory (MB): peak = 2380.305 ; gain = 629.457 ; free physical = 2024 ; free virtual = 37419
+Synthesis Optimization Complete : Time (s): cpu = 00:02:10 ; elapsed = 00:02:24 . Memory (MB): peak = 2380.312 ; gain = 792.176 ; free physical = 2024 ; free virtual = 37419
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.65 ; elapsed = 00:00:00.65 . Memory (MB): peak = 2341.812 ; gain = 0.000 ; free physical = 7974 ; free virtual = 38297
-INFO: [Netlist 29-17] Analyzing 18531 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.66 ; elapsed = 00:00:00.66 . Memory (MB): peak = 2380.312 ; gain = 0.000 ; free physical = 2090 ; free virtual = 37486
+INFO: [Netlist 29-17] Analyzing 18488 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2410.484 ; gain = 0.000 ; free physical = 7880 ; free virtual = 38203
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2404.316 ; gain = 0.000 ; free physical = 2057 ; free virtual = 37452
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete, checksum: 3636b617
+Synth Design complete, checksum: add35cbc
 INFO: [Common 17-83] Releasing license: Synthesis
-71 Infos, 106 Warnings, 0 Critical Warnings and 0 Errors encountered.
+63 Infos, 203 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:02:00 ; elapsed = 00:02:37 . Memory (MB): peak = 2410.484 ; gain = 1152.012 ; free physical = 8095 ; free virtual = 38418
+synth_design: Time (s): cpu = 00:02:28 ; elapsed = 00:02:42 . Memory (MB): peak = 2404.316 ; gain = 1141.844 ; free physical = 2267 ; free virtual = 37663
 INFO: [Common 17-1381] The checkpoint '/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/mlp_design_mlp_0_0_synth_1/mlp_design_mlp_0_0.dcp' has been generated.
-write_vhdl: Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 2482.520 ; gain = 0.000 ; free physical = 8143 ; free virtual = 38529
-INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP mlp_design_mlp_0_0, cache-ID = 11c2f0106b7ab9af
-INFO: [Coretcl 2-1174] Renamed 9 cell refs.
+write_vhdl: Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 2476.352 ; gain = 0.000 ; free physical = 2204 ; free virtual = 37664
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP mlp_design_mlp_0_0, cache-ID = 6d3efeed858ca392
+INFO: [Coretcl 2-1174] Renamed 12 cell refs.
 INFO: [Common 17-1381] The checkpoint '/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/mlp_design_mlp_0_0_synth_1/mlp_design_mlp_0_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file mlp_design_mlp_0_0_utilization_synth.rpt -pb mlp_design_mlp_0_0_utilization_synth.pb
-write_vhdl: Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 2482.520 ; gain = 0.000 ; free physical = 7874 ; free virtual = 38361
-INFO: [Common 17-206] Exiting Vivado at Sat May  9 15:03:40 2026...
+write_vhdl: Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 2476.352 ; gain = 0.000 ; free physical = 2132 ; free virtual = 37674
+INFO: [Common 17-206] Exiting Vivado at Sun Jul 12 20:22:18 2026...

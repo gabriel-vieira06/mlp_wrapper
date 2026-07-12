@@ -1,7 +1,7 @@
 // Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
-// Date        : Sat May  9 15:38:15 2026
+// Date        : Wed Jul  8 11:34:59 2026
 // Host        : bazzite running 64-bit unknown
 // Command     : write_verilog -force -mode synth_stub
 //               /var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ip/mlp_design_xbar_0/mlp_design_xbar_0_stub.v

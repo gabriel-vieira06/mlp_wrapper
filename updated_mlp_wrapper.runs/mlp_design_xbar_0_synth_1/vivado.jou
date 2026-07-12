@@ -2,12 +2,12 @@
 # Vivado v2022.2 (64-bit)
 # SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
 # IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
-# Start of session at: Sat May  9 15:37:38 2026
-# Process ID: 201224
+# Start of session at: Wed Jul  8 11:34:17 2026
+# Process ID: 189293
 # Current directory: /var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/mlp_design_xbar_0_synth_1
 # Command line: vivado -log mlp_design_xbar_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source mlp_design_xbar_0.tcl
 # Log file: /var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/mlp_design_xbar_0_synth_1/mlp_design_xbar_0.vds
 # Journal file: /var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/mlp_design_xbar_0_synth_1/vivado.jou
-# Running On: bazzite, OS: Linux, CPU Frequency: 3501.526 MHz, CPU Physical cores: 16, Host memory: 33495 MB
+# Running On: bazzite, OS: Linux, CPU Frequency: 4292.217 MHz, CPU Physical cores: 16, Host memory: 33494 MB
 #-----------------------------------------------------------
 source mlp_design_xbar_0.tcl -notrace

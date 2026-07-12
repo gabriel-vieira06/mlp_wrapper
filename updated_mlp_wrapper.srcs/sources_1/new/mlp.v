@@ -36,11 +36,19 @@ module mlp #(
     output wire [WIDTH-1:0] m_axis_tdata,
     output wire             m_axis_tvalid,
     input  wire             m_axis_tready,
-    output wire             m_axis_tlast
+    output wire             m_axis_tlast,
+    
+    // Sinais de depuração
+    output wire             dbg_valid_in,
+    output wire             dbg_valid_out
 );
     
     wire rst;
     assign rst = ~rst_n; // Converte para reset ativo em alto
+
+    // Retransmissão dos sinais para portas externas
+    assign dbg_valid_in  = s_axis_tvalid;
+    assign dbg_valid_out = m_axis_tvalid;
 
     dense_wrapper #(
         .WIDTH(WIDTH)

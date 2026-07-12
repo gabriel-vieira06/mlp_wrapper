@@ -24,80 +24,80 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 202366
+INFO: [Synth 8-7075] Helper process launched with PID 78727
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/home/Vieira/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 2004.695 ; gain = 365.734 ; free physical = 9435 ; free virtual = 36854
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1410.139; parent = 1204.304; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 2984.906; parent = 2010.637; children = 974.270
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2002.629 ; gain = 363.766 ; free physical = 2065 ; free virtual = 37577
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1412.145; parent = 1206.258; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 2983.012; parent = 2008.570; children = 974.441
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'mlp_design_wrapper' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/hdl/mlp_design_wrapper.v:12]
 INFO: [Synth 8-6157] synthesizing module 'mlp_design' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:417]
-INFO: [Synth 8-6157] synthesizing module 'mlp_design_axi_dma_0_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-202252-bazzite/realtime/mlp_design_axi_dma_0_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mlp_design_axi_dma_0_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-202252-bazzite/realtime/mlp_design_axi_dma_0_0_stub.v:5]
-WARNING: [Synth 8-7071] port 'mm2s_prmry_reset_out_n' of module 'mlp_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:616]
-WARNING: [Synth 8-7071] port 'm_axis_mm2s_tkeep' of module 'mlp_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:616]
-WARNING: [Synth 8-7071] port 's2mm_prmry_reset_out_n' of module 'mlp_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:616]
-WARNING: [Synth 8-7071] port 'mm2s_introut' of module 'mlp_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:616]
-WARNING: [Synth 8-7071] port 's2mm_introut' of module 'mlp_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:616]
-WARNING: [Synth 8-7071] port 'axi_dma_tstvec' of module 'mlp_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:616]
-WARNING: [Synth 8-7023] instance 'axi_dma_0' of module 'mlp_design_axi_dma_0_0' has 64 connections declared, but only 58 given [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:616]
-INFO: [Synth 8-6157] synthesizing module 'mlp_design_axi_mem_intercon_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:937]
+INFO: [Synth 8-6157] synthesizing module 'mlp_design_axi_dma_0_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-78621-bazzite/realtime/mlp_design_axi_dma_0_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_design_axi_dma_0_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-78621-bazzite/realtime/mlp_design_axi_dma_0_0_stub.v:5]
+WARNING: [Synth 8-7071] port 'mm2s_prmry_reset_out_n' of module 'mlp_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:624]
+WARNING: [Synth 8-7071] port 'm_axis_mm2s_tkeep' of module 'mlp_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:624]
+WARNING: [Synth 8-7071] port 's2mm_prmry_reset_out_n' of module 'mlp_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:624]
+WARNING: [Synth 8-7071] port 'mm2s_introut' of module 'mlp_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:624]
+WARNING: [Synth 8-7071] port 's2mm_introut' of module 'mlp_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:624]
+WARNING: [Synth 8-7071] port 'axi_dma_tstvec' of module 'mlp_design_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:624]
+WARNING: [Synth 8-7023] instance 'axi_dma_0' of module 'mlp_design_axi_dma_0_0' has 64 connections declared, but only 58 given [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:624]
+INFO: [Synth 8-6157] synthesizing module 'mlp_design_axi_mem_intercon_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:947]
 INFO: [Synth 8-6157] synthesizing module 'm00_couplers_imp_4OVRDJ' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:12]
-INFO: [Synth 8-6157] synthesizing module 'mlp_design_auto_pc_1' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-202252-bazzite/realtime/mlp_design_auto_pc_1_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mlp_design_auto_pc_1' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-202252-bazzite/realtime/mlp_design_auto_pc_1_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mlp_design_auto_pc_1' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-78621-bazzite/realtime/mlp_design_auto_pc_1_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_design_auto_pc_1' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-78621-bazzite/realtime/mlp_design_auto_pc_1_stub.v:5]
 INFO: [Synth 8-6155] done synthesizing module 'm00_couplers_imp_4OVRDJ' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:12]
-INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_VTHCIE' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2127]
-INFO: [Synth 8-6157] synthesizing module 'mlp_design_auto_us_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-202252-bazzite/realtime/mlp_design_auto_us_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mlp_design_auto_us_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-202252-bazzite/realtime/mlp_design_auto_us_0_stub.v:5]
-WARNING: [Synth 8-7071] port 'm_axi_arregion' of module 'mlp_design_auto_us_0' is unconnected for instance 'auto_us' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2254]
-WARNING: [Synth 8-7023] instance 'auto_us' of module 'mlp_design_auto_us_0' has 34 connections declared, but only 33 given [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2254]
-INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_VTHCIE' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2127]
-INFO: [Synth 8-6157] synthesizing module 's01_couplers_imp_6LMT3K' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2290]
-INFO: [Synth 8-6157] synthesizing module 'mlp_design_auto_us_1' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-202252-bazzite/realtime/mlp_design_auto_us_1_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mlp_design_auto_us_1' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-202252-bazzite/realtime/mlp_design_auto_us_1_stub.v:5]
-WARNING: [Synth 8-7071] port 'm_axi_awregion' of module 'mlp_design_auto_us_1' is unconnected for instance 'auto_us' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2441]
-WARNING: [Synth 8-7023] instance 'auto_us' of module 'mlp_design_auto_us_1' has 40 connections declared, but only 39 given [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2441]
-INFO: [Synth 8-6155] done synthesizing module 's01_couplers_imp_6LMT3K' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2290]
-INFO: [Synth 8-6157] synthesizing module 'mlp_design_xbar_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-202252-bazzite/realtime/mlp_design_xbar_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mlp_design_xbar_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-202252-bazzite/realtime/mlp_design_xbar_0_stub.v:5]
-WARNING: [Synth 8-689] width (1) of port connection 's_axi_arready' does not match port width (2) of module 'mlp_design_xbar_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1508]
-WARNING: [Synth 8-689] width (64) of port connection 's_axi_rdata' does not match port width (128) of module 'mlp_design_xbar_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1525]
-WARNING: [Synth 8-689] width (1) of port connection 's_axi_rlast' does not match port width (2) of module 'mlp_design_xbar_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1526]
-WARNING: [Synth 8-689] width (2) of port connection 's_axi_rresp' does not match port width (4) of module 'mlp_design_xbar_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1528]
-WARNING: [Synth 8-689] width (1) of port connection 's_axi_rvalid' does not match port width (2) of module 'mlp_design_xbar_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1529]
-WARNING: [Synth 8-7071] port 's_axi_bid' of module 'mlp_design_xbar_0' is unconnected for instance 'xbar' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1458]
-WARNING: [Synth 8-7071] port 's_axi_rid' of module 'mlp_design_xbar_0' is unconnected for instance 'xbar' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1458]
-WARNING: [Synth 8-7023] instance 'xbar' of module 'mlp_design_xbar_0' has 78 connections declared, but only 76 given [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1458]
-INFO: [Synth 8-6155] done synthesizing module 'mlp_design_axi_mem_intercon_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:937]
-INFO: [Synth 8-6157] synthesizing module 'mlp_design_mlp_0_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-202252-bazzite/realtime/mlp_design_mlp_0_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mlp_design_mlp_0_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-202252-bazzite/realtime/mlp_design_mlp_0_0_stub.v:5]
-INFO: [Synth 8-6157] synthesizing module 'mlp_design_processing_system7_0_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-202252-bazzite/realtime/mlp_design_processing_system7_0_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mlp_design_processing_system7_0_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-202252-bazzite/realtime/mlp_design_processing_system7_0_0_stub.v:5]
-WARNING: [Synth 8-7071] port 'USB0_PORT_INDCTL' of module 'mlp_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:762]
-WARNING: [Synth 8-7071] port 'USB0_VBUS_PWRSELECT' of module 'mlp_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:762]
-WARNING: [Synth 8-7071] port 'S_AXI_HP0_RCOUNT' of module 'mlp_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:762]
-WARNING: [Synth 8-7071] port 'S_AXI_HP0_WCOUNT' of module 'mlp_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:762]
-WARNING: [Synth 8-7071] port 'S_AXI_HP0_RACOUNT' of module 'mlp_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:762]
-WARNING: [Synth 8-7071] port 'S_AXI_HP0_WACOUNT' of module 'mlp_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:762]
-WARNING: [Synth 8-7023] instance 'processing_system7_0' of module 'mlp_design_processing_system7_0_0' has 110 connections declared, but only 104 given [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:762]
-INFO: [Synth 8-6157] synthesizing module 'mlp_design_ps7_0_axi_periph_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1537]
-INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_1NSHFS0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1837]
-INFO: [Synth 8-6157] synthesizing module 'mlp_design_auto_pc_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-202252-bazzite/realtime/mlp_design_auto_pc_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mlp_design_auto_pc_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-202252-bazzite/realtime/mlp_design_auto_pc_0_stub.v:5]
-WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'mlp_design_auto_pc_0' is unconnected for instance 'auto_pc' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2068]
-WARNING: [Synth 8-7071] port 'm_axi_wstrb' of module 'mlp_design_auto_pc_0' is unconnected for instance 'auto_pc' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2068]
-WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'mlp_design_auto_pc_0' is unconnected for instance 'auto_pc' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2068]
-WARNING: [Synth 8-7023] instance 'auto_pc' of module 'mlp_design_auto_pc_0' has 59 connections declared, but only 56 given [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2068]
-INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_1NSHFS0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1837]
-INFO: [Synth 8-6155] done synthesizing module 'mlp_design_ps7_0_axi_periph_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1537]
-INFO: [Synth 8-6157] synthesizing module 'mlp_design_rst_ps7_0_100M_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-202252-bazzite/realtime/mlp_design_rst_ps7_0_100M_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mlp_design_rst_ps7_0_100M_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-202252-bazzite/realtime/mlp_design_rst_ps7_0_100M_0_stub.v:5]
-WARNING: [Synth 8-7071] port 'mb_reset' of module 'mlp_design_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:928]
-WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'mlp_design_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:928]
-WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'mlp_design_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:928]
-WARNING: [Synth 8-7071] port 'interconnect_aresetn' of module 'mlp_design_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:928]
-WARNING: [Synth 8-7023] instance 'rst_ps7_0_100M' of module 'mlp_design_rst_ps7_0_100M_0' has 10 connections declared, but only 6 given [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:928]
+INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_VTHCIE' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2137]
+INFO: [Synth 8-6157] synthesizing module 'mlp_design_auto_us_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-78621-bazzite/realtime/mlp_design_auto_us_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_design_auto_us_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-78621-bazzite/realtime/mlp_design_auto_us_0_stub.v:5]
+WARNING: [Synth 8-7071] port 'm_axi_arregion' of module 'mlp_design_auto_us_0' is unconnected for instance 'auto_us' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2264]
+WARNING: [Synth 8-7023] instance 'auto_us' of module 'mlp_design_auto_us_0' has 34 connections declared, but only 33 given [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2264]
+INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_VTHCIE' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2137]
+INFO: [Synth 8-6157] synthesizing module 's01_couplers_imp_6LMT3K' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2300]
+INFO: [Synth 8-6157] synthesizing module 'mlp_design_auto_us_1' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-78621-bazzite/realtime/mlp_design_auto_us_1_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_design_auto_us_1' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-78621-bazzite/realtime/mlp_design_auto_us_1_stub.v:5]
+WARNING: [Synth 8-7071] port 'm_axi_awregion' of module 'mlp_design_auto_us_1' is unconnected for instance 'auto_us' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2451]
+WARNING: [Synth 8-7023] instance 'auto_us' of module 'mlp_design_auto_us_1' has 40 connections declared, but only 39 given [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2451]
+INFO: [Synth 8-6155] done synthesizing module 's01_couplers_imp_6LMT3K' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2300]
+INFO: [Synth 8-6157] synthesizing module 'mlp_design_xbar_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-78621-bazzite/realtime/mlp_design_xbar_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_design_xbar_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-78621-bazzite/realtime/mlp_design_xbar_0_stub.v:5]
+WARNING: [Synth 8-689] width (1) of port connection 's_axi_arready' does not match port width (2) of module 'mlp_design_xbar_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1518]
+WARNING: [Synth 8-689] width (64) of port connection 's_axi_rdata' does not match port width (128) of module 'mlp_design_xbar_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1535]
+WARNING: [Synth 8-689] width (1) of port connection 's_axi_rlast' does not match port width (2) of module 'mlp_design_xbar_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1536]
+WARNING: [Synth 8-689] width (2) of port connection 's_axi_rresp' does not match port width (4) of module 'mlp_design_xbar_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1538]
+WARNING: [Synth 8-689] width (1) of port connection 's_axi_rvalid' does not match port width (2) of module 'mlp_design_xbar_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1539]
+WARNING: [Synth 8-7071] port 's_axi_bid' of module 'mlp_design_xbar_0' is unconnected for instance 'xbar' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1468]
+WARNING: [Synth 8-7071] port 's_axi_rid' of module 'mlp_design_xbar_0' is unconnected for instance 'xbar' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1468]
+WARNING: [Synth 8-7023] instance 'xbar' of module 'mlp_design_xbar_0' has 78 connections declared, but only 76 given [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1468]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_design_axi_mem_intercon_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:947]
+INFO: [Synth 8-6157] synthesizing module 'mlp_design_mlp_0_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-78621-bazzite/realtime/mlp_design_mlp_0_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_design_mlp_0_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-78621-bazzite/realtime/mlp_design_mlp_0_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mlp_design_processing_system7_0_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-78621-bazzite/realtime/mlp_design_processing_system7_0_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_design_processing_system7_0_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-78621-bazzite/realtime/mlp_design_processing_system7_0_0_stub.v:5]
+WARNING: [Synth 8-7071] port 'USB0_PORT_INDCTL' of module 'mlp_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:772]
+WARNING: [Synth 8-7071] port 'USB0_VBUS_PWRSELECT' of module 'mlp_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:772]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RCOUNT' of module 'mlp_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:772]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_WCOUNT' of module 'mlp_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:772]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RACOUNT' of module 'mlp_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:772]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_WACOUNT' of module 'mlp_design_processing_system7_0_0' is unconnected for instance 'processing_system7_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:772]
+WARNING: [Synth 8-7023] instance 'processing_system7_0' of module 'mlp_design_processing_system7_0_0' has 110 connections declared, but only 104 given [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:772]
+INFO: [Synth 8-6157] synthesizing module 'mlp_design_ps7_0_axi_periph_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1547]
+INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_1NSHFS0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1847]
+INFO: [Synth 8-6157] synthesizing module 'mlp_design_auto_pc_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-78621-bazzite/realtime/mlp_design_auto_pc_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_design_auto_pc_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-78621-bazzite/realtime/mlp_design_auto_pc_0_stub.v:5]
+WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'mlp_design_auto_pc_0' is unconnected for instance 'auto_pc' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2078]
+WARNING: [Synth 8-7071] port 'm_axi_wstrb' of module 'mlp_design_auto_pc_0' is unconnected for instance 'auto_pc' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2078]
+WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'mlp_design_auto_pc_0' is unconnected for instance 'auto_pc' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2078]
+WARNING: [Synth 8-7023] instance 'auto_pc' of module 'mlp_design_auto_pc_0' has 59 connections declared, but only 56 given [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:2078]
+INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_1NSHFS0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1847]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_design_ps7_0_axi_periph_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:1547]
+INFO: [Synth 8-6157] synthesizing module 'mlp_design_rst_ps7_0_100M_0' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-78621-bazzite/realtime/mlp_design_rst_ps7_0_100M_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_design_rst_ps7_0_100M_0' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/.Xil/Vivado-78621-bazzite/realtime/mlp_design_rst_ps7_0_100M_0_stub.v:5]
+WARNING: [Synth 8-7071] port 'mb_reset' of module 'mlp_design_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:938]
+WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'mlp_design_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:938]
+WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'mlp_design_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:938]
+WARNING: [Synth 8-7071] port 'interconnect_aresetn' of module 'mlp_design_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:938]
+WARNING: [Synth 8-7023] instance 'rst_ps7_0_100M' of module 'mlp_design_rst_ps7_0_100M_0' has 10 connections declared, but only 6 given [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:938]
 INFO: [Synth 8-6155] done synthesizing module 'mlp_design' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/synth/mlp_design.v:417]
 INFO: [Synth 8-6155] done synthesizing module 'mlp_design_wrapper' (0#1) [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/hdl/mlp_design_wrapper.v:12]
 WARNING: [Synth 8-7129] Port M_ACLK in module s00_couplers_imp_1NSHFS0 is either unconnected or has no load
@@ -127,32 +127,30 @@ WARNING: [Synth 8-7129] Port S00_ARESETN in module mlp_design_axi_mem_intercon_0
 WARNING: [Synth 8-7129] Port S01_ACLK in module mlp_design_axi_mem_intercon_0 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port S01_ARESETN in module mlp_design_axi_mem_intercon_0 is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2078.602 ; gain = 439.641 ; free physical = 9345 ; free virtual = 36765
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1410.139; parent = 1204.304; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3052.875; parent = 2078.605; children = 974.270
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2078.535 ; gain = 439.672 ; free physical = 2146 ; free virtual = 37659
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1412.145; parent = 1206.258; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3052.980; parent = 2078.539; children = 974.441
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2093.445 ; gain = 454.484 ; free physical = 9362 ; free virtual = 36782
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1410.139; parent = 1204.304; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3067.719; parent = 2093.449; children = 974.270
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2093.379 ; gain = 454.516 ; free physical = 2145 ; free virtual = 37659
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1412.145; parent = 1206.258; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3067.824; parent = 2093.383; children = 974.441
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2093.445 ; gain = 454.484 ; free physical = 9362 ; free virtual = 36782
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1410.139; parent = 1204.304; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3067.719; parent = 2093.449; children = 974.270
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2093.379 ; gain = 454.516 ; free physical = 2145 ; free virtual = 37659
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1412.145; parent = 1206.258; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3067.824; parent = 2093.383; children = 974.441
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2093.445 ; gain = 0.000 ; free physical = 9362 ; free virtual = 36782
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2093.379 ; gain = 0.000 ; free physical = 2138 ; free virtual = 37652
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
 Parsing XDC File [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ip/mlp_design_processing_system7_0_0/mlp_design_processing_system7_0_0/mlp_design_processing_system7_0_0_in_context.xdc] for cell 'mlp_design_i/processing_system7_0'
 Finished Parsing XDC File [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ip/mlp_design_processing_system7_0_0/mlp_design_processing_system7_0_0/mlp_design_processing_system7_0_0_in_context.xdc] for cell 'mlp_design_i/processing_system7_0'
-Parsing XDC File [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ip/mlp_design_mlp_0_0/mlp_design_mlp_0_0/mlp_design_mlp_0_0_in_context.xdc] for cell 'mlp_design_i/mlp_0'
-Finished Parsing XDC File [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ip/mlp_design_mlp_0_0/mlp_design_mlp_0_0/mlp_design_mlp_0_0_in_context.xdc] for cell 'mlp_design_i/mlp_0'
 Parsing XDC File [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ip/mlp_design_axi_dma_0_0/mlp_design_axi_dma_0_0/mlp_design_axi_dma_0_0_in_context.xdc] for cell 'mlp_design_i/axi_dma_0'
 Finished Parsing XDC File [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ip/mlp_design_axi_dma_0_0/mlp_design_axi_dma_0_0/mlp_design_axi_dma_0_0_in_context.xdc] for cell 'mlp_design_i/axi_dma_0'
 Parsing XDC File [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ip/mlp_design_auto_pc_0/mlp_design_auto_pc_0/mlp_design_auto_pc_0_in_context.xdc] for cell 'mlp_design_i/ps7_0_axi_periph/s00_couplers/auto_pc'
@@ -167,33 +165,37 @@ Parsing XDC File [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper
 Finished Parsing XDC File [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ip/mlp_design_auto_us_1/mlp_design_auto_us_1/mlp_design_auto_us_1_in_context.xdc] for cell 'mlp_design_i/axi_mem_intercon/s01_couplers/auto_us'
 Parsing XDC File [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ip/mlp_design_auto_pc_1/mlp_design_auto_pc_1/mlp_design_auto_pc_1_in_context.xdc] for cell 'mlp_design_i/axi_mem_intercon/m00_couplers/auto_pc'
 Finished Parsing XDC File [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ip/mlp_design_auto_pc_1/mlp_design_auto_pc_1/mlp_design_auto_pc_1_in_context.xdc] for cell 'mlp_design_i/axi_mem_intercon/m00_couplers/auto_pc'
+Parsing XDC File [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ip/mlp_design_mlp_0_0/mlp_design_mlp_0_0/mlp_design_mlp_0_0_in_context.xdc] for cell 'mlp_design_i/mlp_0'
+Finished Parsing XDC File [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ip/mlp_design_mlp_0_0/mlp_design_mlp_0_0/mlp_design_mlp_0_0_in_context.xdc] for cell 'mlp_design_i/mlp_0'
 Parsing XDC File [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/PYNQ-Z1_C.xdc]
 Finished Parsing XDC File [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/PYNQ-Z1_C.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/PYNQ-Z1_C.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/mlp_design_wrapper_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/mlp_design_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Parsing XDC File [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/dont_touch.xdc]
 Finished Parsing XDC File [/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2142.371 ; gain = 0.000 ; free physical = 9372 ; free virtual = 36791
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2142.305 ; gain = 0.000 ; free physical = 2056 ; free virtual = 37575
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2142.371 ; gain = 0.000 ; free physical = 9372 ; free virtual = 36791
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2142.305 ; gain = 0.000 ; free physical = 2056 ; free virtual = 37575
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/home/Vieira/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2142.371 ; gain = 503.410 ; free physical = 9459 ; free virtual = 36878
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1410.139; parent = 1204.304; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.629; parent = 2110.359; children = 974.270
+Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2142.305 ; gain = 503.441 ; free physical = 2078 ; free virtual = 37597
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1412.145; parent = 1206.258; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.734; parent = 2110.293; children = 974.441
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2142.371 ; gain = 503.410 ; free physical = 9459 ; free virtual = 36878
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1410.139; parent = 1204.304; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.629; parent = 2110.359; children = 974.270
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2142.305 ; gain = 503.441 ; free physical = 2078 ; free virtual = 37597
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1412.145; parent = 1206.258; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.734; parent = 2110.293; children = 974.441
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -460,7 +462,6 @@ Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_ps_srstb. (constraint fi
 Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_ps_srstb. (constraint file  /var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ip/mlp_design_processing_system7_0_0/mlp_design_processing_system7_0_0/mlp_design_processing_system7_0_0_in_context.xdc, line 261).
 Applied set_property KEEP_HIERARCHY = SOFT for mlp_design_i. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for mlp_design_i/processing_system7_0. (constraint file  auto generated constraint).
-Applied set_property KEEP_HIERARCHY = SOFT for mlp_design_i/mlp_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for mlp_design_i/axi_dma_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for mlp_design_i/ps7_0_axi_periph/s00_couplers/auto_pc. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for mlp_design_i/ps7_0_axi_periph. (constraint file  auto generated constraint).
@@ -470,15 +471,16 @@ Applied set_property KEEP_HIERARCHY = SOFT for mlp_design_i/axi_mem_intercon/s00
 Applied set_property KEEP_HIERARCHY = SOFT for mlp_design_i/axi_mem_intercon/s01_couplers/auto_us. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for mlp_design_i/axi_mem_intercon/m00_couplers/auto_pc. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for mlp_design_i/axi_mem_intercon. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for mlp_design_i/mlp_0. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2142.371 ; gain = 503.410 ; free physical = 9459 ; free virtual = 36878
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1410.139; parent = 1204.304; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.629; parent = 2110.359; children = 974.270
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2142.305 ; gain = 503.441 ; free physical = 2068 ; free virtual = 37587
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1412.145; parent = 1206.258; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.734; parent = 2110.293; children = 974.441
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2142.371 ; gain = 503.410 ; free physical = 9459 ; free virtual = 36879
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1410.139; parent = 1204.304; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.629; parent = 2110.359; children = 974.270
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 2142.305 ; gain = 503.441 ; free physical = 2061 ; free virtual = 37581
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1412.145; parent = 1206.258; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.734; parent = 2110.293; children = 974.441
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -521,33 +523,33 @@ WARNING: [Synth 8-7129] Port S00_ARESETN in module mlp_design_axi_mem_intercon_0
 WARNING: [Synth 8-7129] Port S01_ACLK in module mlp_design_axi_mem_intercon_0 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port S01_ARESETN in module mlp_design_axi_mem_intercon_0 is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 2142.371 ; gain = 503.410 ; free physical = 9465 ; free virtual = 36890
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1410.139; parent = 1204.304; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.629; parent = 2110.359; children = 974.270
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 2142.305 ; gain = 503.441 ; free physical = 2069 ; free virtual = 37594
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1412.145; parent = 1206.258; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.734; parent = 2110.293; children = 974.441
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2142.371 ; gain = 503.410 ; free physical = 9434 ; free virtual = 36858
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1491.149; parent = 1285.354; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.629; parent = 2110.359; children = 974.270
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 2142.305 ; gain = 503.441 ; free physical = 2052 ; free virtual = 37576
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1498.873; parent = 1293.049; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.734; parent = 2110.293; children = 974.441
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2142.371 ; gain = 503.410 ; free physical = 9434 ; free virtual = 36858
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1491.399; parent = 1285.604; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.629; parent = 2110.359; children = 974.270
+Finished Timing Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 2142.305 ; gain = 503.441 ; free physical = 2052 ; free virtual = 37576
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1498.873; parent = 1293.049; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.734; parent = 2110.293; children = 974.441
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2142.371 ; gain = 503.410 ; free physical = 9426 ; free virtual = 36851
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1491.399; parent = 1285.604; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.629; parent = 2110.359; children = 974.270
+Finished Technology Mapping : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 2142.305 ; gain = 503.441 ; free physical = 2052 ; free virtual = 37576
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1498.873; parent = 1293.049; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.734; parent = 2110.293; children = 974.441
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -565,49 +567,49 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2142.371 ; gain = 503.410 ; free physical = 9441 ; free virtual = 36866
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1491.399; parent = 1285.604; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.629; parent = 2110.359; children = 974.270
+Finished IO Insertion : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2142.305 ; gain = 503.441 ; free physical = 2027 ; free virtual = 37552
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1498.873; parent = 1293.049; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.734; parent = 2110.293; children = 974.441
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2142.371 ; gain = 503.410 ; free physical = 9441 ; free virtual = 36866
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1491.399; parent = 1285.604; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.629; parent = 2110.359; children = 974.270
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2142.305 ; gain = 503.441 ; free physical = 2027 ; free virtual = 37552
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1498.873; parent = 1293.049; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.734; parent = 2110.293; children = 974.441
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2142.371 ; gain = 503.410 ; free physical = 9441 ; free virtual = 36866
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1491.399; parent = 1285.604; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.629; parent = 2110.359; children = 974.270
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 2142.305 ; gain = 503.441 ; free physical = 2027 ; free virtual = 37552
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1498.873; parent = 1293.049; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.734; parent = 2110.293; children = 974.441
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2142.371 ; gain = 503.410 ; free physical = 9441 ; free virtual = 36866
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1491.399; parent = 1285.604; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.629; parent = 2110.359; children = 974.270
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 2142.305 ; gain = 503.441 ; free physical = 2027 ; free virtual = 37552
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1498.873; parent = 1293.049; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.734; parent = 2110.293; children = 974.441
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2142.371 ; gain = 503.410 ; free physical = 9441 ; free virtual = 36866
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1491.399; parent = 1285.604; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.629; parent = 2110.359; children = 974.270
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 2142.305 ; gain = 503.441 ; free physical = 2027 ; free virtual = 37552
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1498.873; parent = 1293.049; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.734; parent = 2110.293; children = 974.441
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2142.371 ; gain = 503.410 ; free physical = 9441 ; free virtual = 36866
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1491.399; parent = 1285.604; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.629; parent = 2110.359; children = 974.270
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 2142.305 ; gain = 503.441 ; free physical = 2027 ; free virtual = 37552
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1498.880; parent = 1293.057; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.734; parent = 2110.293; children = 974.441
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -639,28 +641,29 @@ Report Cell Usage:
 |7     |mlp_design_processing_system7_0 |     1|
 |8     |mlp_design_rst_ps7_0_100M       |     1|
 |9     |mlp_design_xbar                 |     1|
+|10    |OBUF                            |     2|
 +------+--------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2142.371 ; gain = 503.410 ; free physical = 9441 ; free virtual = 36866
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1491.399; parent = 1285.604; children = 205.835
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.629; parent = 2110.359; children = 974.270
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 2142.305 ; gain = 503.441 ; free physical = 2027 ; free virtual = 37552
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1498.896; parent = 1293.072; children = 205.887
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3084.734; parent = 2110.293; children = 974.441
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 21 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 2142.371 ; gain = 454.484 ; free physical = 9441 ; free virtual = 36866
-Synthesis Optimization Complete : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 2142.371 ; gain = 503.410 ; free physical = 9441 ; free virtual = 36866
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2142.305 ; gain = 454.516 ; free physical = 2058 ; free virtual = 37583
+Synthesis Optimization Complete : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 2142.305 ; gain = 503.441 ; free physical = 2058 ; free virtual = 37583
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2142.371 ; gain = 0.000 ; free physical = 9524 ; free virtual = 36948
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2142.305 ; gain = 0.000 ; free physical = 2174 ; free virtual = 37699
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2142.371 ; gain = 0.000 ; free physical = 9539 ; free virtual = 36963
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2142.305 ; gain = 0.000 ; free physical = 2121 ; free virtual = 37646
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete, checksum: baed1f09
+Synth Design complete, checksum: 8dd97ca3
 INFO: [Common 17-83] Releasing license: Synthesis
-57 Infos, 82 Warnings, 0 Critical Warnings and 0 Errors encountered.
+58 Infos, 82 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 2142.371 ; gain = 687.832 ; free physical = 9667 ; free virtual = 37092
+synth_design: Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2142.305 ; gain = 687.801 ; free physical = 2260 ; free virtual = 37785
 INFO: [Common 17-1381] The checkpoint '/var/home/Vieira/Documents/vivado_projects/updated_mlp_wrapper/updated_mlp_wrapper.runs/synth_1/mlp_design_wrapper.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file mlp_design_wrapper_utilization_synth.rpt -pb mlp_design_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sat May  9 15:39:07 2026...
+INFO: [Common 17-206] Exiting Vivado at Sun Jul 12 20:22:58 2026...

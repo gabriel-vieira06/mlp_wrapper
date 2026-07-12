@@ -1,0 +1,13 @@
+verilog xil_defaultlib --include "/home/Vieira/Xilinx/Vivado/2022.2/data/xilinx_vip/include" --include "../../../../updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ipshared/ec67/hdl" --include "../../../../updated_mlp_wrapper.gen/sources_1/bd/mlp_design/ipshared/ee60/hdl" \
+"../../../bd/mlp_design/ip/mlp_design_processing_system7_0_0/sim/mlp_design_processing_system7_0_0.v" \
+"../../../bd/mlp_design/ip/mlp_design_mlp_0_0/sim/mlp_design_mlp_0_0.v" \
+"../../../bd/mlp_design/ip/mlp_design_xbar_0/sim/mlp_design_xbar_0.v" \
+"../../../bd/mlp_design/ip/mlp_design_auto_pc_0/sim/mlp_design_auto_pc_0.v" \
+"../../../bd/mlp_design/ip/mlp_design_auto_us_0/sim/mlp_design_auto_us_0.v" \
+"../../../bd/mlp_design/ip/mlp_design_auto_us_1/sim/mlp_design_auto_us_1.v" \
+"../../../bd/mlp_design/ip/mlp_design_auto_pc_1/sim/mlp_design_auto_pc_1.v" \
+"../../../bd/mlp_design/sim/mlp_design.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort
