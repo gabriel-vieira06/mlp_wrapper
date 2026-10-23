@@ -6,23 +6,24 @@ module mem_behavioral_W #(
                     n_mult     = 16,
     parameter string    FILENAME    = "mem_file.txt"
 )(
-    //clk,
+    clk,
     addr,
     dout
 );
     
-    //input logic                   clk;
+    input logic                   clk;
     input logic  [ADDR_WIDTH-1:0] addr;
     output logic [DATA_WIDTH-1:0] dout [n_mult];
     
-    logic [DATA_WIDTH-1:0] mem [DEPTH];
+    // A clocked read is required for Xilinx block-ROM inference. An
+    // asynchronous read implements these large weight tables in LUTs.
+    (* rom_style = "block" *) logic [DATA_WIDTH-1:0] mem [DEPTH];
     
     initial $readmemh (FILENAME, mem);
     
-    always_comb begin   
-    //always_ff @(posedge clk) begin
+    always_ff @(posedge clk) begin
         for (int i = 0; i < n_mult; i++) //n_mult
-            dout[i] = mem[addr+i];
+            dout[i] <= mem[addr+i];
     end 
 
 endmodule

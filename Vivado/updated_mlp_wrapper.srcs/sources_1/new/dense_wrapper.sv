@@ -35,6 +35,8 @@ module dense_wrapper #(
     input logic                                 ready_out;
     
     logic [                          WIDTH-1:0] input_buffer [H1_IN_SIZE];
+    logic [                          WIDTH-1:0] input_read [N_MULT];
+    logic [         $clog2(H1_IN_SIZE)-1:0] input_read_addr;
     logic [               $clog2(H1_IN_SIZE):0] pixel_count;
     logic                                       start_h1;
     
@@ -68,6 +70,33 @@ module dense_wrapper #(
     logic                                       streaming_out;
         
     assign ready_in = (pixel_count < H1_IN_SIZE) && !streaming_out && !rst;
+
+    generate
+        if (N_MULT == 1) begin : input_bram
+            // One write port and one synchronous read port infer a simple
+            // dual-port RAM instead of 784 words of FFs and a wide read mux.
+            // Do not reset the array: each frame overwrites every location.
+            (* ram_style = "block" *) logic [WIDTH-1:0] pixels [H1_IN_SIZE];
+            always_ff @(posedge clk) begin
+                if (data_valid && ready_in)
+                    pixels[pixel_count] <= data_in;
+                input_read[0] <= pixels[input_read_addr];
+            end
+            for (genvar k = 0; k < H1_IN_SIZE; k++) begin : unused_parallel_input
+                assign input_buffer[k] = '0;
+            end
+        end else begin : input_parallel
+            // Preserve the existing multi-lane configuration. Only the
+            // default single-lane design uses the input block RAM port.
+            always_ff @(posedge clk) begin
+                if (data_valid && ready_in)
+                    input_buffer[pixel_count] <= data_in;
+            end
+            for (genvar k = 0; k < N_MULT; k++) begin : unused_serial_input
+                assign input_read[k] = '0;
+            end
+        end
+    endgenerate
         
     // STREAMING DE ENTRADA    
     always_ff @(posedge clk or posedge rst) begin
@@ -79,8 +108,6 @@ module dense_wrapper #(
             start_h1 <= 0;
     
             if (data_valid && ready_in) begin
-                input_buffer[pixel_count] <= data_in;
-    
                 if (pixel_count == H1_IN_SIZE-1) begin
                     start_h1    <= 1;
                     pixel_count <= 0;
@@ -133,7 +160,8 @@ module dense_wrapper #(
         .layer_size(H1_OUT_SIZE), 
         .WIDTH(WIDTH), 
         .p_int(P_INT),
-        .activation_function(relu)
+        .activation_function(relu),
+        .REGISTERED_INPUT(N_MULT == 1)
     )
     hidden1
     (
@@ -141,6 +169,8 @@ module dense_wrapper #(
         .rst(rst),
         .start(start_h1),
         .X(input_buffer),
+        .X_read(input_read),
+        .addr_x(input_read_addr),
         .W(H1_W),
         .bias(H1_B),
         .Y(H1_out),
@@ -163,6 +193,8 @@ module dense_wrapper #(
         .rst(rst),
         .start(H1_finish),
         .X(H1_out),
+        .X_read('{default: '0}),
+        .addr_x(),
         .W(H2_W),
         .bias(H2_B),
         .Y(H2_out),
@@ -185,6 +217,8 @@ module dense_wrapper #(
         .rst(rst),
         .start(H2_finish),
         .X(H2_out),
+        .X_read('{default: '0}),
+        .addr_x(),
         .W(H3_W),
         .bias(H3_B),
         .Y(H3_out),
@@ -199,7 +233,7 @@ module dense_wrapper #(
         .FILENAME("H1W.mem"),
         .n_mult(N_MULT)
     ) H1_W_mem (
-        //.clk(clk),
+        .clk(clk),
         .addr(H1_addr_w),
         .dout(H1_W)
     );
@@ -210,7 +244,7 @@ module dense_wrapper #(
         .FILENAME("H2W.mem"),
         .n_mult(N_MULT)
     ) H2_W_mem (
-        //.clk(clk),
+        .clk(clk),
         .addr(H2_addr_w),
         .dout(H2_W)
     );
@@ -221,7 +255,7 @@ module dense_wrapper #(
         .FILENAME("H3W.mem"),
         .n_mult(N_MULT)
     ) H3_W_mem (
-        //.clk(clk),
+        .clk(clk),
         .addr(H3_addr_w),
         .dout(H3_W)
     );

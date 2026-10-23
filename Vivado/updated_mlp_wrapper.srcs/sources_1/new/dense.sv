@@ -1,12 +1,16 @@
 module dense #(
     parameter int n_in = 1, n_mult = 1, layer_size = 1, WIDTH = 32, p_int = 10,
     parameter int slope = 0,
-    parameter logic [2:0] activation_function = 0
+    parameter logic [2:0] activation_function = 0,
+    parameter bit REGISTERED_INPUT = 0
 )(
     input  logic                                 clk,
     input  logic                                 rst,
     input  logic                                 start,
     input  logic  [                  WIDTH-1:0]  X       [n_in],
+    // Optional synchronous input RAM port, used by the serial first layer.
+    input  logic  [                  WIDTH-1:0]  X_read  [n_mult],
+    output logic  [        $clog2(n_in)-1:0]     addr_x,
     input  logic  [                  WIDTH-1:0]  W       [n_mult],
     input  logic  [                  WIDTH-1:0]  bias    [((n_mult/n_in) == 0) ? 1 : n_mult/n_in],
     output logic  [                  WIDTH-1:0]  Y       [layer_size],
@@ -18,7 +22,7 @@ module dense #(
     localparam int t2s = ((n_mult/n_in) == 0) ? 1 : n_mult/n_in;
 
     typedef enum logic [2:0] {linear, sigmoid, relu, tanh, leaky, step} acfunc;
-    typedef enum logic [2:0] { INIT, FETCH, MULT, ACCUM, ACT_WRITE, FINISH } states;
+    typedef enum logic [2:0] { INIT, READ_WAIT, FETCH, MULT, ACCUM, ACT_WRITE, FINISH } states;
     states current, next;
 
     logic [WIDTH*2-1:0] Y_temp_in  [layer_size];
@@ -106,6 +110,7 @@ module dense #(
 
     assign addr_w = (t2s < 2) ? (counter_n * n_in) + counter_in : (counter_n * n_in);
     assign addr_b = counter_n;
+    assign addr_x = counter_in;
 
     // --- FSM Pipelinizada Corrigida ---
     always_ff @(posedge clk or posedge rst) begin
@@ -132,8 +137,12 @@ module dense #(
                     counter_in <= 'd0;
                     counter_n <= 'd0;
                     temp_acc <= 'd0;
-                    if (start) current <= FETCH;
+                    if (start) current <= READ_WAIT;
                 end
+
+                // Allow the synchronous weight ROM (and optional input RAM)
+                // to read the address updated by INIT, ACCUM or ACT_WRITE.
+                READ_WAIT: current <= FETCH;
 
                 FETCH: begin
                     if (t2s < 2) begin
@@ -142,7 +151,10 @@ module dense #(
                                 X_reg[j] <= 'd0;
                                 W_reg[j] <= 'd0;
                             end else begin
-                                X_reg[j] <= X[j + counter_in];
+                                if (REGISTERED_INPUT)
+                                    X_reg[j] <= X_read[j];
+                                else
+                                    X_reg[j] <= X[j + counter_in];
                                 W_reg[j] <= W[j];
                             end
                         end
@@ -178,7 +190,7 @@ module dense #(
                             acc_reg[0] <= step_sum + adj_bias[0];
                             current <= ACT_WRITE;
                         end else begin
-                            current <= FETCH;
+                            current <= READ_WAIT;
                         end
                     end else begin
                         for (int j = 0; j < t2s; j++) begin
@@ -209,7 +221,7 @@ module dense #(
                         temp_acc <= 'd0;
 
                         if (counter_n + 1'b1 >= layer_size) current <= FINISH;
-                        else current <= FETCH;
+                        else current <= READ_WAIT;
                         
                     end else begin
                         for (int j = 0; j < t2s; j++) begin
@@ -222,7 +234,7 @@ module dense #(
                         
                         counter_n <= counter_n + t2s;
                         if (counter_n + t2s >= layer_size) current <= FINISH;
-                        else current <= FETCH;
+                        else current <= READ_WAIT;
                     end
                 end
 
