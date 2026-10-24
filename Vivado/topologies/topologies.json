@@ -1,0 +1,22 @@
+{
+  "500_500": {
+    "hidden_sizes": [500, 500],
+    "input_size": 784,
+    "output_size": 10
+  },
+  "256_128": {
+    "hidden_sizes": [256, 128],
+    "input_size": 784,
+    "output_size": 10
+  },
+  "256": {
+    "hidden_sizes": [256],
+    "input_size": 784,
+    "output_size": 10
+  },
+  "512_256_128": {
+    "hidden_sizes": [512, 256, 128],
+    "input_size": 784,
+    "output_size": 10
+  }
+}
