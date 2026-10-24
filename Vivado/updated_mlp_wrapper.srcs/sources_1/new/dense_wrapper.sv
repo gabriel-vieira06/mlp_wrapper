@@ -36,6 +36,7 @@ module dense_wrapper #(
     
     logic [                          WIDTH-1:0] input_buffer [H1_IN_SIZE];
     logic [                          WIDTH-1:0] input_read [N_MULT];
+    wire  [                          WIDTH-1:0] unused_input_read [N_MULT];
     logic [         $clog2(H1_IN_SIZE)-1:0] input_read_addr;
     logic [               $clog2(H1_IN_SIZE):0] pixel_count;
     logic                                       start_h1;
@@ -72,6 +73,12 @@ module dense_wrapper #(
     assign ready_in = (pixel_count < H1_IN_SIZE) && !streaming_out && !rst;
 
     generate
+        // XSim does not support an assignment pattern directly on this
+        // unpacked-array port. Tie off each lane through an explicit net.
+        for (genvar lane = 0; lane < N_MULT; lane++) begin : unused_read_tieoff
+            assign unused_input_read[lane] = {WIDTH{1'b0}};
+        end
+
         if (N_MULT == 1) begin : input_bram
             // One write port and one synchronous read port infer a simple
             // dual-port RAM instead of 784 words of FFs and a wide read mux.
@@ -193,7 +200,7 @@ module dense_wrapper #(
         .rst(rst),
         .start(H1_finish),
         .X(H1_out),
-        .X_read('{default: '0}),
+        .X_read(unused_input_read),
         .addr_x(),
         .W(H2_W),
         .bias(H2_B),
@@ -217,7 +224,7 @@ module dense_wrapper #(
         .rst(rst),
         .start(H2_finish),
         .X(H2_out),
-        .X_read('{default: '0}),
+        .X_read(unused_input_read),
         .addr_x(),
         .W(H3_W),
         .bias(H3_B),
