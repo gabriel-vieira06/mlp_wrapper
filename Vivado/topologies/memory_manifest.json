@@ -1,0 +1,150 @@
+{
+  "source_archive": "topologies_mem.zip",
+  "source_archive_sha256": "68bab6c4f08134998a0ed4c22b245261ca9a8104d9058a92d799bf0a7a829f7f",
+  "files": [
+    {
+      "path": "500_500/mem/H1W.mem",
+      "words": 392000,
+      "bytes": 3528000,
+      "sha256": "9b83ac06e17481795ece4a270bbbb27183d46104bbd3fb13246d1bdeb9102c05"
+    },
+    {
+      "path": "500_500/mem/H1B.mem",
+      "words": 500,
+      "bytes": 4500,
+      "sha256": "9f03fd0d6662949e6e270d670c5999eb4137d64563224c54d420ee1486a04d0c"
+    },
+    {
+      "path": "500_500/mem/H2W.mem",
+      "words": 250000,
+      "bytes": 2250000,
+      "sha256": "3fec44188d1a1dd5b413b5cfeece0984766055922fbcd387f930864503386246"
+    },
+    {
+      "path": "500_500/mem/H2B.mem",
+      "words": 500,
+      "bytes": 4500,
+      "sha256": "95ad8461509d729d62171b0182283ada5386145126392a91eaa6cb2ad2a00e3d"
+    },
+    {
+      "path": "500_500/mem/H3W.mem",
+      "words": 5000,
+      "bytes": 45000,
+      "sha256": "da9b40dfb13709621b38edb5de67a8f679a12a924fde6752c821ae3756425cd9"
+    },
+    {
+      "path": "500_500/mem/H3B.mem",
+      "words": 10,
+      "bytes": 90,
+      "sha256": "4679732479932a1fe39cc4f6fab302103189027270a1ed685baf3f7ebc75e5e9"
+    },
+    {
+      "path": "256_128/mem/H1W.mem",
+      "words": 200704,
+      "bytes": 1806336,
+      "sha256": "6cf707ac6fbfc13de19dc0a4bfda08f16a8e95e78e1d48848cbba6c6bb96c1d9"
+    },
+    {
+      "path": "256_128/mem/H1B.mem",
+      "words": 256,
+      "bytes": 2304,
+      "sha256": "3cd25aa7d7cd054af344c3d390ce811f47e34b8ec7bd4af010acfe44388e9744"
+    },
+    {
+      "path": "256_128/mem/H2W.mem",
+      "words": 32768,
+      "bytes": 294912,
+      "sha256": "3b6389b6540d332c431c96cb7c0c70b19392d63cbc100cb5e2eb355cde159d3f"
+    },
+    {
+      "path": "256_128/mem/H2B.mem",
+      "words": 128,
+      "bytes": 1152,
+      "sha256": "3001bd41d1f28a2b8e722ae39aec00f8eb08fcaa61aee98ea3108a64b076428e"
+    },
+    {
+      "path": "256_128/mem/H3W.mem",
+      "words": 1280,
+      "bytes": 11520,
+      "sha256": "01f09a33cc2e79334d545e0037aee9be7db1fc5b7e2f0da5decd0afff74065f0"
+    },
+    {
+      "path": "256_128/mem/H3B.mem",
+      "words": 10,
+      "bytes": 90,
+      "sha256": "4e634bcc9c0a42c759310cad8caa5d43f6bcf04d938ad5495cf163b529d5b4f1"
+    },
+    {
+      "path": "256/mem/H1W.mem",
+      "words": 200704,
+      "bytes": 1806336,
+      "sha256": "6ed39130210630c679a886bf1309af69f9d2502c8f33abeda4180d61449e6012"
+    },
+    {
+      "path": "256/mem/H1B.mem",
+      "words": 256,
+      "bytes": 2304,
+      "sha256": "bcf591115ee12764fa757efd93c9ad8cdabed3a4d230a075f49de91ca102ddba"
+    },
+    {
+      "path": "256/mem/H2W.mem",
+      "words": 2560,
+      "bytes": 23040,
+      "sha256": "5dd83c51e48c48e8a636dd634c2a15cad7f11b0ef2793140470a060fbe9b0c68"
+    },
+    {
+      "path": "256/mem/H2B.mem",
+      "words": 10,
+      "bytes": 90,
+      "sha256": "789601642f2b14800924a0bfddc77fd63f4fec3b57f2af53ae113f5d79085323"
+    },
+    {
+      "path": "512_256_128/mem/H1W.mem",
+      "words": 401408,
+      "bytes": 3612672,
+      "sha256": "53140a7f4129de25daf8170cbb213c29188f2da16dd191817d73cacc976cca09"
+    },
+    {
+      "path": "512_256_128/mem/H1B.mem",
+      "words": 512,
+      "bytes": 4608,
+      "sha256": "1fad04a5c2ce2cc550ff42e10526c7227f37e628959f9ba988d8cdd37aa11c4d"
+    },
+    {
+      "path": "512_256_128/mem/H2W.mem",
+      "words": 131072,
+      "bytes": 1179648,
+      "sha256": "fbed005689c5fd5c131681910b39a0c31bde52a5677340a50cf83b0c437e6353"
+    },
+    {
+      "path": "512_256_128/mem/H2B.mem",
+      "words": 256,
+      "bytes": 2304,
+      "sha256": "06076dc071b7e52988ab69182ae942d86c9506d03fd261a8169d5f472ec445e1"
+    },
+    {
+      "path": "512_256_128/mem/H3W.mem",
+      "words": 32768,
+      "bytes": 294912,
+      "sha256": "14a1da8457552459e68c83b3c7efaf23e0329d3e1452390b02d08c90511d8204"
+    },
+    {
+      "path": "512_256_128/mem/H3B.mem",
+      "words": 128,
+      "bytes": 1152,
+      "sha256": "de1f331335dcedafc6715c8231d362ded895f2695a57b567a1df5369c6de7b32"
+    },
+    {
+      "path": "512_256_128/mem/H4W.mem",
+      "words": 1280,
+      "bytes": 11520,
+      "sha256": "38c637c406b9aedfd043fe4200e20f1dc597130f5f5a3440df49e694e1065a2d"
+    },
+    {
+      "path": "512_256_128/mem/H4B.mem",
+      "words": 10,
+      "bytes": 90,
+      "sha256": "006c357f83270f0dac738940b730e37fb7130712e6d75d8342dbc6c024d7a2dc"
+    }
+  ]
+}

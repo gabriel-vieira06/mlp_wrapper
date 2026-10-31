@@ -10,3 +10,5 @@ commands.
 Alternative hidden-layer sizes `500_500`, `256_128`, `256`, and `512_256_128`
 are available under [Vivado/topologies](Vivado/topologies/README.md), with
 separate Vivado project-creation scripts and memory-file requirements.
+The supplied weight and bias files are included in each topology's `mem/`
+directory and selected automatically by those scripts.

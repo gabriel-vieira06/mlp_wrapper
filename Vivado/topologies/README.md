@@ -21,15 +21,18 @@ three-hidden-layer version adds a fourth dense stage for the output.
 The shared accelerator blocks new input frames while inference/output is in
 progress and holds each output beat stable under backpressure. It reuses the
 existing `dense.sv` arithmetic, synchronous weight ROMs and single-lane input
-BRAM. No trained `.mem` files or fake replacement weights are supplied for
-these new topologies.
+BRAM. The supplied weight and bias memories from `topologies_mem.zip` are
+included, unchanged, under each preset's `mem/` directory. The archive's
+`mems/` directories were mapped to the `mem/` paths used by the project scripts.
+File lengths and SHA-256 hashes are recorded in `memory_manifest.json`.
 
-## Supply the trained memory files
+## Trained memory files
 
-Use a separate memory directory for each topology, such as
-`/path/to/mem/256_128`. Alternatively, create a `mem` subdirectory inside its
-preset directory. Do not reuse the `64_32` memories: their lengths and tensor
-shapes are different.
+The default project scripts already select `Vivado/topologies/<preset>/mem`.
+All 24 supplied files have been checked for the expected lengths and hexadecimal
+format. To use a different trained model, pass a separate memory directory such
+as `/path/to/mem/256_128`. Do not reuse the `64_32` memories: their lengths and
+tensor shapes are different.
 
 Every nonempty line must contain exactly eight hexadecimal digits, representing
 one 32-bit two's-complement word. The current weight/input format has 22
@@ -62,6 +65,12 @@ output layer for `256`, while `H4` is the output layer for `512_256_128`.
 Use Vivado **2022.2**. From the repository root, for example:
 
 ```sh
+vivado -mode batch -source Vivado/topologies/256_128/create_project.tcl
+```
+
+To override the output directory or the bundled trained memories:
+
+```sh
 vivado -mode batch -source Vivado/topologies/256_128/create_project.tcl \
     -tclargs /path/outside/repository/mlp_256_128 /path/to/mem/256_128
 ```
@@ -72,9 +81,9 @@ named `mlp_<preset>_vivado`, and the default memory directory is
 `Vivado/topologies/<preset>/mem`.
 
 Memory existence, lengths and hexadecimal formatting are checked **before**
-creating the project. Until the requested trained memories arrive, a precise
-missing-files error is expected. The script refuses nonempty output directories
-and outputs inside the checkout. To regenerate with different weights, use a
+creating the project. The bundled memories pass these checks. The script
+refuses nonempty output directories and outputs inside the checkout.
+To regenerate with different weights, use a
 fresh output directory; previously staged project memories are independent
 copies and do not update when the source memory directory changes.
 
@@ -104,6 +113,12 @@ working directory. Set its `NUM_TESTS` parameter to change the sample count,
 up to the 10,000 images present in the shared fixture. No particular accuracy
 is asserted for an unknown trained model.
 
+The bundled memories were exercised with Verilator using this testbench and
+10 MNIST images per preset. All four simulations completed without memory-load
+errors. Observed correct classifications were 10/10 (`500_500`), 10/10
+(`256_128`), 9/10 (`256`), and 10/10 (`512_256_128`). This is a small integration
+smoke test, not an evaluation of full test-set accuracy or a Vivado/XSim run.
+
 For batch simulation after generating the project:
 
 ```tcl
@@ -132,7 +147,7 @@ larger FPGA. Those architectural changes are outside these topology presets;
 32-bit precision has not been silently reduced. No new bitstreams or hardware
 validation are claimed.
 
-## Verification without trained memories
+## Synthetic regression independent of trained memories
 
 ```sh
 /workspace/mlp-env/bin/python tests/run_topology_tests.py
@@ -150,4 +165,4 @@ The project Tcl entry points were also exercised with explicit Vivado command
 stubs, including invalid/missing memories and the selected source/clock/top
 configuration. Vivado itself is unavailable in the cloud environment, so
 actual `.xpr` generation, vendor elaboration, synthesis, timing and board tests
-remain to be run with Vivado and the trained memories.
+remain to be run with Vivado. The trained memories are now included.
