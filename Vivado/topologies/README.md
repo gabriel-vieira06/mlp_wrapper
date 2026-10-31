@@ -97,7 +97,7 @@ After successful creation, open `<output>/mlp_<preset>.xpr`. The script:
 4. Restores the current project's **50 MHz** accelerator clock; the older
    PYNQ Tcl export itself contains a 25 MHz setting.
 5. Generates `mlp_design_wrapper` as the synthesis top, and configures
-   `mlp_variant_tb` as the simulation top with the shared MNIST test data.
+   `mlp_variant_tb` as the simulation top with all ten paired MNIST batches.
 
 The scripts create a clean project rather than duplicating cached netlists,
 checkpoints or bitstreams. They do not launch synthesis, implementation or
@@ -107,11 +107,20 @@ creation, since RTL source paths reference it.
 ## Simulate a trained variant
 
 Open the generated project and select **Run Behavioral Simulation**. The common
-`mlp_variant_tb` sends 10 images by default, checks output counts and `TLAST`,
-prints classification accuracy and writes `mnist_log.txt` in the simulation
-working directory. Set its `NUM_TESTS` parameter to change the sample count,
-up to the 10,000 images present in the shared fixture. No particular accuracy
-is asserted for an unknown trained model.
+`mlp_variant_tb` sends **1,000 images from batch 00 by default**, checks output
+counts and `TLAST`, and prints classification accuracy. `BATCH_ID` selects one
+of the ten batches (0 through 9); `NUM_TESTS` selects 1 through 1,000 images
+from the start of that batch. Images in the log retain their global indices
+from 0 through 9,999. Output is written to `mnist_batch_XX_log.txt` in the
+simulation working directory, where `XX` is the selected batch. No particular
+accuracy is asserted for an unknown trained model.
+
+The supplied 10,000-image data is stored as ten matching sample/label pairs in
+`test_data/mnist_batches`. Every sample file contains 784,000 pixel words, and
+its label file contains 1,000 labels. The project scripts import all pairs so
+changing `BATCH_ID` does not require importing different data. See
+[the batch data instructions](test_data/README.md) for the image ranges,
+reproducible splitting command and migration of an existing project.
 
 The bundled memories were exercised with Verilator using this testbench and
 10 MNIST images per preset. All four simulations completed without memory-load
@@ -119,13 +128,20 @@ errors. Observed correct classifications were 10/10 (`500_500`), 10/10
 (`256_128`), 9/10 (`256`), and 10/10 (`512_256_128`). This is a small integration
 smoke test, not an evaluation of full test-set accuracy or a Vivado/XSim run.
 
-For batch simulation after generating the project:
+For simulation after generating the project (batch 03 covers images 3,000
+through 3,999):
 
 ```tcl
 open_project /path/outside/repository/mlp_256_128/mlp_256_128.xpr
+set_property generic {BATCH_ID=3 NUM_TESTS=1000} [get_filesets sim_1]
 launch_simulation
 run all
 ```
+
+Close any running simulation before changing these generics, then launch it
+again to elaborate the selected batch. Previously generated projects also
+need the new batch files added to `sim_1`; the migration commands are in the
+batch data instructions.
 
 ## Resource limit on the PYNQ-Z1
 

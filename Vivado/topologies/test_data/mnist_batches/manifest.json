@@ -1,0 +1,197 @@
+{
+  "images": 10000,
+  "images_per_batch": 1000,
+  "pixels_per_image": 784,
+  "source_samples": {
+    "file": "test_samples_10k.mem",
+    "records": 7840000,
+    "sha256": "dc935dc56ef8305fdc55d109bdaf6bc4636ebd253aa6a6d6d29bfe6761fb8ef6"
+  },
+  "source_labels": {
+    "file": "test_labels_10k.mem",
+    "records": 10000,
+    "sha256": "190f25a10101cf6f096ea282298665916ade63a1bec0c1dc7baa44026e1f0841"
+  },
+  "batches": [
+    {
+      "batch_id": 0,
+      "first_image": 0,
+      "last_image": 999,
+      "images": 1000,
+      "samples": {
+        "file": "test_samples_00.mem",
+        "records": 784000,
+        "bytes": 7056000,
+        "sha256": "6e7e81d949eec93ebec8b4bb394b87367f77739bd1bf77cc0dc97f7ad323b0f9"
+      },
+      "labels": {
+        "file": "test_labels_00.mem",
+        "records": 1000,
+        "bytes": 4000,
+        "sha256": "ee5fbc50df750d99dceb9d51caf3094b9d3a1c1adf44a5e330d16428332c3070"
+      }
+    },
+    {
+      "batch_id": 1,
+      "first_image": 1000,
+      "last_image": 1999,
+      "images": 1000,
+      "samples": {
+        "file": "test_samples_01.mem",
+        "records": 784000,
+        "bytes": 7056000,
+        "sha256": "218d23dfe2a93623b123f9a273b36afab146d14ac1de1fba18fd8540a828165f"
+      },
+      "labels": {
+        "file": "test_labels_01.mem",
+        "records": 1000,
+        "bytes": 4000,
+        "sha256": "83df401aeb4c71e7e35986514179ee0145185c2e55d32a7f49c00e3cbe670b60"
+      }
+    },
+    {
+      "batch_id": 2,
+      "first_image": 2000,
+      "last_image": 2999,
+      "images": 1000,
+      "samples": {
+        "file": "test_samples_02.mem",
+        "records": 784000,
+        "bytes": 7056000,
+        "sha256": "42b3cc3f7e9b7fc975aff84b328adddcd0905a63eafcecf80f659a2832216ffe"
+      },
+      "labels": {
+        "file": "test_labels_02.mem",
+        "records": 1000,
+        "bytes": 4000,
+        "sha256": "1c068e57c3ccbfa47cb24d61e10d1c8f7fe2aae2e70d72d7ce3cf16177298bef"
+      }
+    },
+    {
+      "batch_id": 3,
+      "first_image": 3000,
+      "last_image": 3999,
+      "images": 1000,
+      "samples": {
+        "file": "test_samples_03.mem",
+        "records": 784000,
+        "bytes": 7056000,
+        "sha256": "68af5a2d63dad839dda942fd08012d84d860f331ec9c8a03986d535020543b7d"
+      },
+      "labels": {
+        "file": "test_labels_03.mem",
+        "records": 1000,
+        "bytes": 4000,
+        "sha256": "8f17e4f1e9bc30df1f6cb878f04db3b5a6084ef9426fd7a01405f5133dbc1ce3"
+      }
+    },
+    {
+      "batch_id": 4,
+      "first_image": 4000,
+      "last_image": 4999,
+      "images": 1000,
+      "samples": {
+        "file": "test_samples_04.mem",
+        "records": 784000,
+        "bytes": 7056000,
+        "sha256": "75ea0275e024cbfb3c3b2812a55c0d16fec814d8006b57e163783032cf847362"
+      },
+      "labels": {
+        "file": "test_labels_04.mem",
+        "records": 1000,
+        "bytes": 4000,
+        "sha256": "9a87abda9958435a6340af71d058e8447fc1b115c7173baddb39179d59e03ca9"
+      }
+    },
+    {
+      "batch_id": 5,
+      "first_image": 5000,
+      "last_image": 5999,
+      "images": 1000,
+      "samples": {
+        "file": "test_samples_05.mem",
+        "records": 784000,
+        "bytes": 7056000,
+        "sha256": "3edac6017c67da8ad7af22d3aa72fb5018b18d03974ddb52d060ee78f7fd6506"
+      },
+      "labels": {
+        "file": "test_labels_05.mem",
+        "records": 1000,
+        "bytes": 4000,
+        "sha256": "9d3774b21b4092fd675fabb4c7132a1d6af7cb8cd03301c548c692039845db99"
+      }
+    },
+    {
+      "batch_id": 6,
+      "first_image": 6000,
+      "last_image": 6999,
+      "images": 1000,
+      "samples": {
+        "file": "test_samples_06.mem",
+        "records": 784000,
+        "bytes": 7056000,
+        "sha256": "a2c744b7c944d452226ad2f01b11cea1e3bbd4478bc7ba1b67e46daeedd0f7d8"
+      },
+      "labels": {
+        "file": "test_labels_06.mem",
+        "records": 1000,
+        "bytes": 4000,
+        "sha256": "51ea615a8def10e955b2ce83c8022db7acfc7090634902ba5296ab0f51cf0643"
+      }
+    },
+    {
+      "batch_id": 7,
+      "first_image": 7000,
+      "last_image": 7999,
+      "images": 1000,
+      "samples": {
+        "file": "test_samples_07.mem",
+        "records": 784000,
+        "bytes": 7056000,
+        "sha256": "fa6830cb5a61b37ccfb9c6846b3e0259e5112d17a01ce9aabfb9f4cecbd8e3f7"
+      },
+      "labels": {
+        "file": "test_labels_07.mem",
+        "records": 1000,
+        "bytes": 4000,
+        "sha256": "a9a3d543e45e5c9466232d9c02f209e824ef5edeaa00d2f60b3444592a35e0ae"
+      }
+    },
+    {
+      "batch_id": 8,
+      "first_image": 8000,
+      "last_image": 8999,
+      "images": 1000,
+      "samples": {
+        "file": "test_samples_08.mem",
+        "records": 784000,
+        "bytes": 7056000,
+        "sha256": "e1e25806afce6a8d281535650da8f5cc6875c5ebe30b195f6a3f42994f6e2ca1"
+      },
+      "labels": {
+        "file": "test_labels_08.mem",
+        "records": 1000,
+        "bytes": 4000,
+        "sha256": "49e478fc92c57dc28805a575bfc56e1376f7e528f4b3dace861e6da1b20cc663"
+      }
+    },
+    {
+      "batch_id": 9,
+      "first_image": 9000,
+      "last_image": 9999,
+      "images": 1000,
+      "samples": {
+        "file": "test_samples_09.mem",
+        "records": 784000,
+        "bytes": 7056000,
+        "sha256": "d6666317276746e2b369b15a5c7c8337a180f5415b479e704027f6edf6dc2719"
+      },
+      "labels": {
+        "file": "test_labels_09.mem",
+        "records": 1000,
+        "bytes": 4000,
+        "sha256": "81def7f1deab77e3c73d9653113ac6716cc6f1308f6a8926521317312cadbba9"
+      }
+    }
+  ]
+}

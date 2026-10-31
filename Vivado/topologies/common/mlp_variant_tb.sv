@@ -1,9 +1,9 @@
 `timescale 1ns / 1ps
 
-// Simulate the selected variant's mlp.v using the shared MNIST test inputs.
-// Trained weight/bias memories must be supplied separately for that topology.
+// Simulate the selected variant's mlp.v with one paired 1,000-image MNIST batch.
 module mlp_variant_tb #(
-    parameter integer NUM_TESTS = 10
+    parameter integer BATCH_ID = 0,
+    parameter integer NUM_TESTS = 1000
 );
     logic clk = 0;
     logic rst_n = 0;
@@ -16,6 +16,7 @@ module mlp_variant_tb #(
     logic [31:0] pixels [0:NUM_TESTS*784-1];
     logic [3:0] labels [0:NUM_TESTS-1];
     integer input_file, label_file, log_file, scanned;
+    string samples_filename, labels_filename, log_filename;
     integer frames_done = 0;
     integer output_index = 0;
     integer correct = 0;
@@ -51,7 +52,7 @@ module mlp_variant_tb #(
             if (data_out_last) begin
                 if (prediction == labels[frames_done]) correct++;
                 $fdisplay(log_file, "Image %0d: predicted=%0d expected=%0d",
-                          frames_done, prediction, labels[frames_done]);
+                          BATCH_ID*1000 + frames_done, prediction, labels[frames_done]);
                 frames_done++;
                 output_index = 0;
             end else output_index++;
@@ -59,13 +60,21 @@ module mlp_variant_tb #(
     end
 
     initial begin
-        input_file = $fopen("test_samples.mem", "r");
-        label_file = $fopen("test_labels.mem", "r");
-        log_file = $fopen("mnist_log.txt", "w");
+        if (BATCH_ID < 0 || BATCH_ID > 9)
+            $fatal(1, "BATCH_ID must be between 0 and 9");
+        if (NUM_TESTS < 1 || NUM_TESTS > 1000)
+            $fatal(1, "NUM_TESTS must be between 1 and 1000");
+        samples_filename = $sformatf("test_samples_%02d.mem", BATCH_ID);
+        labels_filename = $sformatf("test_labels_%02d.mem", BATCH_ID);
+        log_filename = $sformatf("mnist_batch_%02d_log.txt", BATCH_ID);
+        input_file = $fopen(samples_filename, "r");
+        label_file = $fopen(labels_filename, "r");
+        log_file = $fopen(log_filename, "w");
         if (!input_file || !label_file || !log_file)
-            $fatal(1, "Cannot open MNIST input/label files or output log");
-        // Consume exactly the requested prefix of the shared data files.
-        // No shortened copies of the 10,000-image fixture are required.
+            $fatal(1, "Cannot open %s, %s or %s",
+                   samples_filename, labels_filename, log_filename);
+        $display("MNIST batch %0d: %s, %s; evaluating %0d images",
+                 BATCH_ID, samples_filename, labels_filename, NUM_TESTS);
         for (integer i = 0; i < NUM_TESTS*784; i++) begin
             scanned = $fscanf(input_file, "%h", pixels[i]);
             if (scanned != 1) $fatal(1, "Insufficient MNIST pixels at word %0d", i);
@@ -96,8 +105,8 @@ module mlp_variant_tb #(
         end
         repeat (10) @(negedge clk);
         $fclose(log_file);
-        $display("Completed %0d images, %0d correct, accuracy %.2f%%",
-                 frames_done, correct, 100.0*correct/NUM_TESTS);
+        $display("Batch %0d completed %0d images, %0d correct, accuracy %.2f%%",
+                 BATCH_ID, frames_done, correct, 100.0*correct/NUM_TESTS);
         $finish;
     end
 endmodule

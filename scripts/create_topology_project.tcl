@@ -58,6 +58,27 @@ proc ::mlp_topology_project::validate_memories {mem_dir requirements} {
     }
 }
 
+proc ::mlp_topology_project::simulation_sources {repo_dir} {
+    set sources [list [file join $repo_dir Vivado topologies common mlp_variant_tb.sv]]
+    set batch_dir [file join $repo_dir Vivado topologies test_data mnist_batches]
+    set missing [list]
+    # The splitter validates record counts/content before publishing this set.
+    # Projects require all matched pairs, so changing BATCH_ID needs no reimport.
+    for {set batch 0} {$batch < 10} {incr batch} {
+        set suffix [format %02d $batch]
+        foreach kind {test_samples test_labels} {
+            set name ${kind}_${suffix}.mem
+            set path [file join $batch_dir $name]
+            lappend sources $path
+            if {![file isfile $path]} {lappend missing $name}
+        }
+    }
+    if {[llength $missing]} {
+        error "Missing MNIST batch files in $batch_dir: [join $missing {, }]. Prepare all ten matched sample/label pairs (00 through 09) before creating the project."
+    }
+    return $sources
+}
+
 proc ::mlp_topology_project::create {variant_dir argv} {
     variable hidden_sizes
     if {[llength $argv] > 2} {
@@ -95,10 +116,7 @@ proc ::mlp_topology_project::create {variant_dir argv} {
     }
     lappend sources [file join $repo_dir Vivado topologies common mlp_topology.sv]
     lappend sources [file join $variant_dir mlp.v]
-    set simulation_sources [list \
-        [file join $repo_dir Vivado topologies common mlp_variant_tb.sv] \
-        [file join $repo_dir Vivado updated_mlp_wrapper.srcs sim_1 new test_samples.mem] \
-        [file join $repo_dir Vivado updated_mlp_wrapper.srcs sim_1 new test_labels.mem]]
+    set simulation_sources [simulation_sources $repo_dir]
     set bd_script [file join $repo_dir PYNQ mlp.tcl]
     foreach path [concat $sources $simulation_sources [list $bd_script]] {
         if {![file isfile $path]} {error "Missing project source: $path"}
@@ -123,6 +141,7 @@ proc ::mlp_topology_project::create {variant_dir argv} {
         add_files -norecurse $sources
         add_files -fileset sim_1 -norecurse $simulation_sources
         set_property top mlp_variant_tb [get_filesets sim_1]
+        set_property generic {BATCH_ID=0 NUM_TESTS=1000} [get_filesets sim_1]
         dict for {name expected} $requirements {
             set staged [file join $output_dir $name]
             file copy [file join $mem_dir $name] $staged
