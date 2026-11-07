@@ -214,23 +214,7 @@ class MnistBatchTests(unittest.TestCase):
         self.assert_rejected_without_outputs((FileNotFoundError, ValueError))
 
 
-@unittest.skipUnless(importlib.util.find_spec("verilator") or shutil.which("verilator"),
-                     "Optional batch testbench check requires Verilator")
-class BatchTestbenchTests(unittest.TestCase):
-    def test_batch_09_default_1000_frames_and_global_image_indices(self):
-        # Only batch09 files exist, so a hard-coded batch00/prefix fallback
-        # fails. Pixel words encode global image and pixel indices; the mock
-        # validates every accepted input word before producing ten scores.
-        with tempfile.TemporaryDirectory(prefix="mnist-batch-tb-") as temporary:
-            root = Path(temporary)
-            with (root / "test_samples_09.mem").open("wb") as samples:
-                for image in range(9000, 10000):
-                    samples.write(b"".join(f"{(image << 16) | pixel:08x}\n".encode()
-                                           for pixel in range(784)))
-            (root / "test_labels_09.mem").write_bytes(
-                b"".join(f"0x{image % 10:x}\n".encode() for image in range(9000, 10000)))
-            mock_rtl = root / "mlp_mock.sv"
-            mock_rtl.write_text('''`timescale 1ns / 1ps
+MOCK_MLP = r"""`timescale 1ns / 1ps
 // Test-only protocol mock; no model weights or accuracy claim.
 module mlp (
     input wire clk, rst_n,
@@ -248,23 +232,46 @@ module mlp (
     integer pixel = 0;
     integer score = 0;
     integer predicted = 0;
+    integer cycles = 0;
+    integer stalled_cycles = 0;
     logic streaming = 0;
-    assign s_axis_tready = rst_n && !streaming;
+    logic ready_gate = 0;
+    logic was_stalled = 0;
+    logic [31:0] held_data;
+    logic held_last;
+    assign s_axis_tready = rst_n && !streaming && ready_gate;
     assign m_axis_tvalid = rst_n && streaming;
     assign m_axis_tlast = streaming && score == 9;
     assign m_axis_tdata = score == predicted ? 32'h01000000 : 32'h00000000;
     assign dbg_valid_in = s_axis_tvalid;
     assign dbg_valid_out = m_axis_tvalid;
+    // Change ready after the driver's falling edge to make offered beats stall.
+    // This verifies that the scalar input is retained until the handshake.
+    always @(negedge clk) begin
+        #1;
+        ready_gate = cycles % 7 >= 2;
+    end
     always @(posedge clk) begin
         if (!rst_n) begin
             image <= 0; pixel <= 0; score <= 0;
-            predicted <= 0; streaming <= 0;
+            predicted <= 0; streaming <= 0; cycles <= 0;
+            stalled_cycles = 0; was_stalled = 0;
         end else begin
+            cycles <= cycles+1;
+            if (was_stalled && (!s_axis_tvalid || s_axis_tdata !== held_data ||
+                                s_axis_tlast !== held_last))
+                $fatal(1, "Input data/valid/TLAST changed during backpressure");
+            was_stalled = s_axis_tvalid && !s_axis_tready;
+            if (was_stalled) stalled_cycles++;
+            held_data = s_axis_tdata;
+            held_last = s_axis_tlast;
             if (s_axis_tvalid && s_axis_tready) begin
                 if (s_axis_tdata !== (((image+9000) << 16) | pixel))
                     $fatal(1, "Wrong batch/image/pixel at image %0d pixel %0d", image, pixel);
                 if (s_axis_tlast !== (pixel == 783))
                     $fatal(1, "Input TLAST is misaligned");
+                if (pixel == 0 && image < 2)
+                    $display("MOCK_INPUT_IMAGE %0d", image+9000);
                 if (pixel == 783) begin
                     pixel <= 0;
                     predicted <= (image+9000) % 10;
@@ -274,33 +281,139 @@ module mlp (
                 end else pixel <= pixel+1;
             end
             if (streaming && m_axis_tready) begin
-                if (score == 9) streaming <= 0;
-                else score <= score+1;
+                if (score == 9) begin
+                    streaming <= 0;
+                    if (image == 1) $display("MOCK_FIRST_IMAGE_COMPLETE");
+                    if (image == 1000) $display("MOCK_INPUT_STALLS %0d", stalled_cycles);
+                end else score <= score+1;
             end
         end
     end
 endmodule
-''')
-            command = ([sys.executable, "-m", "verilator"]
-                       if importlib.util.find_spec("verilator") else [shutil.which("verilator")])
-            command += ["--binary", "--timing", "-Wno-fatal", "-j", "2",
-                        "--top-module", "mlp_variant_tb", "-GBATCH_ID=9",
-                        "--Mdir", str(root / "obj"), str(mock_rtl),
-                        str(SCRIPT.parents[1] / "Vivado/topologies/common/mlp_variant_tb.sv")]
-            # NUM_TESTS is intentionally omitted: the production default must
-            # execute exactly the complete 1,000-image selected batch.
-            build = subprocess.run(command, cwd=root, capture_output=True, text=True, timeout=120)
-            self.assertEqual(build.returncode, 0, (build.stdout + build.stderr)[-5000:])
-            run = subprocess.run([str(root / "obj/Vmlp_variant_tb")], cwd=root,
-                                 capture_output=True, text=True, timeout=120)
-            self.assertEqual(run.returncode, 0, (run.stdout + run.stderr)[-5000:])
-            self.assertIn("Batch 9 completed 1000 images, 1000 correct", run.stdout)
-            log = (root / "mnist_batch_09_log.txt").read_text().splitlines()
-            self.assertEqual(len(log), 1000)
-            for index, row in enumerate(log, 9000):
-                expected = index % 10
-                self.assertEqual(row, f"Image {index}: predicted={expected} expected={expected}")
-            self.assertFalse((root / "mnist_batch_00_log.txt").exists())
+"""
+
+
+@unittest.skipUnless(importlib.util.find_spec("verilator") or shutil.which("verilator"),
+                     "Optional batch testbench checks require Verilator")
+class BatchTestbenchTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.build_temporary = tempfile.TemporaryDirectory(prefix="mnist-batch-tb-build-")
+        cls.addClassCleanup(cls.build_temporary.cleanup)
+        root = Path(cls.build_temporary.name)
+        mock_rtl = root / "mlp_mock.sv"
+        mock_rtl.write_text(MOCK_MLP)
+        command = ([sys.executable, "-m", "verilator"]
+                   if importlib.util.find_spec("verilator") else [shutil.which("verilator")])
+        command += ["--binary", "--timing", "-Wno-fatal", "-j", "2",
+                    "--top-module", "mlp_variant_tb", "-GBATCH_ID=9",
+                    "--Mdir", str(root / "obj"), str(mock_rtl),
+                    str(SCRIPT.parents[1] / "Vivado/topologies/common/mlp_variant_tb.sv")]
+        # Deliberately keep NUM_TESTS at the production default of 1,000.
+        build = subprocess.run(command, cwd=root, capture_output=True, text=True, timeout=120)
+        if build.returncode:
+            raise AssertionError((build.stdout + build.stderr)[-5000:])
+        cls.executable = root / "obj/Vmlp_variant_tb"
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory(prefix="mnist-batch-tb-run-")
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name)
+        self.samples = self.root / "test_samples_09.mem"
+        self.labels = self.root / "test_labels_09.mem"
+
+    def write_samples(self, frames=1, tail_pixels=0, invalid_record=None):
+        with self.samples.open("wb") as stream:
+            for record in range(frames*784 + tail_pixels):
+                image, pixel = divmod(record, 784)
+                if record == invalid_record:
+                    stream.write(b"nothex\n")
+                else:
+                    stream.write(f"{((image+9000) << 16) | pixel:08x}\n".encode())
+
+    def write_labels(self, words=None):
+        if words is None:
+            words = [f"0x{image % 10:x}" for image in range(9000, 10000)]
+        self.labels.write_text("".join(word + "\n" for word in words))
+
+    def run_tb(self):
+        return subprocess.run([str(self.executable)], cwd=self.root,
+                              capture_output=True, text=True, timeout=30)
+
+    def assert_failed_for(self, fragment):
+        result = self.run_tb()
+        text = result.stdout + result.stderr
+        self.assertNotEqual(result.returncode, 0, text[-3000:])
+        self.assertIn(fragment.lower(), text.lower())
+        self.assertNotIn("completed 1000 images", text)
+        return text
+
+    def test_batch_09_default_1000_frames_and_global_image_indices(self):
+        # Only batch09 exists. Every pixel encodes its global image/pixel index
+        # and is checked by the mock, including beats held under backpressure.
+        self.write_samples(frames=1000)
+        self.write_labels()
+        result = self.run_tb()
+        self.assertEqual(result.returncode, 0, (result.stdout + result.stderr)[-5000:])
+        self.assertIn("Batch 9 completed 1000 images, 1000 correct", result.stdout)
+        self.assertRegex(result.stdout, r"MOCK_INPUT_STALLS [1-9][0-9]*")
+        log = (self.root / "mnist_batch_09_log.txt").read_text().splitlines()
+        self.assertEqual(len(log), 1000)
+        for index, row in enumerate(log, 9000):
+            expected = index % 10
+            self.assertEqual(row, f"Image {index}: predicted={expected} expected={expected}")
+        self.assertFalse((self.root / "mnist_batch_00_log.txt").exists())
+
+    def test_invalid_full_width_label_is_rejected_before_any_pixel_is_sent(self):
+        self.write_samples()
+        for word in ("0x17", "0xffffffff", "0xa", "nothex"):
+            with self.subTest(label=word):
+                self.write_labels([word])
+                text = self.assert_failed_for("label")
+                self.assertNotIn("MOCK_INPUT_IMAGE", text)
+
+    def test_future_invalid_label_is_read_only_after_first_inference_finishes(self):
+        self.write_samples(frames=2)
+        self.write_labels(["0x0", "0x17"])
+        text = self.assert_failed_for("label")
+        self.assertIn("MOCK_FIRST_IMAGE_COMPLETE", text)
+        self.assertNotIn("MOCK_INPUT_IMAGE 9001", text)
+
+    def test_truncated_future_label_is_read_only_after_first_inference_finishes(self):
+        self.write_samples(frames=2)
+        self.write_labels(["0x0"])
+        text = self.assert_failed_for("label")
+        self.assertIn("MOCK_FIRST_IMAGE_COMPLETE", text)
+        self.assertNotIn("MOCK_INPUT_IMAGE 9001", text)
+
+    def test_invalid_future_pixel_does_not_prevent_first_inference(self):
+        self.write_samples(frames=2, invalid_record=784 + 11)
+        self.write_labels(["0x0", "0x1"])
+        text = self.assert_failed_for("pixel")
+        self.assertIn("MOCK_FIRST_IMAGE_COMPLETE", text)
+        self.assertIn("MOCK_INPUT_IMAGE 9001", text)
+
+    def test_truncated_future_pixels_do_not_prevent_first_inference(self):
+        self.write_samples(frames=1, tail_pixels=57)
+        self.write_labels(["0x0", "0x1"])
+        text = self.assert_failed_for("pixel")
+        self.assertIn("MOCK_FIRST_IMAGE_COMPLETE", text)
+        self.assertIn("MOCK_INPUT_IMAGE 9001", text)
+
+    def test_invalid_first_pixel_is_rejected_before_transmitting_a_frame(self):
+        self.write_samples(invalid_record=0)
+        self.write_labels(["0x0"])
+        text = self.assert_failed_for("pixel")
+        self.assertNotIn("MOCK_INPUT_IMAGE", text)
+
+    def test_missing_input_files_fail_before_inference(self):
+        for missing in ("samples", "labels"):
+            with self.subTest(missing=missing):
+                self.write_samples()
+                self.write_labels(["0x0"])
+                getattr(self, missing).unlink()
+                text = self.assert_failed_for("cannot open")
+                self.assertNotIn("MOCK_INPUT_IMAGE", text)
 
 
 if __name__ == "__main__":

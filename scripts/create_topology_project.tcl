@@ -118,7 +118,9 @@ proc ::mlp_topology_project::create {variant_dir argv} {
     lappend sources [file join $variant_dir mlp.v]
     set simulation_sources [simulation_sources $repo_dir]
     set bd_script [file join $repo_dir PYNQ mlp.tcl]
-    foreach path [concat $sources $simulation_sources [list $bd_script]] {
+    set simulation_profile [file join $repo_dir scripts configure_lightweight_simulation.tcl]
+    set simulation_runtime [file join $repo_dir scripts xsim_run_batch.tcl]
+    foreach path [concat $sources $simulation_sources [list $bd_script $simulation_profile $simulation_runtime]] {
         if {![file isfile $path]} {error "Missing project source: $path"}
     }
     if {![llength [info commands create_project]] || ![llength [info commands version]]} {
@@ -142,6 +144,7 @@ proc ::mlp_topology_project::create {variant_dir argv} {
         add_files -fileset sim_1 -norecurse $simulation_sources
         set_property top mlp_variant_tb [get_filesets sim_1]
         set_property generic {BATCH_ID=0 NUM_TESTS=1000} [get_filesets sim_1]
+        source $simulation_profile
         dict for {name expected} $requirements {
             set staged [file join $output_dir $name]
             file copy [file join $mem_dir $name] $staged

@@ -7,6 +7,8 @@ root. Tcl simulation commands run inside the Vivado Tcl console.
 | Script | Purpose | Requirements |
 | --- | --- | --- |
 | [create_topology_project.tcl](create_topology_project.tcl) | Shared helper that creates a complete Zynq/DMA project for a selected topology | Vivado 2022.2 with Zynq-7000 device support |
+| [configure_lightweight_simulation.tcl](configure_lightweight_simulation.tcl) | Apply a low-memory evaluation profile to the open topology project | Vivado 2022.2; simulation closed |
+| [xsim_run_batch.tcl](xsim_run_batch.tcl) | Internal XSim runtime selected by the evaluation profile; runs the batch without adding waves | Called by XSim, not a standalone project generator |
 | [split_mnist_mem.py](split_mnist_mem.py) | Split 10,000 MNIST images and labels into ten aligned batches | Python 3; standard library only |
 | [synth_luts.tcl](synth_luts.tcl) | Synthesize the original `64_32` accelerator and report resources/timing | Vivado 2022.2 |
 
@@ -57,6 +59,8 @@ only the selected `mlp.v` adapter, reconstructs the processing system and AXI
 DMA from `PYNQ/mlp.tcl`, and configures a 50 MHz accelerator clock. The
 synthesis top is `mlp_design_wrapper`; the simulation top is `mlp_variant_tb`.
 No synthesis, implementation or bitstream run is launched.
+New projects automatically receive the lightweight XSim evaluation profile
+described below.
 
 Trained memories are copied into the output directory. Editing the source
 memories later does not change those staged copies. RTL paths reference the
@@ -78,16 +82,72 @@ Open the generated project, select `BATCH_ID` from 0 through 9, and choose
 open_project /path/to/mlp_256_128_vivado/mlp_256_128.xpr
 set_property generic {BATCH_ID=3 NUM_TESTS=1000} [get_filesets sim_1]
 launch_simulation
-run all
 ```
 
 Batch 03 contains images 3,000 through 3,999. Results go to
 `mnist_batch_03_log.txt` in the simulation working directory. Close an active
 simulation before changing generics, then launch it again to elaborate the
 new values. For a shorter smoke test, use `NUM_TESTS=2`.
+The configured lightweight runtime runs the selected batch automatically on
+launch, so a separate `run all` command is unnecessary.
 
 Projects created before batch support need the new batch files added to
 `sim_1`. Follow [the existing-project migration instructions](../Vivado/topologies/test_data/README.md#update-an-existing-topology-project).
+
+### Lightweight XSim evaluation
+
+The shared testbench reads one pixel at a time and one label per image. It
+does not allocate arrays for the entire 1,000-image batch. This preserves the
+batch-selection interface, RTL model and classification logs.
+
+For an existing generated project, close simulation, open the project and run:
+
+```tcl
+source /path/to/mlp_wrapper/scripts/configure_lightweight_simulation.tcl
+set_property generic {BATCH_ID=0 NUM_TESTS=1000} [get_filesets sim_1]
+launch_simulation
+```
+
+The helper sets `xsim.elaborate.debug_level` to `off`, disables
+`xsim.simulate.log_all_signals`, and selects `xsim_run_batch.tcl` as the custom
+runtime. That runtime only executes `run all`; it does not add waveforms or
+recursively log internal signals. These settings apply to the simulation
+fileset, not synthesis or implementation. Enabled `.wcfg` entries in `sim_1`
+are disabled without deleting their files, and the optional saved `xsim.view`
+setting is cleared. This prevents old wave configurations from restoring
+large signal collections during evaluation.
+
+Keep the checkout at its current path: the custom runtime references it.
+Refresh imported copies of `mlp_variant_tb.sv` if your project does not
+reference the checkout's shared file. Close and relaunch simulation to rebuild
+the snapshot; `restart` alone does not change elaboration debug settings.
+
+The evaluation profile intentionally trades interactive signal inspection for
+lower tracing overhead. For a short debugging session, close simulation and
+restore the normal runtime and debug access:
+
+```tcl
+set_property xsim.elaborate.debug_level typical [get_filesets sim_1]
+set_property xsim.simulate.custom_tcl {} [get_filesets sim_1]
+set_property generic {BATCH_ID=0 NUM_TESTS=2} [get_filesets sim_1]
+launch_simulation
+```
+
+To restore a specific saved wave configuration as well, re-enable that file
+before launching: `set_property IS_ENABLED true [get_files /path/to/waves.wcfg]`.
+
+Add only the signals needed for debugging; avoid recursively logging weight
+memories and all internal signals for a full batch. Reapply the helper to
+return to 1,000-image evaluation (restore `NUM_TESTS=1000` as shown above).
+
+The larger models still contain their full RTL weight memories, and the
+original `64_32` testbench also preloads 1,000 images. These changes remove
+batch-sized testbench buffers and unnecessary tracing; they do not promise
+that a larger topology's total PC RAM use equals `64_32`. Peak XSim RAM could
+not be measured here because Vivado/XSim is not installed.
+
+The property names and waveform-file behavior match the
+[official Xilinx 2022.2 XSim Tcl sources](https://github.com/Xilinx/XilinxTclStore/blob/234341d2f6aa01b7ed747fc3528f3b1c8c65cf24/tclapp/xilinx/xsim/register_options.tcl).
 
 ## Split MNIST memories into batches
 

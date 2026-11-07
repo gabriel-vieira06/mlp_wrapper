@@ -1,6 +1,8 @@
 `timescale 1ns / 1ps
 
-// Simulate the selected variant's mlp.v with one paired 1,000-image MNIST batch.
+// Stream a paired 1,000-image MNIST batch into the selected RTL variant.
+// Keep only the offered pixel and current label in the testbench, not arrays
+// proportional to NUM_TESTS. Weight memories remain part of the RTL DUT.
 module mlp_variant_tb #(
     parameter integer BATCH_ID = 0,
     parameter integer NUM_TESTS = 1000
@@ -13,8 +15,8 @@ module mlp_variant_tb #(
     wire [31:0] data_out;
     wire data_out_valid, data_out_last;
     logic input_last = 0;
-    logic [31:0] pixels [0:NUM_TESTS*784-1];
-    logic [3:0] labels [0:NUM_TESTS-1];
+    logic [31:0] label_word;
+    logic [3:0] current_label;
     integer input_file, label_file, log_file, scanned;
     string samples_filename, labels_filename, log_filename;
     integer frames_done = 0;
@@ -50,9 +52,9 @@ module mlp_variant_tb #(
                 prediction = output_index;
             end
             if (data_out_last) begin
-                if (prediction == labels[frames_done]) correct++;
+                if (prediction == current_label) correct++;
                 $fdisplay(log_file, "Image %0d: predicted=%0d expected=%0d",
-                          BATCH_ID*1000 + frames_done, prediction, labels[frames_done]);
+                          BATCH_ID*1000 + frames_done, prediction, current_label);
                 frames_done++;
                 output_index = 0;
             end else output_index++;
@@ -75,26 +77,25 @@ module mlp_variant_tb #(
                    samples_filename, labels_filename, log_filename);
         $display("MNIST batch %0d: %s, %s; evaluating %0d images",
                  BATCH_ID, samples_filename, labels_filename, NUM_TESTS);
-        for (integer i = 0; i < NUM_TESTS*784; i++) begin
-            scanned = $fscanf(input_file, "%h", pixels[i]);
-            if (scanned != 1) $fatal(1, "Insufficient MNIST pixels at word %0d", i);
-        end
-        for (integer i = 0; i < NUM_TESTS; i++) begin
-            scanned = $fscanf(label_file, "%h", labels[i]);
-            if (scanned != 1 || $isunknown(labels[i]) || labels[i] > 9)
-                $fatal(1, "Invalid or missing MNIST label at index %0d", i);
-        end
-        $fclose(input_file);
-        $fclose(label_file);
-
         repeat (4) @(negedge clk);
         rst_n = 1;
         for (integer image = 0; image < NUM_TESTS; image++) begin
+            // Do not fetch the next label until the preceding image has
+            // completed; the output scoreboard uses this single label.
+            scanned = $fscanf(label_file, "%h", label_word);
+            if (scanned != 1 || $isunknown(label_word) || label_word > 9)
+                $fatal(1, "Invalid or missing MNIST label at index %0d", image);
+            current_label = label_word[3:0];
             for (integer pixel = 0; pixel < 784; pixel++) begin
                 @(negedge clk);
-                data_in = pixels[image*784 + pixel];
+                scanned = $fscanf(input_file, "%h", data_in);
+                if (scanned != 1 || $isunknown(data_in))
+                    $fatal(1, "Invalid or missing MNIST pixel at image %0d pixel %0d",
+                           image, pixel);
                 data_valid = 1;
                 input_last = (pixel == 783);
+                // Hold this pixel/valid/last across any input backpressure.
+                // Only read another word after this beat has been accepted.
                 do @(posedge clk); while (!ready_in);
             end
             @(negedge clk);
@@ -104,6 +105,8 @@ module mlp_variant_tb #(
             repeat (4) @(negedge clk);
         end
         repeat (10) @(negedge clk);
+        $fclose(input_file);
+        $fclose(label_file);
         $fclose(log_file);
         $display("Batch %0d completed %0d images, %0d correct, accuracy %.2f%%",
                  BATCH_ID, frames_done, correct, 100.0*correct/NUM_TESTS);

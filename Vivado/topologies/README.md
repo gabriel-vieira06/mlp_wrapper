@@ -115,6 +115,16 @@ from 0 through 9,999. Output is written to `mnist_batch_XX_log.txt` in the
 simulation working directory, where `XX` is the selected batch. No particular
 accuracy is asserted for an unknown trained model.
 
+The testbench streams pixels and labels from the selected files as they are
+needed. It keeps only the offered pixel and current label, instead of
+preloading 784,000 pixels and 1,000 labels. The batch remains 1,000 images;
+input-data storage in the testbench is constant rather than proportional to
+the batch size. Input data and `TLAST` stay stable until each beat is accepted.
+
+New projects also use a lightweight XSim evaluation profile: elaboration debug
+is off, global signal logging is disabled, and a custom runtime runs the batch
+without adding waveforms. It runs the actual RTL and trained weight memories.
+
 The supplied 10,000-image data is stored as ten matching sample/label pairs in
 `test_data/mnist_batches`. Every sample file contains 784,000 pixel words, and
 its label file contains 1,000 labels. The project scripts import all pairs so
@@ -135,13 +145,40 @@ through 3,999):
 open_project /path/outside/repository/mlp_256_128/mlp_256_128.xpr
 set_property generic {BATCH_ID=3 NUM_TESTS=1000} [get_filesets sim_1]
 launch_simulation
-run all
 ```
+
+The lightweight runtime runs the selected batch automatically on launch.
 
 Close any running simulation before changing these generics, then launch it
 again to elaborate the selected batch. Previously generated projects also
 need the new batch files added to `sim_1`; the migration commands are in the
 batch data instructions.
+
+### Reduce RAM use in an existing project
+
+Update the checkout, close the running simulation, and open the generated
+project. Apply the evaluation profile before launching a new simulation:
+
+```tcl
+source /path/to/mlp_wrapper/scripts/configure_lightweight_simulation.tcl
+set_property generic {BATCH_ID=0 NUM_TESTS=1000} [get_filesets sim_1]
+launch_simulation
+```
+
+The project must reference the updated `common/mlp_variant_tb.sv`; projects
+using imported copies need that file refreshed. Close and relaunch simulation
+so XSim re-elaborates with debug off; restarting an old snapshot is not enough.
+Logs and the accuracy summary are still produced. See the
+[simulation profile guide](../../scripts/README.md#lightweight-xsim-evaluation)
+for waveform/debug tradeoffs and how to restore interactive debugging.
+
+The original `64_32` testbench also preloads 1,000 images, so batch storage is
+not the only difference in RAM use. The larger topologies have approximately
+4–12 times as many weights, and their RTL memories still exist in simulation.
+Streaming removes the testbench's batch arrays; disabling tracing avoids
+retaining signal history during long runs. This does not guarantee the total
+RAM use matches `64_32`. XSim peak memory has not been measured in this cloud
+environment.
 
 ## Resource limit on the PYNQ-Z1
 

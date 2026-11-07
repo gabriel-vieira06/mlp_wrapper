@@ -32,13 +32,17 @@ simulation closed:
 ```tcl
 set_property generic {BATCH_ID=9 NUM_TESTS=1000} [get_filesets sim_1]
 launch_simulation
-run all
 ```
 
 This evaluates images 9,000 through 9,999, prints the classification summary
 and writes `mnist_batch_09_log.txt`. For a shorter smoke test, reduce
 `NUM_TESTS`, for example to `2`; it must remain between 1 and 1,000. The same
 batch-selection interface applies to all four topologies.
+
+With the lightweight profile applied by new projects, launching simulation
+runs the batch automatically. Pixels and labels are streamed from disk rather
+than loading the complete batch into testbench arrays. The files and default
+1,000-image batch size are unchanged.
 
 ## Update an existing topology project
 
@@ -51,13 +55,17 @@ set batch_dir [file normalize /path/to/mlp_wrapper/Vivado/topologies/test_data/m
 add_files -fileset sim_1 -norecurse [glob -directory $batch_dir test_samples_*.mem test_labels_*.mem]
 set_property generic {BATCH_ID=0 NUM_TESTS=1000} [get_filesets sim_1]
 update_compile_order -fileset sim_1
+source /path/to/mlp_wrapper/scripts/configure_lightweight_simulation.tcl
 launch_simulation
-run all
 ```
 
 The existing project must reference the updated shared
 `common/mlp_variant_tb.sv`. The original `64_32` testbench and its legacy
 fixtures are unchanged.
+
+For a project that already has batch support, only refresh the shared testbench
+if it was imported as a copy, apply the profile script above, and relaunch
+simulation. Debug/waveform settings require re-elaboration of the snapshot.
 
 ## Reproduce the split
 
