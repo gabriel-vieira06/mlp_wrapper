@@ -15,7 +15,6 @@ module mlp_variant_tb #(
     wire [31:0] data_out;
     wire data_out_valid, data_out_last;
     logic input_last = 0;
-    logic [31:0] label_word;
     logic [3:0] current_label;
     integer input_file, label_file, log_file, scanned;
     string samples_filename, labels_filename, log_filename;
@@ -35,6 +34,46 @@ module mlp_variant_tb #(
         .m_axis_tready(1'b1), .m_axis_tlast(data_out_last),
         .dbg_valid_in(), .dbg_valid_out()
     );
+
+    // Read text first: %h can treat the 'x' in a C-style 0x7 label as an
+    // unknown HDL digit in a four-state simulator. Parse the optional prefix
+    // explicitly, validate the whole token, and bound every accumulation so
+    // an oversized or malformed value cannot wrap/truncate into a valid class.
+    task automatic read_mnist_label(input integer image_index);
+        string token;
+        integer status, first_digit, digit, value;
+        begin
+            status = $fscanf(label_file, "%s", token);
+            if (status != 1)
+                $fatal(1, "Invalid or missing MNIST label at index %0d in %s",
+                       image_index, labels_filename);
+            first_digit = 0;
+            if (token.len() >= 2 && token[0] == 8'h30 &&
+                (token[1] == 8'h78 || token[1] == 8'h58))
+                first_digit = 2;
+            if (first_digit == token.len())
+                $fatal(1, "Invalid MNIST label '%s' at index %0d: no digits",
+                       token, image_index);
+            value = 0;
+            for (integer i = first_digit; i < token.len(); i++) begin
+                digit = -1;
+                if (token[i] >= 8'h30 && token[i] <= 8'h39)
+                    digit = token[i] - 8'h30;
+                else if (token[i] >= 8'h61 && token[i] <= 8'h66)
+                    digit = token[i] - 8'h61 + 10;
+                else if (token[i] >= 8'h41 && token[i] <= 8'h46)
+                    digit = token[i] - 8'h41 + 10;
+                if (digit < 0)
+                    $fatal(1, "Invalid MNIST label '%s' at index %0d: non-hex digit",
+                           token, image_index);
+                value = value * 16 + digit;
+                if (value > 9)
+                    $fatal(1, "Invalid MNIST label '%s' at index %0d: class must be 0..9",
+                           token, image_index);
+            end
+            current_label = value[3:0];
+        end
+    endtask
 
     always #10 clk = ~clk; // 50 MHz, matching the block design.
 
@@ -82,10 +121,7 @@ module mlp_variant_tb #(
         for (integer image = 0; image < NUM_TESTS; image++) begin
             // Do not fetch the next label until the preceding image has
             // completed; the output scoreboard uses this single label.
-            scanned = $fscanf(label_file, "%h", label_word);
-            if (scanned != 1 || $isunknown(label_word) || label_word > 9)
-                $fatal(1, "Invalid or missing MNIST label at index %0d", image);
-            current_label = label_word[3:0];
+            read_mnist_label(image);
             for (integer pixel = 0; pixel < 784; pixel++) begin
                 @(negedge clk);
                 scanned = $fscanf(input_file, "%h", data_in);

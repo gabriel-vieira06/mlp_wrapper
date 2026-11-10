@@ -8,6 +8,8 @@ algorithm, byte preservation, alignment, strict input validation and atomic
 output behavior. They do not substitute for verification of the user's actual
 uploaded files. An optional Verilator check uses an explicitly synthetic mock
 accelerator to exercise the real testbench's 1,000-frame batch selection.
+When Icarus is installed, a four-state check also exercises prefixed labels
+against the same testbench; Verilator alone cannot reproduce unknown hex bits.
 """
 
 from __future__ import annotations
@@ -38,6 +40,24 @@ finally:
     sys.dont_write_bytecode = previous_bytecode_setting
 DEFAULTS = (SPLITTER.TOTAL_IMAGES, SPLITTER.IMAGES_PER_BATCH,
             SPLITTER.PIXELS_PER_IMAGE)
+
+
+def label_spellings(value):
+    return (f"0x{value:x}", f"0X{value:X}", f"{value:x}", f"{value:08x}",
+            f"0x{value:016x}", f"0X{value:016X}", f"{value:040x}")
+
+
+MALFORMED_LABELS = (
+    "x", "X", "z", "Z", "x7", "z7", "0xx7", "0xz7", "0x0x7", "0x0z7",
+    "7junk", "0x7junk", "7;", "0x7;", "7,", "0_7", "0x0_7",
+    "0x", "0X", "+7", "-1", "nothex",
+)
+OUT_OF_RANGE_LABELS = (
+    "0x17", "0xffffffff", "0xa", "10",
+    # These formerly became valid classes after a 32-bit %h truncation.
+    "0x100000000", "0x100000007", "100000007", "0X100000009",
+    "0x1000000000000007", "10000000000000000000000000000000000000000007",
+)
 
 
 class MnistBatchTests(unittest.TestCase):
@@ -333,7 +353,8 @@ class BatchTestbenchTests(unittest.TestCase):
 
     def write_labels(self, words=None):
         if words is None:
-            words = [f"0x{image % 10:x}" for image in range(9000, 10000)]
+            words = [label_spellings(image % 10)[index % 7]
+                     for index, image in enumerate(range(9000, 10000))]
         self.labels.write_text("".join(word + "\n" for word in words))
 
     def run_tb(self):
@@ -366,7 +387,15 @@ class BatchTestbenchTests(unittest.TestCase):
 
     def test_invalid_full_width_label_is_rejected_before_any_pixel_is_sent(self):
         self.write_samples()
-        for word in ("0x17", "0xffffffff", "0xa", "nothex"):
+        for word in OUT_OF_RANGE_LABELS:
+            with self.subTest(label=word):
+                self.write_labels([word])
+                text = self.assert_failed_for("label")
+                self.assertNotIn("MOCK_INPUT_IMAGE", text)
+
+    def test_malformed_label_tokens_are_rejected_without_partial_hex_parsing(self):
+        self.write_samples()
+        for word in MALFORMED_LABELS:
             with self.subTest(label=word):
                 self.write_labels([word])
                 text = self.assert_failed_for("label")
@@ -413,6 +442,59 @@ class BatchTestbenchTests(unittest.TestCase):
                 self.write_labels(["0x0"])
                 getattr(self, missing).unlink()
                 text = self.assert_failed_for("cannot open")
+                self.assertNotIn("MOCK_INPUT_IMAGE", text)
+
+
+@unittest.skipUnless(shutil.which("iverilog") and shutil.which("vvp"),
+                     "Optional four-state label checks require Icarus and vvp on PATH")
+class FourStateLabelTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.build_temporary = tempfile.TemporaryDirectory(prefix="mnist-label-four-state-")
+        cls.addClassCleanup(cls.build_temporary.cleanup)
+        root = Path(cls.build_temporary.name)
+        mock_rtl = root / "mlp_mock.sv"
+        mock_rtl.write_text(MOCK_MLP)
+        cls.program = root / "labels.vvp"
+        command = [shutil.which("iverilog"), "-g2012", "-s", "mlp_variant_tb",
+                   "-Pmlp_variant_tb.BATCH_ID=9", "-Pmlp_variant_tb.NUM_TESTS=1",
+                   "-o", str(cls.program), str(mock_rtl),
+                   str(SCRIPT.parents[1] / "Vivado/topologies/common/mlp_variant_tb.sv")]
+        build = subprocess.run(command, cwd=root, capture_output=True, text=True, timeout=120)
+        if build.returncode:
+            raise AssertionError((build.stdout + build.stderr)[-5000:])
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory(prefix="mnist-label-four-state-run-")
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name)
+        (self.root / "test_samples_09.mem").write_bytes(
+            b"".join(f"{(9000 << 16) | pixel:08x}\n".encode() for pixel in range(784)))
+
+    def run_label(self, token):
+        (self.root / "test_labels_09.mem").write_text(token + "\n")
+        return subprocess.run([shutil.which("vvp"), str(self.program)], cwd=self.root,
+                              capture_output=True, text=True, timeout=30)
+
+    def test_prefixed_plain_and_zero_padded_labels_are_valid_in_four_state_simulation(self):
+        # Specifically use 7: the user's first failing label was 0x7. The
+        # protocol mock predicts 0, so inspect the parsed expected label rather
+        # than claiming model accuracy from this parser-only check.
+        for token in label_spellings(7):
+            with self.subTest(label=token):
+                result = self.run_label(token)
+                self.assertEqual(result.returncode, 0, (result.stdout + result.stderr)[-5000:])
+                self.assertIn("Batch 9 completed 1 images", result.stdout)
+                log = (self.root / "mnist_batch_09_log.txt").read_text().splitlines()
+                self.assertEqual(log, ["Image 9000: predicted=0 expected=7"])
+
+    def test_malformed_and_overwide_tokens_are_rejected_in_four_state_simulation(self):
+        for token in (*MALFORMED_LABELS, *OUT_OF_RANGE_LABELS):
+            with self.subTest(label=token):
+                result = self.run_label(token)
+                text = result.stdout + result.stderr
+                self.assertNotEqual(result.returncode, 0, text[-5000:])
+                self.assertIn("label", text.lower())
                 self.assertNotIn("MOCK_INPUT_IMAGE", text)
 
 

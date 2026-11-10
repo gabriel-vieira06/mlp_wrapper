@@ -251,4 +251,12 @@ accuracy test. The pure Python splitter tests need no external dependencies:
 python3 tests/test_mnist_batches.py MnistBatchTests
 ```
 
+With `iverilog` and `vvp` on `PATH`, the suite also checks label parsing in a
+four-state simulator. These tests cover prefixed labels such as `0x7`, whose
+unknown-bit behavior can be hidden by Verilator's two-state execution:
+
+```sh
+python3 tests/test_mnist_batches.py FourStateLabelTests
+```
+
 Vivado 2022.2 is required to create projects or produce the synthesis reports.

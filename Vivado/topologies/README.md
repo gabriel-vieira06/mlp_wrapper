@@ -115,6 +115,11 @@ from 0 through 9,999. Output is written to `mnist_batch_XX_log.txt` in the
 simulation working directory, where `XX` is the selected batch. No particular
 accuracy is asserted for an unknown trained model.
 
+Labels are parsed as text with explicit handling of `0x`/`0X` prefixes. This
+avoids treating the prefix as unknown HDL bits in XSim. See
+[label parsing and simulator compatibility](test_data/README.md#label-parsing-and-xsim-compatibility)
+if an older generated project stops with an invalid-label error.
+
 The testbench streams pixels and labels from the selected files as they are
 needed. It keeps only the offered pixel and current label, instead of
 preloading 784,000 pixels and 1,000 labels. The batch remains 1,000 images;

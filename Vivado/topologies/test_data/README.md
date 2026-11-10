@@ -67,6 +67,28 @@ For a project that already has batch support, only refresh the shared testbench
 if it was imported as a copy, apply the profile script above, and relaunch
 simulation. Debug/waveform settings require re-elaboration of the snapshot.
 
+## Label parsing and XSim compatibility
+
+The supplied labels use tokens such as `0x7`. The streaming testbench reads
+labels as text, handles an optional `0x` or `0X` prefix explicitly, validates
+every hexadecimal character and accepts only classes 0 through 9. Plain `7`
+and leading-zero forms are also accepted. Invalid tokens and oversized values
+are rejected before pixels for that image are transmitted; they cannot be
+silently truncated into a valid class.
+
+A direct `$fscanf(..., "%h", word)` can interpret the `x` in `0x7` as an
+unknown hexadecimal digit in a four-state simulator. A 32-bit destination can
+then contain `000000x7` and fail `$isunknown`, while the old four-bit read
+retained just `7`. This explains why the original topology could run while an
+earlier streaming testbench failed at label index 0. Two-state simulation can
+hide the unknown bits, so the label regression also has Icarus four-state
+coverage.
+
+If a generated project reports this error, update the checkout and any imported
+copy of `common/mlp_variant_tb.sv`, close the failed simulation, and launch it
+again to rebuild the snapshot. Running `run all` after a fatal stop continues
+the old failed run; it does not load the corrected testbench.
+
 ## Reproduce the split
 
 Extract `test_files.zip` outside the checkout and run from the repository root:
