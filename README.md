@@ -3,6 +3,9 @@
 MNIST MLP accelerator for the PYNQ-Z1, with a PyTorch training/export notebook
 and a Vivado 2022.2 project.
 
+See the [PYNQ-Z1 validation notebooks](PYNQ/notebooks/README.md) to benchmark
+the five topology overlays on the board with all ten MNIST test batches.
+
 See the [scripts guide](scripts/README.md) for project creation, MNIST batch
 preparation and standalone synthesis commands. The topology work is maintained
 on the single `topologies` branch.
