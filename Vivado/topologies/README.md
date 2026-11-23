@@ -1,8 +1,10 @@
 # Vivado topology presets
 
 Each preset retains 784 MNIST inputs, 10 linear class scores, 32-bit data and
-weights, `P_INT=10`, and ReLU hidden activations. The generated `64_32` project
-uses the shared topology RTL and batch testbench. The original project at
+weights, `P_INT=10`, and ReLU hidden activations. All five `mlp.v` adapters
+default to `N_MULT=2`, so each dense layer multiplies two input/weight pairs
+in parallel for one output neuron. The generated `64_32` project uses the
+shared topology RTL and batch testbench. The original project at
 `Vivado/updated_mlp_wrapper.xpr` uses `dense_wrapper.sv` and its original
 testbench.
 
@@ -22,9 +24,14 @@ the single-hidden-layer version has no unused second hidden layer, and the
 three-hidden-layer version adds a fourth dense stage for the output.
 
 The shared accelerator blocks new input frames while inference/output is in
-progress and holds each output beat stable under backpressure. It reuses the
-existing `dense.sv` arithmetic, synchronous weight ROMs and single-lane input
-BRAM. The supplied weight and bias memories for the four alternative sizes from
+progress and holds each output beat stable under backpressure. The two-lane
+configuration stores each input frame in a register array so the first dense
+layer can select two pixels in parallel. Each layer reads adjacent weights
+from a synchronous ROM with a block-ROM inference hint. Bias reads remain
+combinational. The `N_MULT=1` configuration uses synchronous input BRAM for
+the first layer.
+
+The supplied weight and bias memories for the four alternative sizes from
 `topologies_mem.zip` are included under their respective `mem/` directories.
 The archive's `mems/` directories were mapped to the `mem/` paths used by the
 project scripts.
@@ -144,11 +151,9 @@ changing `BATCH_ID` does not require importing different data. See
 [the batch data instructions](test_data/README.md) for the image ranges,
 reproducible splitting command and migration of an existing project.
 
-The generated `64_32` preset classified 967 of 1,000 images from batch 00
-correctly in Verilator. Its 10,000 raw scores matched the legacy RTL when run
-on the same inputs and trained memories. Short Verilator runs with the other
-presets observed 10/10 correct (`500_500`), 10/10 (`256_128`), 9/10 (`256`),
-and 10/10 (`512_256_128`).
+In Verilator, the two-lane `64_32` preset classified 967 of 1,000 images
+from batch 00 correctly. All 10,000 raw scores matched the single-lane legacy
+RTL on the same inputs and trained memories.
 
 For simulation after generating the project (batch 03 covers images 3,000
 through 3,999):
@@ -207,8 +212,8 @@ These are storage bounds, not synthesis results. Constant-bit optimization can
 depend on the actual trained values, but there is no guarantee of device fit.
 A deployable design may need quantization, external DDR weight access or a
 larger FPGA. Those architectural changes are outside these topology presets;
-32-bit precision has not been silently reduced. No new bitstreams or hardware
-validation are claimed.
+the presets retain 32-bit weights. Resource use and timing for the two-lane
+configuration require Vivado synthesis and implementation results.
 
 ## Synthetic regression independent of trained memories
 

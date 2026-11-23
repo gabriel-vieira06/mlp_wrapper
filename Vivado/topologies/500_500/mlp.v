@@ -3,7 +3,7 @@
 // 784 -> 500 -> 500 -> 10 preset. Compile only this variant's mlp.v.
 module mlp #(
     parameter WIDTH = 32,
-    parameter N_MULT = 1
+    parameter N_MULT = 2
 )(
     input  wire clk,
     input  wire rst_n,
