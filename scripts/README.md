@@ -10,24 +10,25 @@ root. Tcl simulation commands run inside the Vivado Tcl console.
 | [configure_lightweight_simulation.tcl](configure_lightweight_simulation.tcl) | Apply a low-memory evaluation profile to the open topology project | Vivado 2022.2; simulation closed |
 | [xsim_run_batch.tcl](xsim_run_batch.tcl) | Internal XSim runtime selected by the evaluation profile; runs the batch without adding waves | Called by XSim, not a standalone project generator |
 | [split_mnist_mem.py](split_mnist_mem.py) | Split 10,000 MNIST images and labels into ten aligned batches | Python 3; standard library only |
-| [synth_luts.tcl](synth_luts.tcl) | Synthesize the original `64_32` accelerator and report resources/timing | Vivado 2022.2 |
+| [synth_luts.tcl](synth_luts.tcl) | Synthesize the legacy `64_32` accelerator and report resources/timing | Vivado 2022.2 |
 
 ## Create a topology project
 
-The creation helper is called by a topology-specific entry point. Choose
-`500_500`, `256_128`, `256` (one hidden layer), or `512_256_128` (three hidden
-layers). The variants all have 784 inputs and 10 output scores.
-
-For example:
+Each topology has a project-creation entry point. The presets are `64_32`,
+`500_500`, `256_128`, `256` (one hidden layer), and `512_256_128` (three hidden
+layers). The variants all have 784 inputs and 10 output scores. To generate the
+shared-RTL project for the `64_32` architecture, run this command.
 
 ```sh
-vivado -mode batch -source Vivado/topologies/256_128/create_project.tcl
+vivado -mode batch -source Vivado/topologies/64_32/create_project.tcl
 ```
 
-This uses the bundled trained memories in
-`Vivado/topologies/256_128/mem/` and creates
-`../mlp_256_128_vivado/mlp_256_128.xpr`. The default output directory is a
-sibling of the checkout, regardless of where Vivado was started.
+The `64_32` entry point uses the trained memories in
+`Vivado/updated_mlp_wrapper.srcs/sources_1/new/` and creates
+`../mlp_64_32_vivado/mlp_64_32.xpr` relative to the repository root. The other
+presets use their own `Vivado/topologies/<preset>/mem/` directories. Each
+default output directory is a sibling of the checkout, regardless of where
+Vivado was started.
 
 The entry point accepts two optional positional arguments:
 
@@ -140,11 +141,10 @@ Add only the signals needed for debugging; avoid recursively logging weight
 memories and all internal signals for a full batch. Reapply the helper to
 return to 1,000-image evaluation (restore `NUM_TESTS=1000` as shown above).
 
-The larger models still contain their full RTL weight memories, and the
-original `64_32` testbench also preloads 1,000 images. These changes remove
-batch-sized testbench buffers and unnecessary tracing; they do not promise
-that a larger topology's total PC RAM use equals `64_32`. Peak XSim RAM could
-not be measured here because Vivado/XSim is not installed.
+Generated projects, including `64_32`, stream inputs with `mlp_variant_tb`.
+The legacy `64_32` testbench in `Vivado/updated_mlp_wrapper.xpr` preloads
+1,000 images. The RTL weight memories still contribute to simulation RAM use,
+and larger models store more weights.
 
 The property names and waveform-file behavior match the
 [official Xilinx 2022.2 XSim Tcl sources](https://github.com/Xilinx/XilinxTclStore/blob/234341d2f6aa01b7ed747fc3528f3b1c8c65cf24/tclapp/xilinx/xsim/register_options.tcl).
@@ -190,7 +190,7 @@ python3 scripts/split_mnist_mem.py --help
 See [the dataset guide](../Vivado/topologies/test_data/README.md) for all batch
 ranges and instructions for adding a new batch set to a Vivado project.
 
-## Report LUT usage for the original accelerator
+## Report LUT usage for the legacy accelerator
 
 `synth_luts.tcl` runs standalone synthesis for the original `64_32` accelerator
 using top `mlp`, device `xc7z020clg400-1`, and a 20 ns clock period (50 MHz).
@@ -227,12 +227,10 @@ Outputs include `utilization.rpt`, `utilization_hierarchical.rpt`,
 `mlp_synth.dcp`. These are synthesis estimates; the script does not run
 placement, routing or bitstream generation.
 
-This script is **not a synthesis entry point for the four alternative
-topologies**: their adapters and shared wrapper use a different source layout.
-For those, first create the complete project with its topology-specific
-entry point, then run synthesis on that project in Vivado. See
-[the resource optimization guide](../docs/resource_optimization.md) for the
-original accelerator's before/after comparison.
+For any generated topology, including the shared-RTL `64_32`, create its
+complete project with the topology-specific entry point and run synthesis in
+that project in Vivado. The legacy accelerator's before/after comparison is
+in [the resource optimization guide](../docs/resource_optimization.md).
 
 ## Checks available without Vivado
 

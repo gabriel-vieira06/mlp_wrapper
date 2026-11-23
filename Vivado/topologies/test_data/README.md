@@ -37,7 +37,7 @@ launch_simulation
 This evaluates images 9,000 through 9,999, prints the classification summary
 and writes `mnist_batch_09_log.txt`. For a shorter smoke test, reduce
 `NUM_TESTS`, for example to `2`; it must remain between 1 and 1,000. The same
-batch-selection interface applies to all four topologies.
+batch-selection interface applies to every generated topology, including `64_32`.
 
 With the lightweight profile applied by new projects, launching simulation
 runs the batch automatically. Pixels and labels are streamed from disk rather
@@ -60,8 +60,8 @@ launch_simulation
 ```
 
 The existing project must reference the updated shared
-`common/mlp_variant_tb.sv`. The original `64_32` testbench and its legacy
-fixtures are unchanged.
+`common/mlp_variant_tb.sv`. To run this testbench with the baseline model,
+generate the [`64_32` project](../README.md#create-and-open-a-project).
 
 For a project that already has batch support, only refresh the shared testbench
 if it was imported as a copy, apply the profile script above, and relaunch

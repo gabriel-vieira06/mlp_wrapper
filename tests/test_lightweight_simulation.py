@@ -224,12 +224,33 @@ assert {[llength $mutations] == 0} {Missing runtime partially changed settings}
         self.assertEqual(commands, ["run all"])
 
     def test_creator_preserves_batch_defaults_sources_and_50_mhz(self):
-        self.run_tcl(PROJECT_STUBS + r"""
-source [file join $repo_dir scripts create_topology_project.tcl]
-::mlp_topology_project::create [file join $repo_dir Vivado topologies 256] [list $output_dir]
+        for topology, override_memories in (("256", False), ("64_32", False), ("64_32", True)):
+            with self.subTest(topology=topology, override_memories=override_memories):
+                self.run_tcl(PROJECT_STUBS + f"""
+set topology {topology}
+set override_memories {int(override_memories)}
+""" + r"""
+set topology_dir [file join $repo_dir Vivado topologies $topology]
+set argv [list $output_dir]
+set legacy_memory_dir [file join $repo_dir Vivado updated_mlp_wrapper.srcs sources_1 new]
+set legacy_memories {H1W.mem H1B.mem H2W.mem H2B.mem H3W.mem H3B.mem}
+set expected_memory_dir $legacy_memory_dir
+if {$override_memories} {
+    set expected_memory_dir [file join [file dirname $output_dir] custom_memories]
+    file mkdir $expected_memory_dir
+    foreach name $legacy_memories {
+        file copy [file join $legacy_memory_dir $name] $expected_memory_dir
+    }
+    # Change one valid word to distinguish the override from the legacy default.
+    set stream [open [file join $expected_memory_dir H1W.mem] r+b]
+    puts -nonewline $stream 87654321
+    close $stream
+    lappend argv $expected_memory_dir
+}
+source [file join $topology_dir create_project.tcl]
 assert_profile
 assert {[llength $simulation_files] == 21} {Expected shared testbench and twenty batch files}
-assert {[file tail [lindex $simulation_files 0]] eq "mlp_variant_tb.sv"} {Wrong simulation testbench}
+assert {[lindex $simulation_files 0] eq [file join $repo_dir Vivado topologies common mlp_variant_tb.sv]} {Wrong simulation testbench}
 foreach name {test_samples test_labels} {
     for {set batch 0} {$batch < 10} {incr batch} {
         set expected ${name}_[format %02d $batch].mem
@@ -239,8 +260,20 @@ foreach name {test_samples test_labels} {
 assert {[lsearch -exact $mutations {generic {BATCH_ID=0 NUM_TESTS=1000} sim_1}] >= 0} {Batch defaults changed}
 assert {[lsearch -exact $mutations {top mlp_variant_tb sim_1}] >= 0} {Simulation top changed}
 assert {[lsearch -exact $mutations {CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ 50 processing_system7_0}] >= 0} {50 MHz clock changed}
-assert {[lsearch -glob $rtl_files */topologies/256/mlp.v] >= 0} {Selected RTL adapter missing}
+assert {[lsearch -exact $rtl_files [file join $topology_dir mlp.v]] >= 0} {Selected RTL adapter missing}
 assert {[lsearch -glob $rtl_files */sources_1/new/mlp.v] < 0} {Old fixed topology was imported}
+if {$topology eq "64_32"} {
+    assert {[llength [lsearch -all -glob $rtl_files *.mem]] == 6} {Expected six memory sources}
+    foreach name $legacy_memories {
+        set staged [file join $output_dir $name]
+        assert {[lsearch -exact $rtl_files $staged] >= 0} "Staged memory $name was not added to the project"
+        set expected [open [file join $expected_memory_dir $name] rb]
+        set actual [open $staged rb]
+        assert {[read $actual] eq [read $expected]} "Staged memory $name differs from its source"
+        close $actual
+        close $expected
+    }
+}
 """)
 
 

@@ -24,6 +24,7 @@ REPO = Path(__file__).resolve().parents[1]
 BASE_RTL = REPO / "Vivado/updated_mlp_wrapper.srcs/sources_1/new"
 DEFAULT_WRAPPER = REPO / "Vivado/topologies/common/mlp_topology.sv"
 TOPOLOGIES = {
+    "64_32": (64, 32),
     "500_500": (500, 500),
     "256_128": (256, 128),
     "256": (256,),
@@ -160,7 +161,7 @@ def test_topology(name: str, hidden: tuple[int, ...], frames: int,
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--topology", choices=TOPOLOGIES, help="Run one variant (default: all four)")
+    parser.add_argument("--topology", choices=TOPOLOGIES, help="Run one topology (default: all)")
     parser.add_argument("--frames", type=int, default=2, help="Repeated synthetic frames (default: 2)")
     parser.add_argument("--wrapper", type=Path, default=DEFAULT_WRAPPER)
     args = parser.parse_args()

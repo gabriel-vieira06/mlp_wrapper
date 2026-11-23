@@ -6,6 +6,7 @@
 
 namespace eval ::mlp_topology_project {
     variable hidden_sizes [dict create \
+        64_32 {64 32} \
         500_500 {500 500} \
         256_128 {256 128} \
         256 {256} \
@@ -32,7 +33,7 @@ proc ::mlp_topology_project::validate_memories {mem_dir requirements} {
         }
     }
     if {[llength $missing]} {
-        error "Missing topology memory files in $mem_dir: [join $missing {, }]. Supply this topology's files; 64_32 files are not a substitute."
+        error "Missing topology memory files in $mem_dir: [join $missing {, }]. Supply the memory files for this topology."
     }
     dict for {name expected} $requirements {
         set path [file join $mem_dir $name]
@@ -90,8 +91,13 @@ proc ::mlp_topology_project::create {variant_dir argv} {
         error "Unknown topology: $variant"
     }
     set repo_dir [file normalize [file join $variant_dir .. .. ..]]
+    set rtl_dir [file join $repo_dir Vivado updated_mlp_wrapper.srcs sources_1 new]
     set output_dir [file normalize [file join [file dirname $repo_dir] mlp_${variant}_vivado]]
     set mem_dir [file join $variant_dir mem]
+    if {$variant eq "64_32"} {
+        # Reuse the trained baseline memories from the original project.
+        set mem_dir $rtl_dir
+    }
     if {[llength $argv] >= 1} {set output_dir [file normalize [lindex $argv 0]]}
     if {[llength $argv] == 2} {set mem_dir [file normalize [lindex $argv 1]]}
     if {$output_dir eq $repo_dir || [string first "${repo_dir}/" "${output_dir}/"] == 0} {
@@ -109,7 +115,6 @@ proc ::mlp_topology_project::create {variant_dir argv} {
     # All input checks happen before create_project or any output is written.
     set requirements [memory_requirements [dict get $hidden_sizes $variant]]
     validate_memories $mem_dir $requirements
-    set rtl_dir [file join $repo_dir Vivado updated_mlp_wrapper.srcs sources_1 new]
     set sources [list]
     foreach name {ReLU.sv dense.sv hard_sigmoid.sv hard_tanh.sv leakyReLU.sv mem_behavioral_B.sv mem_behavioral_W.sv mult2c.sv step.sv} {
         lappend sources [file join $rtl_dir $name]

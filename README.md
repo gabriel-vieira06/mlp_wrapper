@@ -11,8 +11,14 @@ See [resource optimization and verification](docs/resource_optimization.md) for
 the block RAM implementation, simulation checks, and reproducible synthesis
 commands.
 
-Alternative hidden-layer sizes `500_500`, `256_128`, `256`, and `512_256_128`
-are available under [Vivado/topologies](Vivado/topologies/README.md), with
-separate Vivado project-creation scripts and memory-file requirements.
-The supplied weight and bias files are included in each topology's `mem/`
-directory and selected automatically by those scripts.
+The [Vivado topology presets](Vivado/topologies/README.md) include `64_32`,
+`500_500`, `256_128`, `256`, and `512_256_128`. Each project script selects
+its trained weights and biases and configures the shared MNIST batch testbench.
+Run this command from the repository root to generate the `64_32` project.
+
+```sh
+vivado -mode batch -source Vivado/topologies/64_32/create_project.tcl
+```
+
+Open `../mlp_64_32_vivado/mlp_64_32.xpr` for the shared simulation workflow.
+The original project is available at `Vivado/updated_mlp_wrapper.xpr`.

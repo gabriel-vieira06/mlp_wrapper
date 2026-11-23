@@ -1,4 +1,9 @@
 {
+  "64_32": {
+    "hidden_sizes": [64, 32],
+    "input_size": 784,
+    "output_size": 10
+  },
   "500_500": {
     "hidden_sizes": [500, 500],
     "input_size": 784,
